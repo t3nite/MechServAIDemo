@@ -1,0 +1,155 @@
+import streamlit as st
+import json
+import os
+import pandas as pd
+from langchain_ollama import OllamaLLM
+
+# Mallin alustus
+llm = OllamaLLM(model="llama3.1", temperature=0)
+DB_FILE = "mock_data.json"
+JOBS_FILE = "active_jobs.json"
+
+# --- APUFUNKTIOT ---
+def load_db():
+    with open(DB_FILE, "r", encoding="utf-8") as f: return json.load(f)
+
+def load_active_jobs():
+    if not os.path.exists(JOBS_FILE): return []
+    try:
+        with open(JOBS_FILE, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            return json.loads(content) if content else []
+    except: return []
+
+def save_active_jobs(jobs):
+    with open(JOBS_FILE, "w", encoding="utf-8") as f:
+        json.dump(jobs, f, indent=4, ensure_ascii=False)
+
+# --- UI ASETUKSET ---
+st.set_page_config(page_title="MechServAI", layout="wide", page_icon="🚗")
+st.title("🚗 ServAI Pro - Korjaamon Älykäs Ohjaus")
+
+db = load_db()
+tabs = st.tabs(["📋 Varaus", "🔧 Mekaanikko", "📊 Kalenteri", "🔍 Diagnostiikka"])
+
+# --- TAB 1: VARAUS ---
+with tabs[0]:
+    st.header("Uusi huoltovaraus")
+    car_options = [f"{c['brand']} {c['model']} ({c['year']})" for c in db['cars']]
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        selected_car_name = st.selectbox("Valitse auto:", car_options)
+        desc = st.text_area("Asiakkaan kuvaus:", "Jakohihnan vaihto")
+    
+    if st.button("Luo varaus [ServAI Analysis]"):
+        with st.spinner("Analysoidaan teknisiä tietoja..."):
+            car_data = next(c for c in db['cars'] if f"{c['brand']} {c['model']} ({c['year']})" == selected_car_name)
+            job_info = db['jobs'][0]
+            
+            prompt = f"Luo tekninen ohje suomeksi mekaanikolle: {car_data['brand']} {car_data['model']}, työ: {job_info['job']}. Ohjeet: {job_info['technical_notes']}"
+            # Stream-korjaus: muutetaan tekstiksi heti
+            ai_brief = "".join(list(llm.stream(prompt)))
+            
+            new_job = {
+                "id": len(load_active_jobs()) + 1,
+                "car": f"{car_data['brand']} {car_data['model']} ({car_data['year']})",
+                "job_name": job_info['job'],
+                "ai_brief": ai_brief,
+                "status": "Odottaa",
+                "base_price": (job_info['hours'] * db['hourly_rate']) + sum(p['price'] for p in job_info['parts'])
+            }
+            
+            jobs = load_active_jobs()
+            jobs.append(new_job)
+            save_active_jobs(jobs)
+            st.success("Varaus tallennettu!")
+            st.rerun()
+
+# --- TAB 2: MEKAANIKKO ---
+with tabs[1]:
+    st.header("Työlista")
+    active_jobs = load_active_jobs()
+    
+    if not active_jobs:
+        st.info("Ei aktiivisia töitä tällä hetkellä.")
+    else:
+        # Enumerate antaa meille 'idx' muuttujan (0, 1, 2...)
+        for idx, job in enumerate(active_jobs):
+            with st.expander(f"Työ #{job['id']}: {job['car']} - {job['job_name']}"):
+                st.write(f"**Mekaanikon ohjeistus:** {job['ai_brief']}")
+                
+                # Käytetään idx-muuttujaa uniikkeihin avaimiin (key)
+                notes = st.text_area("Havainnot (esim. lisätyöt):", key=f"notes_{idx}")
+                
+                if st.button("Merkitse valmiiksi", key=f"btn_{idx}"):
+                    with st.spinner("Generating professional report..."):
+                        # 1. Älykäs hinta-arvio englanninkielisellä ohjeella
+                        price_prompt = f"""
+                        TASK: Calculate updated price.
+                        Original price: {job['base_price']} EUR.
+                        Mechanic's notes: "{notes}".
+                        RULE: If notes mention extra parts like 'jarrupalat' or 'pads', add 120 EUR. 
+                        Otherwise, keep original price.
+                        Return ONLY the number.
+                        """
+                        new_price = "".join(list(llm.stream(price_prompt)))
+                        
+                        # 2. Asiakasviesti Master Mechanic -tyylillä
+                        report_prompt = f"""
+                        TASK: Write a SMS for a car repair customer in Finnish.
+                        CAR: {job['car']}
+                        PRICE: {new_price} EUR
+                        NOTES: "{notes}"
+                        RULES:
+                        - Use the word 'noudettavissa'.
+                        - DO NOT translate or fix slang (e.g., keep 'kuukkupööpötin' as is).
+                        - Professional but friendly tone.
+                        """
+                        customer_msg = "".join(list(llm.stream(report_prompt)))
+                        
+                        st.success("Työ raportoitu onnistuneesti!")
+                        st.info(customer_msg)
+                        
+                        # Poistetaan työ listalta ja tallennetaan
+                        active_jobs.pop(idx)
+                        save_active_jobs(active_jobs)
+                        
+                        # Pakotetaan päivitys, jotta työ katoaa listalta
+                        st.button("Päivitä näkymä")
+
+# --- TAB 3: KALENTERI ---
+with tabs[2]:
+    st.header("Mekaanikkojen varaustilanne")
+    cal_data = [{"Mekaanikko": m['name'], "Varatut ajat": ", ".join(m['schedule'])} for m in db['mechanics']]
+    df = pd.DataFrame(cal_data)
+    df.index = df.index + 1 # Aloitetaan numerointi 1:stä
+    st.table(df)
+
+# --- TAB 4: DIAGNOSTIIKKA (ENGLISH STEERING, FINNISH OUTPUT) ---
+with tabs[3]:
+    st.header("ServAI Diagnostiikka")
+    symptom = st.text_input("Kuvaile auton oiretta (esim. 'kampiakseli poikki'):")
+    
+    if symptom:
+        with st.spinner("Analyzing technical data..."):
+            expert_prompt = f"""
+            CONTEXT: Current year is 2026. You are using the latest automotive service manuals.
+            SYSTEM: Automotive Engineering Expert.
+            1. ONLY discuss automotive mechanics and car electronics.
+            2. If the user input is ambiguous or sounds like a medical term (e.g., 'crankshaft/kampiakseli' in a human context), 
+               ALWAYS interpret it as a car part.
+            3. NEVER provide medical advice or biological explanations.
+            4. If you don't know the specific car, give a general mechanical estimate.
+
+            USER INPUT: "{symptom}"
+
+            TASK:
+            1. Explain the mechanical cause of the symptom.
+            2. List the specific mechanical components that need to be inspected.
+            3. Provide a realistic price range for parts and labor in Finland (EUR).
+
+            LANGUAGE: Answer everything in professional, clear FINNISH.
+            """
+            
+            st.write_stream(llm.stream(expert_prompt))
