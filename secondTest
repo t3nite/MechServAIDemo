@@ -1,62 +1,75 @@
 import json
 from langchain_ollama import OllamaLLM
-from langchain.tools import tool
 
-# Ladataan mock-data
+llm = OllamaLLM(model="llama3.1", temperature=0)
+
+# Ladataan feikkidata
 with open("mock_data.json", "r", encoding="utf-8") as f:
-    DATA = json.load(f)
+    db = json.load(f)
 
+def create_work_order(customer_input):
+    """VAIHE 1 & 2: Työnjohdon varaus ja mekaanikon ohjeistus"""
+    
+    # Valitaan auto ja työ (tässä yksinkertaistettu haku)
+    car = db["cars"][0]
+    job = next(j for j in db["jobs"] if "jakohihna" in j["job"])
+    mechanic = next(m for m in db["mechanics"] if m["available"])
+    
+    parts_total = sum(p["price"] for p in job["parts"])
+    labor_total = job["hours"] * db["hourly_rate"]
+    total = parts_total + labor_total
 
-@tool
-def get_job_info(job_name: str) -> dict:
-    """Palauttaa työn ohjeajan ja varaosat."""
-    for job in DATA["jobs"]:
-        if job["job"] == job_name:
-            return job
-    return {}
+    # Englanninkielinen prompti takaa paremman logiikan
+    prompt = f"""
+    ROLE: Expert Automotive Service Advisor.
+    TASK: Create a technical brief for the mechanic.
+    
+    DATA:
+    - Car: {car['brand']} {car['model']} ({car['engine']})
+    - Customer Symptom: {customer_input}
+    - Job: {job['job']}
+    - Parts: {job['parts']}
+    - Labor: {job['hours']} hours
+    
+    INSTRUCTIONS (Answer in Finnish):
+    1. Verify if the job matches the symptom.
+    2. List 3 critical technical points for this specific belt change.
+    3. Be professional and brief. Use technical terms like 'ajoitus', 'kiristin', 'vesipumppu'.
+    """
+    
+    print("\n--- SERVAI: TYÖMÄÄRÄIN MEKAANIKOLLE ---")
+    response = llm.invoke(prompt)
+    print(response)
+    return {"car": car, "job": job, "mechanic": mechanic, "total": total}
 
+def finish_work(work_order, mechanic_notes):
+    """VAIHE 3: Työn valmistuminen ja viesti asiakkaalle"""
+    
+    prompt = f"""
+    ROLE: Customer Service Agent at a Car Repair Shop.
+    CONTEXT: Job "{work_order['job']['job']}" for {work_order['car']['brand']} is finished.
+    MECHANIC NOTES: "{mechanic_notes}"
+    TOTAL PRICE: {work_order['total']} EUR
+    
+    TASK (Answer in Finnish):
+    1. Write a polite text message to the customer.
+    2. Summarize what was done.
+    3. Mention if the mechanic found additional issues (lisätyöt).
+    4. Keep it friendly but professional.
+    """
+    
+    print("\n--- SERVAI: VIESTI ASIAKKAALLE ---")
+    response = llm.invoke(prompt)
+    print(response)
 
-@tool
-def get_available_mechanic() -> str:
-    """Palauttaa vapaan mekaanikon nimen."""
-    for mech in DATA["mechanics"]:
-        if mech["available"]:
-            return mech["name"]
-    return "Ei vapaata mekaanikkoa"
+# --- DEMON AJAMINEN ---
 
+# 1. Tiskillä/Kotona tapahtuva varaus
+active_job = create_work_order("Jakohihnan vaihto ja tarkistus")
 
-llm = OllamaLLM(
-    model="llama3.1",
-    temperature=0.1
-)
+print("\n" + "="*30 + "\n")
 
-tools = [get_job_info, get_available_mechanic]
-
-SYSTEM_PROMPT = """
-Olet autokorjaamon toiminnanohjausjärjestelmä.
-Käytä vain annettuja työkaluja.
-Älä keksi tietoja.
-Laske kustannukset selkeästi.
-Vastaa suomeksi.
-"""
-
-prompt = f"""
-Asiakas varaa ajan seuraavalle työlle:
-
-Auto: Volkswagen Golf 1.6 TDI (2015)
-Työ: jakohihnan vaihto
-
-Tee ehdotus:
-- työaika
-- mekaanikko
-- varaosat
-- arvioitu hinta
-"""
-
-print("Mekaanikko miettii...\n")
-
-response = llm.invoke(
-    SYSTEM_PROMPT + prompt
-)
-
-print(response)
+# 2. Mekaanikko kuittaa työn tehdyksi ja lisää omat havaintonsa
+# Tässä mekaanikko huomaa oikean vian, jonka AI poimii viestiin
+mechanic_input = "Työ tehty. Huomattu, että apulaitehihna on halkeillut. Suositellaan vaihtoa 5000km sisällä."
+finish_work(active_job, mechanic_input)
