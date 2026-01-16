@@ -1,0 +1,120 @@
+import streamlit as st
+import json
+import os
+from langchain_ollama import OllamaLLM
+from datetime import datetime
+
+# Asetukset
+llm = OllamaLLM(model="llama3.1", temperature=0)
+DB_FILE = "mock_data.json"
+JOBS_FILE = "active_jobs.json"
+
+# Ladataan tietokanta
+def load_db():
+    with open(DB_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+# Ladataan aktiiviset työt
+def load_active_jobs():
+    if os.path.exists(JOBS_FILE):
+        with open(JOBS_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return []
+
+# Tallennetaan aktiiviset työt
+def save_active_jobs(jobs):
+    with open(JOBS_FILE, "w", encoding="utf-8") as f:
+        json.dump(jobs, f, indent=4, ensure_ascii=False)
+
+# UI Käyttöliittymä
+st.set_page_config(page_title="ServAI - Toiminnanohjaus", layout="wide")
+st.title("🚗 ServAI - Korjaamon Älykäs Ohjaus")
+
+tab1, tab2 = st.tabs(["📋 Työnjohto / Varaus", "🔧 Mekaanikon Näkymä"])
+
+db = load_db()
+
+# --- VÄLILEHTI 1: TYÖNJOHTO ---
+with tab1:
+    st.header("Uusi varaus")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        customer_input = st.text_area("Asiakkaan kuvaus tai oire:", "Jakohihnan vaihto")
+        selected_car = st.selectbox("Valitse auto:", [f"{c['brand']} {c['model']} ({c['engine']})" for c in db['cars']])
+    
+    if st.button("Luo varaus [ServAI Analysis]"):
+        with st.spinner("ServAI analysoi ja hakee tietoja..."):
+            # Simuloidaan tietojen haku
+            car = db['cars'][0]
+            job = db['jobs'][0]
+            mechanic = next(m for m in db['mechanics'] if m['available'])
+            lift = next(r for r in db['resources'] if r['available'])
+            
+            # Agentin ohjeistus mekaanikolle
+            prompt = f"""
+            ROLE: Expert Automotive Service Advisor.
+            TASK: Create a technical brief for the mechanic.
+            CAR: {car['brand']} {car['model']}
+            JOB: {job['job']}
+            TECHNICAL NOTES FROM DB: {job['technical_notes']}
+            
+            Write 3 technical bullet points in FINNISH for the mechanic. Be professional.
+            """
+            ai_brief = llm.invoke(prompt)
+            
+            # Tallennetaan "tietokantaan"
+            new_job = {
+                "id": len(load_active_jobs()) + 1,
+                "car": f"{car['brand']} {car['model']}",
+                "job_name": job['job'],
+                "mechanic": mechanic['name'],
+                "lift": lift['name'],
+                "ai_brief": ai_brief,
+                "status": "Odottaa",
+                "total_price": (job['hours'] * db['hourly_rate']) + sum(p['price'] for p in job['parts'])
+            }
+            
+            jobs = load_active_jobs()
+            jobs.append(new_job)
+            save_active_jobs(jobs)
+            st.success(f"Varaus luotu! Mekaanikko: {mechanic['name']}, Paikka: {lift['name']}")
+            st.info(ai_brief)
+
+# --- VÄLILEHTI 2: MEKAANIKKO ---
+with tab2:
+    st.header("Työlistasi tänään")
+    active_jobs = load_active_jobs()
+    
+    if not active_jobs:
+        st.write("Ei aktiivisia töitä.")
+    
+    for idx, job in enumerate(active_jobs):
+        if job['status'] == "Odottaa":
+            with st.expander(f"Työ #{job['id']}: {job['car']} - {job['job_name']}"):
+                st.write(f"**Nosturi:** {job['lift']}")
+                st.write(f"**ServAI Ohjeistus:**\n{job['ai_brief']}")
+                
+                mech_notes = st.text_area("Mekaanikon havainnot ja kuittaus:", key=f"notes_{idx}")
+                
+                if st.button("Merkitse valmiiksi ja lähetä raportti", key=f"btn_{idx}"):
+                    # Agentti generoi loppuraportin asiakkaalle
+                    report_prompt = f"""
+                    ROLE: Professional Service Writer.
+                    JOB: {job['job_name']} for {job['car']}
+                    MECHANIC NOTES: {mech_notes}
+                    PRICE: {job['total_price']} EUR
+                    
+                    Write a friendly text message in FINNISH to the customer. 
+                    Mention any additional findings from the notes.
+                    """
+                    customer_msg = llm.invoke(report_prompt)
+                    
+                    st.success("Työ kuitattu valmiiksi!")
+                    st.subheader("Asiakkaalle lähtevä viesti:")
+                    st.code(customer_msg)
+                    
+                    # Päivitetään tila (demossa vain poistetaan listalta)
+                    active_jobs.pop(idx)
+                    save_active_jobs(active_jobs)
+                    # st.experimental_rerun() # Päivittää sivun (valinnainen)
