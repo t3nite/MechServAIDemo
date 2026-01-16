@@ -1,31 +1,35 @@
 {
   "cars": [
     {
+      "id": "vw-golf-15",
       "brand": "Volkswagen",
       "model": "Golf",
       "engine": "1.6 TDI",
+      "engine_code": "CLHA",
       "year": 2015
     }
   ],
   "jobs": [
     {
+      "id": "timing-belt-16tdi",
       "job": "jakohihnan vaihto",
       "hours": 4.0,
+      "compatible_engines": ["1.6 TDI", "2.0 TDI"],
+      "technical_notes": "Tarkista ajoitusmerkit kampiakselilta. Kiristimen oikea kireys on osoittimen mukaan. Muista uusia pultit.",
       "parts": [
         { "name": "jakohihnasarja", "price": 280 },
-        { "name": "vesipumppu", "price": 120 }
+        { "name": "vesipumppu", "price": 120 },
+        { "name": "jäähdytysneste G13", "price": 40 }
       ]
     }
   ],
   "mechanics": [
-    {
-      "name": "Matti",
-      "available": true
-    },
-    {
-      "name": "Teppo",
-      "available": false
-    }
+    { "name": "Matti", "available": true, "skills": ["jakohihnat", "diagnostiikka"] },
+    { "name": "Teppo", "available": false, "skills": ["öljynvaihdot"] }
+  ],
+  "resources": [
+    { "name": "Nosturi 1", "type": "2-pilarinosturi", "available": true },
+    { "name": "Nosturi 2", "type": "4-pilarinosturi", "available": true }
   ],
   "hourly_rate": 95
 }
