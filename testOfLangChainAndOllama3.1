@@ -1,0 +1,17 @@
+from langchain_ollama import OllamaLLM
+
+llm = OllamaLLM(
+    model="llama3.1",
+    temperature=0.1  # Laskettu lämpötila tekee vastauksista faktapohjaisempia
+)
+
+# kysymys/ohje
+prompt = """Kysymys: Selitä lyhyesti ja teknisesti oikein, mikä on auton jakohihnan tehtävä ja miksi se pitää vaihtaa?
+Vastaa kuin kokenut automekaanikko suomeksi."""
+
+print("Mekaanikko miettii...\n")
+
+for chunk in llm.stream(prompt):
+    print(chunk, end="", flush=True)
+
+print("\n\n--- Vastaus valmis ---")
