@@ -27,7 +27,7 @@ def save_active_jobs(jobs):
 
 # --- UI ASETUKSET ---
 st.set_page_config(page_title="MechServAI", layout="wide", page_icon="🚗")
-st.title("🚗 ServAI - Korjaamon Älykäs Ohjaus")
+st.title("🚗 ServAI Pro - Korjaamon Älykäs Ohjaus")
 
 db = load_db()
 tabs = st.tabs(["📋 Varaus", "🔧 Mekaanikko", "📊 Kalenteri", "🔍 Diagnostiikka"])
@@ -40,7 +40,7 @@ with tabs[0]:
     col1, col2 = st.columns(2)
     with col1:
         selected_car_name = st.selectbox("Valitse auto:", car_options)
-        desc = st.text_area("Ongelmien kuvaus:", "")
+        desc = st.text_area("Asiakkaan kuvaus:", "Jakohihnan vaihto")
     
     if st.button("Luo varaus [ServAI Analysis]"):
         with st.spinner("Analysoidaan..."):
@@ -102,8 +102,7 @@ with tabs[1]:
                         PRICE: {new_price} EUR
                         NOTES: "{notes}"
                         RULES:
-                        - Use the word 'noudettavissa'.
-                        - DO NOT translate or fix slang (e.g., keep 'kuukkupööpötin' as is).
+                        - DO NOT translate or fix slang.
                         - Professional but friendly tone.
                         """
                         customer_msg = "".join(list(llm.stream(report_prompt)))
@@ -128,11 +127,11 @@ with tabs[2]:
 
 # --- TAB 4: DIAGNOSTIIKKA (ENGLISH STEERING, FINNISH OUTPUT) ---
 with tabs[3]:
-    st.header("ServAI Diagnostiikka")
-    symptom = st.text_input("Kuvaile auton oiretta (esim. 'kampiakseli poikki'):")
+    st.header("MechServAI Diagnostiikka")
+    symptom = st.text_input("Kuvaile auton oiretta:")
     
     if symptom:
-        with st.spinner("Analyzing technical data..."):
+        with st.spinner("Analysoidaan..."):
             expert_prompt = f"""
             CONTEXT: Current year is 2026. You are using the latest automotive service manuals.
             SYSTEM: Automotive Engineering Expert.
