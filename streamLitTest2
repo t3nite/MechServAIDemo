@@ -27,7 +27,7 @@ def save_active_jobs(jobs):
 
 # --- UI ASETUKSET ---
 st.set_page_config(page_title="MechServAI", layout="wide", page_icon="🚗")
-st.title("🚗 ServAI Pro - Korjaamon Älykäs Ohjaus")
+st.title("🚗 ServAI - Korjaamon Älykäs Ohjaus")
 
 db = load_db()
 tabs = st.tabs(["📋 Varaus", "🔧 Mekaanikko", "📊 Kalenteri", "🔍 Diagnostiikka"])
@@ -40,10 +40,10 @@ with tabs[0]:
     col1, col2 = st.columns(2)
     with col1:
         selected_car_name = st.selectbox("Valitse auto:", car_options)
-        desc = st.text_area("Asiakkaan kuvaus:", "Jakohihnan vaihto")
+        desc = st.text_area("Ongelmien kuvaus:", "")
     
     if st.button("Luo varaus [ServAI Analysis]"):
-        with st.spinner("Analysoidaan teknisiä tietoja..."):
+        with st.spinner("Analysoidaan..."):
             car_data = next(c for c in db['cars'] if f"{c['brand']} {c['model']} ({c['year']})" == selected_car_name)
             job_info = db['jobs'][0]
             
