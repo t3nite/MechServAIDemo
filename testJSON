@@ -1,0 +1,31 @@
+{
+  "cars": [
+    {
+      "brand": "Volkswagen",
+      "model": "Golf",
+      "engine": "1.6 TDI",
+      "year": 2015
+    }
+  ],
+  "jobs": [
+    {
+      "job": "jakohihnan vaihto",
+      "hours": 4.0,
+      "parts": [
+        { "name": "jakohihnasarja", "price": 280 },
+        { "name": "vesipumppu", "price": 120 }
+      ]
+    }
+  ],
+  "mechanics": [
+    {
+      "name": "Matti",
+      "available": true
+    },
+    {
+      "name": "Teppo",
+      "available": false
+    }
+  ],
+  "hourly_rate": 95
+}
