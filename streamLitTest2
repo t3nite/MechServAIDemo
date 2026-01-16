@@ -1,0 +1,140 @@
+import streamlit as st
+import json
+import os
+import pandas as pd
+from langchain_ollama import OllamaLLM
+
+# Mallin alustus
+llm = OllamaLLM(model="llama3.1", temperature=0)
+DB_FILE = "mock_data.json"
+JOBS_FILE = "active_jobs.json"
+
+def load_db():
+    with open(DB_FILE, "r", encoding="utf-8") as f: return json.load(f)
+
+def load_active_jobs():
+    if not os.path.exists(JOBS_FILE): 
+        return []
+    try:
+        with open(JOBS_FILE, "r", encoding="utf-8") as f:
+            content = f.read().strip()
+            if not content: # Jos tiedosto on tyhjä
+                return []
+            return json.loads(content)
+    except json.JSONDecodeError:
+        # Jos tiedosto on korruptoitunut, palautetaan tyhjä lista
+        return []
+
+def save_active_jobs(jobs):
+    with open(JOBS_FILE, "w", encoding="utf-8") as f:
+        json.dump(jobs, f, indent=4, ensure_ascii=False)
+
+st.set_page_config(page_title="MechServAI", layout="wide")
+st.title("🚗 Hallintapaneeli")
+
+db = load_db()
+tab1, tab2, tab3, tab4 = st.tabs(["📋 Varaus", "🔧 Mekaanikko", "📊 Kalenteri", "🔍 Diagnostiikka"])
+
+# --- TAB 1: VARAUS (Dynaaminen auton valinta) ---
+with tab1:
+    st.header("Uusi huoltovaraus")
+    
+    # Luodaan lista näytettävistä autoista (Merkki Malli Vuosi)
+    car_options = [f"{c['brand']} {c['model']} ({c['year']})" for c in db['cars']]
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        selected_car_name = st.selectbox("Valitse auton merkki ja malli:", car_options)
+        customer_input = st.text_area("Työn kuvaus:", "")
+    
+    if st.button("Luo varaus"):
+        with st.spinner("Analysoidaan..."): # Lisätty lataussymboli
+            selected_car_data = next(c for c in db['cars'] if f"{c['brand']} {c['model']} ({c['year']})" == selected_car_name)
+            job = db['jobs'][0]
+            
+            prompt = f"""
+            Luo lyhyt tekninen ohje työhön '{job['job']}' autolle {selected_car_data['brand']} {selected_car_data['model']}.
+            Käytä näitä ohjeita: {job['technical_notes']}
+            """
+            
+            # KORJAUS ALKAA
+            stream_obj = llm.stream(prompt)
+            ai_brief = "".join(list(stream_obj)) # Muutetaan tekstiksi ennen tallennusta
+            # KORJAUS LOPPU
+            
+            new_job = {
+                "id": len(load_active_jobs()) + 1,
+                "car": f"{selected_car_data['brand']} {selected_car_data['model']} ({selected_car_data['year']})",
+                "job_name": job['job'],
+                "ai_brief": ai_brief,
+                "status": "Odottaa",
+                "base_price": (job['hours'] * db['hourly_rate']) + sum(p['price'] for p in job['parts'])
+            }
+            
+            active_list = load_active_jobs()
+            active_list.append(new_job)
+            save_active_jobs(active_list)
+            st.success(f"Varaus tallennettu autolle {new_job['car']}!")
+            st.rerun()
+
+# --- TAB 2: MEKAANIKKO ---
+with tab2:
+    st.header("Työlista")
+    active_jobs = load_active_jobs()
+    for idx, job in enumerate(active_jobs):
+        with st.expander(f"Työ #{job['id']}: {job['car']} - {job['job_name']}"):
+            st.write(f"**Mekaanikon ohje:** {job['ai_brief']}")
+            notes = st.text_area("Havainnot)", key=f"notes_{idx}")
+            
+            if st.button("Valmis", key=f"btn_{idx}"):
+                with st.spinner("Generoidaan raporttia..."):
+                    # Älykäs hinta-arvio
+                    price_prompt = f"Alkuperäinen hinta {job['base_price']}€. Jos huomiossa '{notes}' on lisätöitä, lisää 120€. Vastaa vain numero."
+                    new_price = "".join(list(llm.stream(price_prompt))) # Tekstiksi heti
+                    
+                    # Asiakasviesti
+                    msg_prompt = f"Kirjoita viesti: Auto {job['car']} on noudettavissa. Hinta {new_price}€. Huomio: {notes}."
+                    customer_msg = "".join(list(llm.stream(msg_prompt))) # Tekstiksi heti
+                    
+                    st.success("Työ valmis!")
+                    st.info(customer_msg)
+                    
+                    active_jobs.pop(idx)
+                    save_active_jobs(active_jobs)
+                    st.button("Päivitä lista")
+
+# --- TAB 3 & 4  ---
+with tab3:
+    st.header("Mekaanikkojen varaustilanne")
+    cal_data = [{"Mekaanikko": m['name'], "Varatut ajat": ", ".join(m['schedule'])} for m in db['mechanics']]
+    "st.table(pd.DataFrame(cal_data))"
+    df = pd.DataFrame(cal_data)
+    # Muutetaan indeksi alkamaan 1:stä
+    df.index = df.index + 1
+    st.table(df)
+
+with tab4:
+    st.header("ServAI Diagnostiikka-apuri")
+    symptom = st.text_input("Kuvaile auton oiretta:")
+    
+    if symptom:
+        with st.spinner("Analysoidaan oiretta teknisestä näkökulmasta..."):
+            # Englanninkielinen prompti, joka palauttaa vastauksen suomeksi
+            diag_prompt = f"""
+            ROLE: Professional Automotive Diagnostic Expert.
+            CONTEXT: A customer is describing a car problem at a repair shop.
+            STRICT RULE: Focus ONLY on automotive engineering. Do NOT provide medical advice.
+            
+            USER INPUT: "{symptom}"
+            
+            TASK: 
+            1. Explain briefly what this means for a car (technical cause).
+            2. List 3 most likely mechanical parts that need inspection.
+            3. Give a rough price estimate for a professional car repair.
+            
+            ANSWER IN FINNISH.
+            """
+            
+            response = llm.stream(diag_prompt)
+            st.markdown("### ServAI Analyysi")
+            st.write(response)
