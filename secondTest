@@ -1,0 +1,62 @@
+import json
+from langchain_ollama import OllamaLLM
+from langchain.tools import tool
+
+# Ladataan mock-data
+with open("mock_data.json", "r", encoding="utf-8") as f:
+    DATA = json.load(f)
+
+
+@tool
+def get_job_info(job_name: str) -> dict:
+    """Palauttaa työn ohjeajan ja varaosat."""
+    for job in DATA["jobs"]:
+        if job["job"] == job_name:
+            return job
+    return {}
+
+
+@tool
+def get_available_mechanic() -> str:
+    """Palauttaa vapaan mekaanikon nimen."""
+    for mech in DATA["mechanics"]:
+        if mech["available"]:
+            return mech["name"]
+    return "Ei vapaata mekaanikkoa"
+
+
+llm = OllamaLLM(
+    model="llama3.1",
+    temperature=0.1
+)
+
+tools = [get_job_info, get_available_mechanic]
+
+SYSTEM_PROMPT = """
+Olet autokorjaamon toiminnanohjausjärjestelmä.
+Käytä vain annettuja työkaluja.
+Älä keksi tietoja.
+Laske kustannukset selkeästi.
+Vastaa suomeksi.
+"""
+
+prompt = f"""
+Asiakas varaa ajan seuraavalle työlle:
+
+Auto: Volkswagen Golf 1.6 TDI (2015)
+Työ: jakohihnan vaihto
+
+Tee ehdotus:
+- työaika
+- mekaanikko
+- varaosat
+- arvioitu hinta
+"""
+
+print("Mekaanikko miettii...\n")
+
+response = llm.invoke(
+    SYSTEM_PROMPT + prompt
+)
+
+print(response)
