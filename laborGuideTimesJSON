@@ -1,0 +1,20 @@
+{
+  "source": "labor_guide_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "operation_code": "TBELT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "labor_time_min": 240,
+      "source_ref": "Guide_2025_12",
+      "last_updated": "2025-12-05"
+    }
+  ]
+}
