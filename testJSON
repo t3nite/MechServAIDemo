@@ -5,31 +5,54 @@
       "brand": "Volkswagen",
       "model": "Golf",
       "engine": "1.6 TDI",
-      "engine_code": "CLHA",
       "year": 2015
+    },
+    {
+      "id": "toyota-corolla-19",
+      "brand": "Toyota",
+      "model": "Corolla",
+      "engine": "1.8 Hybrid",
+      "year": 2019
+    },
+    {
+      "id": "bmw-320-17",
+      "brand": "BMW",
+      "model": "320d",
+      "engine": "2.0 Diesel",
+      "year": 2017
+    },
+    {
+      "id": "tesla-model3-21",
+      "brand": "Tesla",
+      "model": "Model 3",
+      "engine": "Electric",
+      "year": 2021
     }
   ],
   "jobs": [
     {
-      "id": "timing-belt-16tdi",
+      "id": "timing-belt",
       "job": "jakohihnan vaihto",
       "hours": 4.0,
-      "compatible_engines": ["1.6 TDI", "2.0 TDI"],
-      "technical_notes": "Tarkista ajoitusmerkit kampiakselilta. Kiristimen oikea kireys on osoittimen mukaan. Muista uusia pultit.",
+      "technical_notes": "Käytä lukitustyökaluja T10050 ja T10020. Vesipumpun pultit 15Nm.",
       "parts": [
         { "name": "jakohihnasarja", "price": 280 },
-        { "name": "vesipumppu", "price": 120 },
-        { "name": "jäähdytysneste G13", "price": 40 }
+        { "name": "vesipumppu", "price": 120 }
       ]
+    },
+    {
+      "id": "brake-pads",
+      "job": "jarrupalojen vaihto",
+      "hours": 1.0,
+      "parts": [{ "name": "jarrupalat", "price": 80 }]
     }
   ],
   "mechanics": [
-    { "name": "Matti", "available": true, "skills": ["jakohihnat", "diagnostiikka"] },
-    { "name": "Teppo", "available": false, "skills": ["öljynvaihdot"] }
+    { "name": "Matti", "available": true, "schedule": ["08:00", "09:00", "14:00"] },
+    { "name": "Teppo", "available": true, "schedule": ["10:00", "11:00", "12:00"] }
   ],
   "resources": [
-    { "name": "Nosturi 1", "type": "2-pilarinosturi", "available": true },
-    { "name": "Nosturi 2", "type": "4-pilarinosturi", "available": true }
+    { "name": "Nosturi 1", "available": true }
   ],
   "hourly_rate": 95
 }
