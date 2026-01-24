@@ -1,0 +1,14 @@
+{
+  "source": "crm_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "customer_id": "cust_0001",
+      "name": "Matti Meikäläinen",
+      "phone": "+358401234567",
+      "email": "matti.meikalainen@example.com",
+      "preferred_contact_channel": "sms",
+      "notes": "Toivoo aikoja aamupäivälle, auto päivittäisessä käytössä."
+    }
+  ]
+}
