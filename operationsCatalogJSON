@@ -1,0 +1,31 @@
+{
+  "source": "workshop_operations_catalog_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "operation_code": "TBELT_REPL",
+      "name": "Jakohihnan vaihto",
+      "description": "Jakohihnan vaihtotyö sisältäen kiristimen ja ohjainrullat. Vesipumppua ja jäähdytysnestettä suositellaan usein samalla.",
+      "estimated_labor_category": "engine",
+      "default_duration_min": 240,
+      "required_skill_tags": ["engine", "timing"],
+      "required_resources": ["lift"],
+      "pricing_defaults": {
+        "labor_rate_cents_per_hour": 9500,
+        "currency": "EUR"
+      }
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "name": "Apulaitehihnan vaihto",
+      "description": "Apulaitehihnan vaihto (moniurahihna). Voidaan tehdä erillisenä työnä tai muun huollon yhteydessä.",
+      "estimated_labor_category": "engine",
+      "default_duration_min": 20,
+      "required_skill_tags": ["engine"],
+      "required_resources": [],
+      "pricing_defaults": {
+        "labor_rate_cents_per_hour": 9500,
+        "currency": "EUR"
+      }
+    }
+  ]
