@@ -1,0 +1,100 @@
+{
+  "source": "supplier_pricing_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "part_id": "part_tbelt_kit_conti_ct1028k1",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 21900,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 23500,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 1 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-15"
+        }
+      ]
+    },
+	{
+	  "part_id": "part_tbelt_kit_skf_vkma01250",
+	  "offers": [
+		{
+		  "supplier_id": "supplier_tukku_01",
+		  "unit_price_cents": 22900,
+		  "currency": "EUR",
+		  "availability": { "in_stock": true, "lead_time_days": 0 },
+		  "valid_from": "2026-01-01",
+		  "valid_to": "2026-01-31"
+		}
+	  ]
+	},
+    {
+      "part_id": "part_water_pump_hepu_p579",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 7900,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 8500,
+          "currency": "EUR",
+          "availability": { "in_stock": false, "lead_time_days": 3 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-15"
+        }
+      ]
+    },
+	{
+	  "part_id": "part_water_pump_graf_pa1102",
+	  "offers": [
+		{
+		  "supplier_id": "supplier_tukku_01",
+		  "unit_price_cents": 8200,
+		  "currency": "EUR",
+		  "availability": { "in_stock": true, "lead_time_days": 0 },
+		  "valid_from": "2026-01-01",
+		  "valid_to": "2026-01-31"
+		}
+	  ]
+	},
+    {
+      "part_id": "part_coolant_g12evo_1l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1190,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+	{
+	  "part_id": "part_coolant_g13_1l",
+	  "offers": [
+		{
+		  "supplier_id": "supplier_tukku_01",
+		  "unit_price_cents": 1190,
+		  "currency": "EUR",
+		  "availability": { "in_stock": true, "lead_time_days": 0 },
+		  "valid_from": "2026-01-01",
+		  "valid_to": "2026-01-31"
+		}
+	  ]
+	}
+  ]
+}
