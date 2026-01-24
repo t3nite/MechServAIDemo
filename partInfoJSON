@@ -1,0 +1,43 @@
+{
+  "source": "fitment_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "operation_code": "TBELT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "timing_belt_kit",
+          "preferred_part_id": "part_tbelt_kit_conti_ct1028k1",
+          "qty": 1,
+          "alternatives": ["part_tbelt_kit_skf_vkma01250"],
+          "is_optional": false,
+          "notes": "Sisältää hihnan, kiristimen ja rullat."
+        },
+        {
+          "part_role": "water_pump",
+          "preferred_part_id": "part_water_pump_hepu_p579",
+          "qty": 1,
+          "alternatives": ["part_water_pump_graf_pa1102"],
+          "is_optional": true,
+          "notes": "Suositus samalla vaihtoon, jos kilometrimäärä korkea."
+        },
+        {
+          "part_role": "coolant_concentrate",
+          "preferred_part_id": "part_coolant_g12evo_1l",
+          "qty": 2,
+          "alternatives": ["part_coolant_g13_1l"],
+          "is_optional": true,
+          "notes": "Täyttö ja ilmaus vesipumpun vaihdon yhteydessä."
+        }
+      ]
+    }
+  ]
+}
