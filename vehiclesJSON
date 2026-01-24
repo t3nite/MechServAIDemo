@@ -1,0 +1,21 @@
+{
+  "source": "vehicle_registry_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "vehicle_id": "veh_0001",
+      "customer_id": "cust_0001",
+      "plate_number": "ABC-123",
+      "vin": "WVWZZZ1KZ8W000001",
+      "make": "Volkswagen",
+      "model": "Golf",
+      "model_year": 2008,
+      "engine": {
+        "displacement_l": 1.9,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "odometer_km": 223500
+    }
+  ]
+}
