@@ -1,0 +1,60 @@
+{
+  "source": "parts_master_data_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "part_id": "part_tbelt_kit_conti_ct1028k1",
+      "brand": "Continental",
+      "mpn": "CT1028K1",
+      "name": "Jakohihnasarja (hihna + kiristin + rullat)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_tbelt_kit_skf_vkma01250",
+      "brand": "SKF",
+      "mpn": "VKMA01250",
+      "name": "Jakohihnasarja (hihna + kiristin + rullat)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_water_pump_hepu_p579",
+      "brand": "HEPU",
+      "mpn": "P579",
+      "name": "Vesipumppu",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_water_pump_graf_pa1102",
+      "brand": "GRAF",
+      "mpn": "PA1102",
+      "name": "Vesipumppu",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_coolant_g12evo_1l",
+      "brand": "VW Spec",
+      "mpn": "G12EVO-1L",
+      "name": "Jäähdytysneste, konsentraatti 1L",
+      "unit": "l",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_coolant_g13_1l",
+      "brand": "VW Spec",
+      "mpn": "G13-1L",
+      "name": "Jäähdytysneste, konsentraatti 1L",
+      "unit": "l",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    }
+  ]
+}
