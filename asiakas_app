@@ -1,0 +1,78 @@
+import streamlit as st
+import json
+import requests
+
+
+def get_car_list():
+    try:
+        with open("vehicles.json", "r", encoding="utf-8") as f:
+            full_data = json.load(f)
+            # Autot ovat 'data'-avaimen alla JSON-tiedostossasi
+            cars = full_data.get("data", []) 
+            # Käytetään oikeita kenttänimiä: make ja model_year
+            return [f"{c['make']} {c['model']} ({c['model_year']})" for c in cars]
+    except Exception as e:
+        # Varalista, jos tiedostoa ei löydy tai polku on väärä
+        return ["Volkswagen Golf (2008)", "Saab 9-3 (2005)", "Nissan Qashqai (2016)"]
+
+st.set_page_config(page_title="MechServAI - Asiakas", page_icon="🚗")
+st.title("🚗 MechServAI - Asiakasportaali")
+
+tabs = st.tabs(["📋 Tee huoltovaraus", "🔍 Diagnostiikka"])
+
+with tabs[0]:
+    st.header("Uusi huoltovaraus")
+    
+    car_options = get_car_list()
+    selected_car = st.selectbox("Valitse autosi:", car_options)
+    desc = st.text_area("Kuvaile vika tai tarvittava huolto:")
+
+    if st.button("Lähetä varaus analyysiin"):
+        if desc.strip():
+            with st.spinner("MechServAI analysoi varaustasi..."):
+                payload = {
+                    "mode": "booking",
+                    "car_info": selected_car,
+                    "customer_description": desc
+                }
+                url = "http://localhost:5678/webhook-test/uusi-varaus"
+                try:
+                    response = requests.post(url, json=payload, timeout=60)
+                    if response.status_code == 200:
+                        st.success("Varaus vastaanotettu!")
+                        # Näytetään n8n:n palauttama teksti (AI:n vastaus)
+                        st.info(f"**Tekoälyn alustava arvio:**\n\n{response.text}")
+                    else:
+                        st.error(f"Palvelin vastasi virheellä: {response.status_code}")
+                except Exception as e:
+                    st.error(f"Yhteysvirhe n8n-palvelimeen: {e}")
+        else:
+            st.warning("Kirjoita kuvaus viasta.")
+
+with tabs[1]:
+    st.header("MechServAI Älykäs Diagnostiikka")
+    symptom = st.text_input("Kuvaile auton oiretta:", key="diag_symptom")
+    
+    if symptom:
+        with st.spinner("Tekoäly analysoi oiretta..."):
+            payload = {
+                "mode": "diagnostics",
+                "customer_description": symptom
+            }
+            url = "http://localhost:5678/webhook-test/uusi-varaus"
+            
+            try:
+                response = requests.post(url, json=payload, timeout=60)
+                if response.status_code == 200:
+                    # n8n voi palauttaa joko raakaa tekstiä tai JSONia
+                    try:
+                        data = response.json()
+                        st.info(data.get("analyysi", data))
+                        if data.get("suositus_varaukselle"):
+                            st.warning("Tämä vika vaatii mekaanikon tarkistusta.")
+                    except:
+                        st.info(response.text)
+                else:
+                    st.error("Yhteys n8n:ään epäonnistui.")
+            except Exception as e:
+                st.error(f"Virhe: {e}")
