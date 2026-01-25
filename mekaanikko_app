@@ -1,0 +1,36 @@
+import streamlit as st
+import json
+import os
+
+JOBS_FILE = "active_jobs.json"
+
+def load_active_jobs():
+    if not os.path.exists(JOBS_FILE): return []
+    with open(JOBS_FILE, "r", encoding="utf-8") as f:
+        try: return json.load(f)
+        except: return []
+
+def save_active_jobs(jobs):
+    with open(JOBS_FILE, "w", encoding="utf-8") as f:
+        json.dump(jobs, f, indent=4, ensure_ascii=False)
+
+st.set_page_config(page_title="MechServAI - Mekaanikko", layout="wide", page_icon="🔧")
+st.title("🔧 Mekaanikon Työjono")
+
+active_jobs = load_active_jobs()
+
+if not active_jobs:
+    st.info("Ei uusia huoltopyyntöjä.")
+else:
+    for idx, job in enumerate(active_jobs):
+        # n8n on rikastanut tiedot: car, job_name, ai_brief, base_price
+        with st.expander(f"TYÖ #{job.get('id', idx)}: {job['car']} - {job['job_name']}"):
+            st.write(f"**AI ANALYYSI:** {job['ai_brief']}")
+            st.write(f"**HINTA-ARVIO:** {job['base_price']} €")
+            
+            notes = st.text_area("Mekaanikon havainnot:", key=f"notes_{idx}")
+            if st.button("Merkitse valmiiksi", key=f"btn_{idx}"):
+                # Tässä voitaisiin kutsua n8n:ää lähettämään tekstiviesti asiakkaalle
+                active_jobs.pop(idx)
+                save_active_jobs(active_jobs)
+                st.rerun()
