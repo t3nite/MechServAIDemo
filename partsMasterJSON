@@ -55,6 +55,52 @@
       "unit": "l",
       "vat_rate": 0.255,
       "constraints": { "requires_order": false }
+    },
+
+    {
+      "part_id": "part_aux_belt_generic_vw",
+      "brand": "ContiTech",
+      "mpn": "6PK1050",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_aux_belt_generic_saab",
+      "brand": "Gates",
+      "mpn": "6PK1880",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_aux_belt_generic_nissan",
+      "brand": "Dayco",
+      "mpn": "6PK1660",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_timing_chain_kit_saab_b207",
+      "brand": "INA",
+      "mpn": "559012010",
+      "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": true }
+    },
+    {
+      "part_id": "part_timing_chain_kit_r9m",
+      "brand": "INA",
+      "mpn": "559018710",
+      "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
+      "unit": "pcs",
+      "vat_rate": 0.255,
+      "constraints": { "requires_order": true }
     }
   ]
 }
