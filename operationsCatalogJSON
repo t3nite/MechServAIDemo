@@ -5,7 +5,7 @@
     {
       "operation_code": "TBELT_REPL",
       "name": "Jakohihnan vaihto",
-      "description": "Jakohihnan vaihtotyö sisältäen kiristimen ja ohjainrullat. Vesipumppua ja jäähdytysnestettä suositellaan usein samalla.",
+      "description": "Jakohihnan vaihtotyö sisältäen kiristimen ja ohjainrullat. Vesipumppua ja jäähdytysnestettä suositellaan usein vaihdettavaksi samalla.",
       "estimated_labor_category": "engine",
       "default_duration_min": 240,
       "required_skill_tags": ["engine", "timing"],
@@ -16,9 +16,22 @@
       }
     },
     {
+      "operation_code": "TIMING_CHAIN_REPL",
+      "name": "Jakoketjun vaihto",
+      "description": "Jakoketjun vaihtotyö sisältäen ketjun, kiristimet ja ohjurit. Työ on moottorikohtainen ja vaatii usein moottorin osittaista purkamista.",
+      "estimated_labor_category": "engine",
+      "default_duration_min": 360,
+      "required_skill_tags": ["engine", "timing", "advanced"],
+      "required_resources": ["lift"],
+      "pricing_defaults": {
+        "labor_rate_cents_per_hour": 9500,
+        "currency": "EUR"
+      }
+    },
+    {
       "operation_code": "AUX_BELT_REPL",
       "name": "Apulaitehihnan vaihto",
-      "description": "Apulaitehihnan vaihto (moniurahihna). Voidaan tehdä erillisenä työnä tai muun huollon yhteydessä.",
+      "description": "Apulaitehihnan (moniurahihna) vaihto. Voidaan suorittaa erillisenä työnä tai muun huollon yhteydessä.",
       "estimated_labor_category": "engine",
       "default_duration_min": 20,
       "required_skill_tags": ["engine"],
