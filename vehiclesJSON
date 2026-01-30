@@ -16,6 +16,36 @@
         "fuel_type": "diesel"
       },
       "odometer_km": 223500
+    },
+    {
+      "vehicle_id": "veh_0002",
+      "customer_id": "cust_0002",
+      "plate_number": "XYZ-789",
+      "vin": "YS3FD79Y256000002",
+      "make": "Saab",
+      "model": "9-3",
+      "model_year": 2005,
+      "engine": {
+        "displacement_l": 2.0,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "odometer_km": 287000
+    },
+    {
+      "vehicle_id": "veh_0003",
+      "customer_id": "cust_0003",
+      "plate_number": "JKL-456",
+      "vin": "JN1AZ34E89M000003",
+      "make": "Nissan",
+      "model": "Qashqai",
+      "model_year": 2016,
+      "engine": {
+        "displacement_l": 1.6,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "odometer_km": 142800
     }
   ]
 }
