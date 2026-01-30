@@ -2,77 +2,116 @@ import streamlit as st
 import json
 import requests
 
+# Funktio asiakaslistan hakemiseen
+def get_customer_list():
+    try:
+        with open("customers.json", "r", encoding="utf-8") as f:
+            return json.load(f).get("data", [])
+    except FileNotFoundError:
+        st.error("Tiedostoa 'customers.json' ei löytynyt!")
+        return []
+    except Exception as e:
+        return []
 
-def get_car_list():
+# Suodatetaan autot kirjautuneen asiakkaan ID:n perusteella
+def get_filtered_car_list(customer_id):
     try:
         with open("vehicles.json", "r", encoding="utf-8") as f:
-            full_data = json.load(f)
-            # Autot ovat 'data'-avaimen alla JSON-tiedostossasi
-            cars = full_data.get("data", []) 
-            # Käytetään oikeita kenttänimiä: make ja model_year
-            return [f"{c['make']} {c['model']} ({c['model_year']})" for c in cars]
+            all_cars = json.load(f).get("data", [])
+            if customer_id != "unknown":
+                return [c for c in all_cars if c.get('customer_id') == customer_id]
+            return []
     except Exception as e:
-        # Varalista, jos tiedostoa ei löydy tai polku on väärä
-        return ["Volkswagen Golf (2008)", "Saab 9-3 (2005)", "Nissan Qashqai (2016)"]
+        return []
 
 st.set_page_config(page_title="MechServAI - Asiakas", page_icon="🚗")
 st.title("🚗 MechServAI - Asiakasportaali")
 
+# --- KIRJAUTUMINEN SIVUPALKISSA  ---
+st.sidebar.header("Kirjaudu sisään")
+customers = get_customer_list()
+current_user = {"customer_id": "unknown", "name": "Vieras"}
+
+if customers:
+    # Nimi kirjoitetaan tekstikenttään 
+    input_name = st.sidebar.text_input("Koko nimi:")
+    input_password = st.sidebar.text_input("Salasana:", type="password")
+    
+    if input_name and input_password:
+        # Etsitään asiakas, jonka nimi (ei riippuvainen kirjainkoosta) ja salasana täsmäävät
+        user_match = next((c for c in customers if c["name"].strip().lower() == input_name.strip().lower() 
+                          and c["password"] == input_password), None)
+        
+        if user_match:
+            current_user = user_match
+            st.sidebar.success(f"Tervetuloa, {current_user['name']}!")
+        else:
+            st.sidebar.error("Nimi tai salasana on väärin.")
+else:
+    st.sidebar.error("Asiakastietoja ei löytynyt.")
+
+# --- PÄÄNÄKYMÄ ---
 tabs = st.tabs(["📋 Tee huoltovaraus", "🔍 Diagnostiikka"])
 
 with tabs[0]:
     st.header("Uusi huoltovaraus")
     
-    car_options = get_car_list()
-    selected_car = st.selectbox("Valitse autosi:", car_options)
-    desc = st.text_area("Kuvaile vika tai tarvittava huolto:")
+    if current_user["customer_id"] != "unknown":
+        my_cars = get_filtered_car_list(current_user["customer_id"])
+        
+        if my_cars:
+            car_display_list = [f"{c['make']} {c['model']} ({c['model_year']}) - {c['plate_number']}" for c in my_cars]
+            selected_car_index = st.selectbox("Valitse autosi:", range(len(car_display_list)), format_func=lambda x: car_display_list[x])
+            selected_car_data = my_cars[selected_car_index]
+            
+            desc = st.text_area("Kuvaile huoltotarve (esim. jakohihnan vaihto):")
 
-    if st.button("Lähetä varaus analyysiin"):
-        if desc.strip():
-            with st.spinner("MechServAI analysoi varaustasi..."):
-                payload = {
-                    "mode": "booking",
-                    "car_info": selected_car,
-                    "customer_description": desc
-                }
-                url = "http://localhost:5678/webhook-test/uusi-varaus"
-                try:
-                    response = requests.post(url, json=payload, timeout=60)
-                    if response.status_code == 200:
-                        st.success("Varaus vastaanotettu!")
-                        # Näytetään n8n:n palauttama teksti (AI:n vastaus)
-                        st.info(f"**Tekoälyn alustava arvio:**\n\n{response.text}")
-                    else:
-                        st.error(f"Palvelin vastasi virheellä: {response.status_code}")
-                except Exception as e:
-                    st.error(f"Yhteysvirhe n8n-palvelimeen: {e}")
+            if st.button("Lähetä varaus analyysiin"):
+                if desc.strip():
+                    with st.spinner("MechServAI analysoi varaustasi..."):
+                        payload = {
+                            "mode": "booking",
+                            "customer_id": current_user["customer_id"],
+                            "customer_name": current_user["name"],
+                            "vehicle_id": selected_car_data["vehicle_id"],
+                            "car_info": car_display_list[selected_car_index],
+                            "engine_code": selected_car_data["engine"]["engine_code"],
+                            "customer_description": desc
+                        }
+                        
+                        try:
+                            # Huom: n8n webhook-test osoite
+                            response = requests.post("http://localhost:5678/webhook-test/uusi-varaus", json=payload, timeout=None)
+                            if response.status_code == 200:
+                                st.success(f"Kiitos {current_user['name']}!")
+                                st.info(f"**Varaussuositus:**\n\n{response.text}")
+                            else:
+                                st.error("Virhe n8n-yhteydessä.")
+                        except Exception as e:
+                            st.error(f"Yhteysvirhe: {e}")
+                else:
+                    st.warning("Kirjoita kuvaus.")
         else:
-            st.warning("Kirjoita kuvaus viasta.")
+            st.warning("Sinulle ei löytynyt rekisteröityjä autoja.")
+    else:
+        st.info("Kirjaudu sisään nimesi ja salasanasi avulla nähdäksesi autosi.")
 
 with tabs[1]:
     st.header("MechServAI Älykäs Diagnostiikka")
-    symptom = st.text_input("Kuvaile auton oiretta:", key="diag_symptom")
+    symptom = st.text_input("Kuvaile oiretta:", key="diag_symptom")
     
     if symptom:
-        with st.spinner("Tekoäly analysoi oiretta..."):
-            payload = {
-                "mode": "diagnostics",
-                "customer_description": symptom
-            }
-            url = "http://localhost:5678/webhook-test/uusi-varaus"
-            
-            try:
-                response = requests.post(url, json=payload, timeout=60)
-                if response.status_code == 200:
-                    # n8n voi palauttaa joko raakaa tekstiä tai JSONia
-                    try:
-                        data = response.json()
-                        st.info(data.get("analyysi", data))
-                        if data.get("suositus_varaukselle"):
-                            st.warning("Tämä vika vaatii mekaanikon tarkistusta.")
-                    except:
-                        st.info(response.text)
-                else:
-                    st.error("Yhteys n8n:ään epäonnistui.")
-            except Exception as e:
-                st.error(f"Virhe: {e}")
+        if current_user["customer_id"] != "unknown":
+            with st.spinner("Analysoidaan..."):
+                payload = {
+                    "mode": "diagnostics",
+                    "customer_id": current_user["customer_id"],
+                    "customer_description": symptom
+                }
+                try:
+                    response = requests.post("http://localhost:5678/webhook-test/uusi-varaus", json=payload, timeout=None)
+                    st.info(response.text)
+                except Exception as e:
+                    st.error(f"Virhe: {e}")
+        else:
+            st.warning("Kirjaudu sisään käyttääksesi diagnostiikkaa.")
