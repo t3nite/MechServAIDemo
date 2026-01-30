@@ -1,0 +1,25 @@
+// Apufunktio datan turvalliseen hakuun
+const getData = (nodeName) => {
+  try {
+    return $nodes[nodeName].first().json;
+  } catch (e) {
+    return { error: `Nodea '${nodeName}' ei ole ajettu tai se on tyhjä.` };
+  }
+};
+
+return {
+  tietokanta: {
+    customers: getData('extract customers'),
+    vehicles: getData('extract vehicles'),
+    parts: getData('extract partsInfo'),
+    pricing: getData('extract partsPrices'),
+    availability: getData('extract availability'),
+    mechanics: getData('extract mechanics'),
+    bays: getData('extract bays'),
+    catalog: getData('extract partsMaster'),
+    labor: getData('extract laborGuideTimes'),
+    bookings: getData('extract operationsCatalog')
+  },
+  asiakkaan_kysymys: $node["Webhook"].json.body.customer_description,
+  valittu_auto: $node["Webhook"].json.body.car_info
+};
