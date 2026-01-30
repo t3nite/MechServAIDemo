@@ -38,6 +38,111 @@
           "notes": "Täyttö ja ilmaus vesipumpun vaihdon yhteydessä."
         }
       ]
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "aux_belt",
+          "preferred_part_id": "part_aux_belt_generic_vw",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Moniurahihna apulaitteille."
+        }
+      ]
+    },
+    {
+      "operation_code": "TIMING_CHAIN_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "timing_chain_kit",
+          "preferred_part_id": "part_timing_chain_kit_saab_b207",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Sisältää ketjun, kiristimet ja ohjurit."
+        }
+      ]
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "aux_belt",
+          "preferred_part_id": "part_aux_belt_generic_saab",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Moniurahihna apulaitteille."
+        }
+      ]
+    },
+    {
+      "operation_code": "TIMING_CHAIN_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "timing_chain_kit",
+          "preferred_part_id": "part_timing_chain_kit_r9m",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Sisältää ketjun, kiristimet ja ohjurit."
+        }
+      ]
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "aux_belt",
+          "preferred_part_id": "part_aux_belt_generic_nissan",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Moniurahihna apulaitteille."
+        }
+      ]
     }
   ]
 }
