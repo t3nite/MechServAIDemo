@@ -23,19 +23,19 @@
         }
       ]
     },
-	{
-	  "part_id": "part_tbelt_kit_skf_vkma01250",
-	  "offers": [
-		{
-		  "supplier_id": "supplier_tukku_01",
-		  "unit_price_cents": 22900,
-		  "currency": "EUR",
-		  "availability": { "in_stock": true, "lead_time_days": 0 },
-		  "valid_from": "2026-01-01",
-		  "valid_to": "2026-01-31"
-		}
-	  ]
-	},
+    {
+      "part_id": "part_tbelt_kit_skf_vkma01250",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 22900,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
     {
       "part_id": "part_water_pump_hepu_p579",
       "offers": [
@@ -57,19 +57,19 @@
         }
       ]
     },
-	{
-	  "part_id": "part_water_pump_graf_pa1102",
-	  "offers": [
-		{
-		  "supplier_id": "supplier_tukku_01",
-		  "unit_price_cents": 8200,
-		  "currency": "EUR",
-		  "availability": { "in_stock": true, "lead_time_days": 0 },
-		  "valid_from": "2026-01-01",
-		  "valid_to": "2026-01-31"
-		}
-	  ]
-	},
+    {
+      "part_id": "part_water_pump_graf_pa1102",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 8200,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
     {
       "part_id": "part_coolant_g12evo_1l",
       "offers": [
@@ -83,18 +83,84 @@
         }
       ]
     },
-	{
-	  "part_id": "part_coolant_g13_1l",
-	  "offers": [
-		{
-		  "supplier_id": "supplier_tukku_01",
-		  "unit_price_cents": 1190,
-		  "currency": "EUR",
-		  "availability": { "in_stock": true, "lead_time_days": 0 },
-		  "valid_from": "2026-01-01",
-		  "valid_to": "2026-01-31"
-		}
-	  ]
-	}
+    {
+      "part_id": "part_coolant_g13_1l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1190,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+
+    {
+      "part_id": "part_aux_belt_generic_vw",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1890,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_aux_belt_generic_saab",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2190,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_aux_belt_generic_nissan",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2090,
+          "currency": "EUR",
+          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_timing_chain_kit_saab_b207",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 48900,
+          "currency": "EUR",
+          "availability": { "in_stock": false, "lead_time_days": 3 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_timing_chain_kit_r9m",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 45900,
+          "currency": "EUR",
+          "availability": { "in_stock": false, "lead_time_days": 4 },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    }
   ]
 }
