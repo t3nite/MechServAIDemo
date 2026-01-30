@@ -1,4 +1,5 @@
 # MechServAIDemo
+# In this branch there are tests and other miscellaneous things.
 
 -servai-env\Scripts\activate
 
