@@ -40,3 +40,4 @@ System message:
 - LANGUAGE: Finnish.
 - STRUCTURE: Professional greeting -> Car details -> Itemized comparison of Option A vs Option B -> Mechanic name & expertise -> Proposed time -> Call to action.
 - DISCLOSURE: Explicitly state: "Hinnat sisältävät alv 25,5%".
+- CLEANLINESS: No internal reasoning or tags. Only the final response.
