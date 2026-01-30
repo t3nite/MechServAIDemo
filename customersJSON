@@ -5,10 +5,29 @@
     {
       "customer_id": "cust_0001",
       "name": "Matti Meikäläinen",
+      "password": "matti123",
       "phone": "+358401234567",
       "email": "matti.meikalainen@example.com",
       "preferred_contact_channel": "sms",
       "notes": "Toivoo aikoja aamupäivälle, auto päivittäisessä käytössä."
+    },
+    {
+      "customer_id": "cust_0002",
+      "name": "Laura Laine",
+      "password": "laura456",
+      "phone": "+358505678901",
+      "email": "laura.laine@example.com",
+      "preferred_contact_channel": "email",
+      "notes": "Työskentelee etänä, joustava aikataulu. Huollot mieluiten arkipäivisin."
+    },
+    {
+      "customer_id": "cust_0003",
+      "name": "Jari Korhonen",
+      "password": "jani789",
+      "phone": "+358449876543",
+      "email": "jari.korhonen@example.com",
+      "preferred_contact_channel": "phone",
+      "notes": "Haluaa soiton ennen huoltoa. Käyttää autoa pääasiassa viikonloppuisin."
     }
   ]
 }
