@@ -15,6 +15,76 @@
       "labor_time_min": 240,
       "source_ref": "Guide_2025_12",
       "last_updated": "2025-12-05"
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "labor_time_min": 20,
+      "source_ref": "Guide_2025_12",
+      "last_updated": "2025-12-05"
+    },
+    {
+      "operation_code": "TIMING_CHAIN_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "labor_time_min": 420,
+      "source_ref": "Guide_2025_12",
+      "last_updated": "2025-12-06"
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "labor_time_min": 25,
+      "source_ref": "Guide_2025_12",
+      "last_updated": "2025-12-06"
+    },
+    {
+      "operation_code": "TIMING_CHAIN_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "labor_time_min": 360,
+      "source_ref": "Guide_2025_12",
+      "last_updated": "2025-12-06"
+    },
+    {
+      "operation_code": "AUX_BELT_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "labor_time_min": 30,
+      "source_ref": "Guide_2025_12",
+      "last_updated": "2025-12-06"
     }
   ]
 }
