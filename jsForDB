@@ -1,25 +1,182 @@
-// Apufunktio datan turvalliseen hakuun
-const getData = (nodeName) => {
+const body = $node["Webhook"].json.body || {};
+const vehicle = body.vehicle || {};
+const customerRequest = (body.customer_description || "").toLowerCase();
+
+// ─────────────────────────────
+// Helper: getList purkaa data-kentät oikein
+// ─────────────────────────────
+const getList = (nodeName) => {
   try {
-    return $nodes[nodeName].first().json;
-  } catch (e) {
-    return { error: `Nodea '${nodeName}' ei ole ajettu tai se on tyhjä.` };
+    const raw = $node[nodeName].json;
+    if (!raw) return [];
+
+    let items = [];
+    const arrayRaw = Array.isArray(raw) ? raw : [raw];
+
+    for (const r of arrayRaw) {
+      if (r.data?.data && Array.isArray(r.data.data)) {
+        items.push(...r.data.data);
+      } else if (Array.isArray(r.data)) {
+        items.push(...r.data);
+      } else if (r.data) {
+        items.push(r.data);
+      } else {
+        items.push(r);
+      }
+    }
+
+    return items;
+  } catch {
+    return [];
   }
 };
 
+// ─────────────────────────────
+// Haku JSON-data
+// ─────────────────────────────
+const operations = getList("extract operationsCatalog");
+const laborGuide = getList("extract laborGuideTimes");
+const partsInfo = getList("extract partsInfo");
+const partsMaster = getList("extract partsMaster");
+const pricing = getList("extract partsPrices");
+const mechanics = getList("extract mechanics");
+
+const engineCode = vehicle.engine?.engine_code;
+const make = vehicle.make;
+const model = vehicle.model;
+const year = vehicle.model_year;
+const fuel = vehicle.engine?.fuel_type;
+
+// ─────────────────────────────
+// OPERATION RESOLVER
+// ─────────────────────────────
+const keywordMap = [
+  { keys: ["jakohihna"], code: "TBELT_REPL" },
+  { keys: ["jakoketju","ketju"], code: "TIMING_CHAIN_REPL" },
+  { keys: ["apulaitehihna","moniurahihna"], code: "AUX_BELT_REPL" }
+];
+
+const operationCode =
+  keywordMap.find(k => k.keys.some(w => customerRequest.includes(w)))?.code;
+
+const operation =
+  operations.find(o => o.operation_code === operationCode) || operations[0] || {};
+
+// ─────────────────────────────
+// LABOR TIME MATCH
+// ─────────────────────────────
+const laborEntry = laborGuide.find(l =>
+  l.operation_code === operation.operation_code &&
+  l.vehicle_match?.make === make &&
+  l.vehicle_match?.model === model &&
+  year >= l.vehicle_match?.model_year_from &&
+  year <= l.vehicle_match?.model_year_to &&
+  l.vehicle_match?.engine_code === engineCode &&
+  l.vehicle_match?.fuel_type === fuel
+);
+
+const durationMin = laborEntry?.labor_time_min || operation.default_duration_min || 0;
+const hourlyRate = (operation.pricing_defaults?.labor_rate_cents_per_hour || 9000) / 100;
+const laborNet = (durationMin / 60) * hourlyRate;
+const laborVat = 0.255;
+const laborGross = laborNet * (1 + laborVat);
+
+// ─────────────────────────────
+// FITMENT → REQUIRED PARTS
+// ─────────────────────────────
+const fitmentEntry = partsInfo.find(f =>
+  f.operation_code === operation.operation_code &&
+  f.vehicle_match?.engine_code === engineCode
+);
+const requiredParts = fitmentEntry?.required_parts || [];
+
+// ─────────────────────────────
+// PART PRICE RESOLUTION (kaksi vaihtoehtoa)
+// ─────────────────────────────
+const pricingIndex = Object.fromEntries(
+  pricing.map(p => [p.part_id, p.offers || []])
+);
+const masterIndex = Object.fromEntries(
+  partsMaster.map(p => [p.part_id, p])
+);
+
+function selectBestOfferTwoOptions(partIds) {
+  const offers = partIds.flatMap(id =>
+    (pricingIndex[id] || []).map(o => ({ ...o, part_id: id }))
+  );
+  if (!offers.length) return { cheapest: null, inStock: null };
+
+  const cheapest = offers.sort((a,b) => a.unit_price_cents - b.unit_price_cents)[0];
+  const inStockOffers = offers.filter(o => o.availability?.in_stock);
+  const inStock = inStockOffers.length
+    ? inStockOffers.sort((a,b) => a.unit_price_cents - b.unit_price_cents)[0]
+    : null;
+
+  return { cheapest, inStock };
+}
+
+let partsSelected = [];
+let partsTotalGross = 0;
+
+for (const rp of requiredParts) {
+  if (rp.is_optional) continue;
+
+  const ids = [rp.preferred_part_id, ...(rp.alternatives || [])];
+  const { cheapest, inStock } = selectBestOfferTwoOptions(ids);
+
+  const metaCheapest = masterIndex[cheapest?.part_id] || {};
+  const metaInStock = masterIndex[inStock?.part_id] || {};
+
+  if (cheapest) {
+    const gross = (cheapest.unit_price_cents / 100 * rp.qty) * (1 + (metaCheapest.vat_rate ?? 0.255));
+    partsTotalGross += gross;
+  }
+
+  partsSelected.push({
+    part_role: rp.part_role,
+    qty: rp.qty,
+    cheapest: cheapest ? {
+      part_id: cheapest.part_id,
+      name: metaCheapest.name,
+      brand: metaCheapest.brand,
+      gross: ((cheapest.unit_price_cents / 100) * (1 + (metaCheapest.vat_rate ?? 0.255)) * rp.qty).toFixed(2),
+      lead_days: cheapest.availability?.lead_time_days || 0
+    } : null,
+    inStock: inStock ? {
+      part_id: inStock.part_id,
+      name: metaInStock.name,
+      brand: metaInStock.brand,
+      gross: ((inStock.unit_price_cents / 100) * (1 + (metaInStock.vat_rate ?? 0.255)) * rp.qty).toFixed(2),
+      lead_days: inStock.availability?.lead_time_days || 0
+    } : null
+  });
+}
+
+// ─────────────────────────────
+// MECHANIC MATCH
+// ─────────────────────────────
+const mechanic =
+  mechanics.find(m =>
+    operation.required_skill_tags?.every(tag =>
+      m.skill_tags?.includes(tag)
+    )
+  ) || mechanics[0] || {};
+
+// ─────────────────────────────
+// TOTAL
+// ─────────────────────────────
+const totalGross = laborGross + partsTotalGross;
+
 return {
-  tietokanta: {
-    customers: getData('extract customers'),
-    vehicles: getData('extract vehicles'),
-    parts: getData('extract partsInfo'),
-    pricing: getData('extract partsPrices'),
-    availability: getData('extract availability'),
-    mechanics: getData('extract mechanics'),
-    bays: getData('extract bays'),
-    catalog: getData('extract partsMaster'),
-    labor: getData('extract laborGuideTimes'),
-    bookings: getData('extract operationsCatalog')
+  tarjous: {
+    operation_code: operation.operation_code,
+    tyo: operation.name,
+    kesto_min: durationMin,
+    tyo_hinta_brutto: laborGross.toFixed(2),
+    osat: partsSelected,
+    osat_brutto: partsTotalGross.toFixed(2),
+    yhteensa_brutto: totalGross.toFixed(2)
   },
-  asiakkaan_kysymys: $node["Webhook"].json.body.customer_description,
-  valittu_auto: $node["Webhook"].json.body.car_info
+  ajoneuvo: { make, model, year, engineCode },
+  mekaanikko: mechanic.name || "Ei määritelty"
 };
