@@ -1,18 +1,35 @@
 import streamlit as st
 import json
-import os
+from pathlib import Path
 
-JOBS_FILE = "active_jobs.json"
+JOBS_FILE = Path("active_jobs.json")
 
 def load_active_jobs():
-    if not os.path.exists(JOBS_FILE): return []
-    with open(JOBS_FILE, "r", encoding="utf-8") as f:
-        try: return json.load(f)
-        except: return []
+    if not JOBS_FILE.exists():
+        return []
+
+    raw = JOBS_FILE.read_bytes()
+
+    for enc in ("utf-8", "cp1252", "latin-1"):
+        try:
+            txt = raw.decode(enc)
+            if not txt.strip():
+                return []
+            data = json.loads(txt)
+
+            # jos tiedosto oli “väärässä” enkoodauksessa, korjaa se heti UTF-8:ksi
+            if enc != "utf-8":
+                JOBS_FILE.write_text(json.dumps(data, indent=4, ensure_ascii=False), encoding="utf-8", newline="\n")
+
+            return data
+        except Exception:
+            continue
+
+    st.error("active_jobs.json on rikki / väärässä merkistössä eikä sitä saatu luettua.")
+    return []
 
 def save_active_jobs(jobs):
-    with open(JOBS_FILE, "w", encoding="utf-8") as f:
-        json.dump(jobs, f, indent=4, ensure_ascii=False)
+    JOBS_FILE.write_text(json.dumps(jobs, indent=4, ensure_ascii=False), encoding="utf-8", newline="\n")
 
 st.set_page_config(page_title="MechServAI - Mekaanikko", layout="wide", page_icon="🔧")
 st.title("🔧 Mekaanikon Työjono")
@@ -23,14 +40,32 @@ if not active_jobs:
     st.info("Ei uusia huoltopyyntöjä.")
 else:
     for idx, job in enumerate(active_jobs):
-        # n8n on rikastanut tiedot: car, job_name, ai_brief, base_price
-        with st.expander(f"TYÖ #{job.get('id', idx)}: {job['car']} - {job['job_name']}"):
-            st.write(f"**AI ANALYYSI:** {job['ai_brief']}")
-            st.write(f"**HINTA-ARVIO:** {job['base_price']} €")
-            
-            notes = st.text_area("Mekaanikon havainnot:", key=f"notes_{idx}")
+        if not isinstance(job, dict):
+            continue
+        if "vehicle_make" not in job:
+            # ignoraa mahdolliset roskaobjektit
+            continue
+
+        make = job.get("vehicle_make", "?")
+        model = job.get("vehicle_model", "?")
+        year = job.get("year", "?")
+
+        with st.expander(f"TYÖ #{job.get('id', idx)}: {make} {model} ({year})"):
+            st.write(f"**Työ:** {job.get('operation_code','-')} - {job.get('description','-')}")
+            st.write(f"**Mekaanikko:** {job.get('mechanic', 'Ei määritelty')}")
+            st.write(f"**Bay/Lift:** {job.get('bay_lift', 'Ei määritelty')}")
+            st.write(f"**Kesto:** {job.get('duration_min', 0)} min")
+            st.write(f"**Työn hinta:** {job.get('labor_total_brutto',0)/100:.2f} €")
+            st.write(f"**Osien hinta:** {job.get('parts_total_brutto',0)/100:.2f} €")
+            st.write(f"**Yhteensä:** {job.get('total_price_brutto',0)/100:.2f} €")
+
+            st.subheader("Osat:")
+            for part in job.get("parts", []):
+                st.write(f"- {part.get('name','?')} ({part.get('brand','?')}): {part.get('price_brutto',0)/100:.2f} €")
+
+            notes = st.text_area("Mekaanikon havainnot:", value=job.get("notes",""), key=f"notes_{idx}")
+
             if st.button("Merkitse valmiiksi", key=f"btn_{idx}"):
-                # Tässä voitaisiin kutsua n8n:ää lähettämään tekstiviesti asiakkaalle
                 active_jobs.pop(idx)
                 save_active_jobs(active_jobs)
                 st.rerun()
