@@ -56,7 +56,7 @@ const getList = (nodeName) => {
     const items = [];
     for (const it of rawItems) {
       const r = it.json;
-      // Tarkistetaan onko data pakattu 'data'-avaimen sisään (kuten kuvissasi)
+      // Tarkistetaan onko data pakattu 'data'-avaimen sisään
       if (r?.data?.data && Array.isArray(r.data.data)) {
         items.push(...r.data.data);
       } else if (Array.isArray(r?.data)) {
