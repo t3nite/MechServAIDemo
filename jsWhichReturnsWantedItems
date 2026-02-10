@@ -1,12 +1,9 @@
- const body = $node["Webhook"]?.json?.body || {};
-
+const body = $node["Webhook"]?.json?.body || {};
 const customer = body.customer || {};
-
 const vehicle = body.vehicle || {};
-
 const customerRequest = (body.customer_description || "").toLowerCase();
 
-// ---------- 2. Apuohjelmat (Helpers) ----------
+// ---------- 2. Apuohjelmat ----------
 const nowIso = new Date().toISOString();
 const helsinkiOffset = "+02:00";
 
@@ -20,7 +17,7 @@ function nextWeekdayAt(hour, minute) {
   d.setHours(hour);
 
   if (d.getTime() <= Date.now()) d.setDate(d.getDate() + 1);
-  while ([0,6].includes(d.getDay())) d.setDate(d.getDate() + 1);
+  while ([0, 6].includes(d.getDay())) d.setDate(d.getDate() + 1);
 
   const yyyy = d.getFullYear();
   const mm = pad(d.getMonth() + 1);
@@ -50,7 +47,7 @@ function addMinutes(isoWithOffset, minutes) {
 const getList = (nodeName) => {
   try {
     // $(nodeName).all() on luotettavin tapa hakea dataa muista solmuista työnkulun aikana
-    const rawItems = $(nodeName).all(); 
+    const rawItems = $(nodeName).all();
     if (!rawItems || rawItems.length === 0) return [];
 
     const items = [];
@@ -72,7 +69,9 @@ const getList = (nodeName) => {
 };
 
 function eurToCents(eurStrOrNum) {
-  const n = typeof eurStrOrNum === "string" ? Number(eurStrOrNum.replace(",", ".")) : Number(eurStrOrNum);
+  const n = typeof eurStrOrNum === "string"
+    ? Number(eurStrOrNum.replace(",", "."))
+    : Number(eurStrOrNum);
   if (!Number.isFinite(n)) return 0;
   return Math.round(n * 100);
 }
@@ -103,8 +102,11 @@ const keywordMap = [
   { keys: ["apulaitehihna", "moniurahihna"], code: "AUX_BELT_REPL" },
 ];
 
-const operationCode = keywordMap.find(k => k.keys.some(w => customerRequest.includes(w)))?.code ?? null;
-const operation = operations.find(o => o.operation_code === operationCode) || null;
+const operationCode =
+  keywordMap.find(k => k.keys.some(w => customerRequest.includes(w)))?.code ?? null;
+
+const operation =
+  operations.find(o => o.operation_code === operationCode) || null;
 
 // Virhekäsittely jos työtä ei löydy tai lähteet ovat tyhjiä
 if (!operation?.operation_code) {
@@ -146,6 +148,10 @@ const labor_time_min = laborEntry?.labor_time_min ?? operation.default_duration_
 const labor_rate_cents_per_hour = operation.pricing_defaults?.labor_rate_cents_per_hour ?? 9000;
 const labor_cost_cents_net = Math.round((labor_rate_cents_per_hour * labor_time_min) / 60);
 
+// Työn ALV
+const labor_vat_rate = Number(operation?.pricing_defaults?.labor_vat_rate ?? 0.255);
+const labor_vat_cents = Math.round(labor_cost_cents_net * labor_vat_rate);
+
 // ---------- 7. Varaosat ----------
 const fitmentEntry = partsInfo.find(f =>
   f.operation_code === operation.operation_code &&
@@ -162,15 +168,19 @@ function selectOffers(partIds) {
   );
   if (!offers.length) return { cheapest: null, inStock: null };
 
-  const cheapest = [...offers].sort((a,b)=>a.unit_price_cents-b.unit_price_cents)[0];
-  const inStock = [...offers].filter(o => o.availability?.in_stock)
-    .sort((a,b)=>a.unit_price_cents-b.unit_price_cents)[0] || null;
+  const cheapest = [...offers].sort((a, b) => a.unit_price_cents - b.unit_price_cents)[0];
+  const inStock = [...offers]
+    .filter(o => o.availability?.in_stock)
+    .sort((a, b) => a.unit_price_cents - b.unit_price_cents)[0] || null;
 
   return { cheapest, inStock };
 }
 
 let selected_parts = [];
 let parts_cost_cents_net = 0;
+
+// Osien ALV
+let parts_vat_cents = 0;
 
 for (const rp of requiredParts) {
   const ids = [rp.preferred_part_id, ...(rp.alternatives || [])].filter(Boolean);
@@ -180,6 +190,10 @@ for (const rp of requiredParts) {
   const qty = rp.qty ?? 1;
   const line_total = cheapest.unit_price_cents * qty;
 
+  // Osan ALV-kanta partsMasterista
+  const partVatRate = Number(masterIndex[cheapest.part_id]?.parts_vat_rate ?? 0.255);
+  parts_vat_cents += Math.round(line_total * partVatRate);
+
   selected_parts.push({
     part_id: cheapest.part_id,
     qty,
@@ -187,6 +201,8 @@ for (const rp of requiredParts) {
     line_total_cents: line_total,
     supplier_id: cheapest.supplier_id ?? null,
     is_optional: !!rp.is_optional,
+
+    // kaksi vaihtoehtoa (cheapest + cheapest in stock)
     option_cheapest: {
       part_id: cheapest.part_id,
       supplier_id: cheapest.supplier_id ?? null,
@@ -206,10 +222,9 @@ for (const rp of requiredParts) {
   parts_cost_cents_net += line_total;
 }
 
-// ---------- 8. Verot ja summat ----------
-const vat_rate = 0.255;
+// ---------- 8. Verot ja summat  ----------
 const subtotal_cents_net = labor_cost_cents_net + parts_cost_cents_net;
-const vat_cents = Math.round(subtotal_cents_net * vat_rate);
+const vat_cents = labor_vat_cents + parts_vat_cents;
 const total_cents = subtotal_cents_net + vat_cents;
 
 // ---------- 9. Mekaanikko ja nostopaikka ----------
@@ -218,8 +233,10 @@ const mechanic = mechanics.find(m =>
 ) || null;
 
 const mechanic_id = mechanic?.mechanic_id ?? null;
-const needsLift = (operation.required_resources || []).includes("lift") || 
-                  ["TBELT_REPL", "TIMING_CHAIN_REPL"].includes(operation.operation_code);
+
+const needsLift =
+  (operation.required_resources || []).includes("lift") ||
+  ["TBELT_REPL", "TIMING_CHAIN_REPL"].includes(operation.operation_code);
 
 let bay = null;
 if (needsLift) {
@@ -228,15 +245,24 @@ if (needsLift) {
   bay = bays.find(b => (b.capabilities || []).includes("no_lift")) || null;
 }
 if (!bay) bay = bays[0] || null;
+
 const bay_id = bay?.bay_id ?? null;
 
 // ---------- 10. Aikataulu ja ID:t ----------
-const start = nextWeekdayAt(mechanic?.work_hours?.mon_fri?.start?.split(":")[0] ? Number(mechanic.work_hours.mon_fri.start.split(":")[0]) : 9, 0);
+const start = nextWeekdayAt(
+  mechanic?.work_hours?.mon_fri?.start?.split(":")[0]
+    ? Number(mechanic.work_hours.mon_fri.start.split(":")[0])
+    : 9,
+  0
+);
 const end = addMinutes(start, labor_time_min);
+
 const ts = Date.now();
 const booking_id = `book_${ts}`;
 const work_order_id = `wo_${ts}`;
-const created_at_now = new Date().toISOString().replace(/\.\d+Z$/, helsinkiOffset);
+
+// Huom: Tämä tekee muodon "YYYY-MM-DDTHH:mm:ss+02:00" ilman millisekunteja
+const created_at_now = new Date().toISOString().replace(/\.\d+Z$/, `${helsinkiOffset}`);
 
 // ---------- 11. Lopulliset objektit ----------
 const bookings = [{
@@ -252,15 +278,21 @@ const bookings = [{
   status: "confirmed",
   parts_quote: {
     currency: operation.pricing_defaults?.currency ?? "EUR",
+
     labor_rate_cents_per_hour,
     labor_time_min,
     labor_cost_cents: labor_cost_cents_net,
+    labor_vat_rate,
+    labor_vat_cents,
+
     selected_parts,
     parts_cost_cents: parts_cost_cents_net,
+    parts_vat_cents,
+
     subtotal_cents: subtotal_cents_net,
-    vat_rate,
     vat_cents,
     total_cents,
+
     notes: ""
   }
 }];
@@ -302,6 +334,7 @@ const notifications = [
   }
 ];
 
+// ---------- 12. Mekaanikon UI payload (brutto oikein erikseen työ+osat) ----------
 const mechanic_job_payload = {
   id: work_order_id,
   vehicle_make: make,
@@ -315,16 +348,19 @@ const mechanic_job_payload = {
   mechanic_id,
   bay_lift: bay?.name ?? null,
   bay_id,
-  labor_total_brutto: Math.round(labor_cost_cents_net * (1 + vat_rate)),
-  parts_total_brutto: Math.round(parts_cost_cents_net * (1 + vat_rate)),
+
+  labor_total_brutto: labor_cost_cents_net + labor_vat_cents,
+  parts_total_brutto: parts_cost_cents_net + parts_vat_cents,
   total_price_brutto: total_cents,
+
   parts: selected_parts.map(p => {
     const meta = masterIndex[p.part_id] || {};
+    const partVatRate = Number(meta.parts_vat_rate ?? 0.255);
     return {
       part_id: p.part_id,
       name: meta.name || p.part_id,
       brand: meta.brand || "",
-      price_brutto: Math.round(p.unit_price_cents * p.qty * (1 + vat_rate)),
+      price_brutto: Math.round(p.unit_price_cents * p.qty * (1 + partVatRate)),
       lead_days: p.option_cheapest?.lead_time_days ?? 0
     };
   })
@@ -341,6 +377,11 @@ return {
       pricing: pricing.length,
       mechanics: mechanics.length,
       bays: bays.length
+    },
+    vat_debug: {
+      labor_vat_rate,
+      labor_vat_cents,
+      parts_vat_cents
     }
   },
   bookings,
