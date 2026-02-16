@@ -8,7 +8,7 @@
       "mpn": "CT1028K1",
       "name": "Jakohihnasarja (hihna + kiristin + rullat)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.215,
       "constraints": { "requires_order": false }
     },
     {
@@ -17,7 +17,7 @@
       "mpn": "VKMA01250",
       "name": "Jakohihnasarja (hihna + kiristin + rullat)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.225,
       "constraints": { "requires_order": false }
     },
     {
@@ -26,7 +26,7 @@
       "mpn": "P579",
       "name": "Vesipumppu",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.235,
       "constraints": { "requires_order": false }
     },
     {
@@ -35,7 +35,7 @@
       "mpn": "PA1102",
       "name": "Vesipumppu",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.245,
       "constraints": { "requires_order": false }
     },
     {
@@ -44,7 +44,7 @@
       "mpn": "G12EVO-1L",
       "name": "Jäähdytysneste, konsentraatti 1L",
       "unit": "l",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.255,
       "constraints": { "requires_order": false }
     },
     {
@@ -53,7 +53,7 @@
       "mpn": "G13-1L",
       "name": "Jäähdytysneste, konsentraatti 1L",
       "unit": "l",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.265,
       "constraints": { "requires_order": false }
     },
 
@@ -63,7 +63,7 @@
       "mpn": "6PK1050",
       "name": "Apulaitehihna (moniurahihna)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.275,
       "constraints": { "requires_order": false }
     },
     {
@@ -72,7 +72,7 @@
       "mpn": "6PK1880",
       "name": "Apulaitehihna (moniurahihna)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.285,
       "constraints": { "requires_order": false }
     },
     {
@@ -81,7 +81,7 @@
       "mpn": "6PK1660",
       "name": "Apulaitehihna (moniurahihna)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.295,
       "constraints": { "requires_order": false }
     },
     {
@@ -90,7 +90,7 @@
       "mpn": "559012010",
       "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.305,
       "constraints": { "requires_order": true }
     },
     {
@@ -99,7 +99,7 @@
       "mpn": "559018710",
       "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
       "unit": "pcs",
-      "vat_rate": 0.255,
+      "parts_vat_rate": 0.315,
       "constraints": { "requires_order": true }
     }
   ]
