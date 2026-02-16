@@ -12,7 +12,8 @@
       "required_resources": ["lift"],
       "pricing_defaults": {
         "labor_rate_cents_per_hour": 9500,
-        "currency": "EUR"
+        "currency": "EUR",
+        "labor_vat_rate": 0.255
       }
     },
     {
@@ -21,11 +22,12 @@
       "description": "Jakoketjun vaihtotyö sisältäen ketjun, kiristimet ja ohjurit. Työ on moottorikohtainen ja vaatii usein moottorin osittaista purkamista.",
       "estimated_labor_category": "engine",
       "default_duration_min": 360,
-      "required_skill_tags": ["engine", "timing", "advanced"],
+      "required_skill_tags": ["engine", "timing", "diagnostics"],
       "required_resources": ["lift"],
       "pricing_defaults": {
-        "labor_rate_cents_per_hour": 9500,
-        "currency": "EUR"
+        "labor_rate_cents_per_hour": 7500,
+        "currency": "EUR",
+        "labor_vat_rate": 0.235
       }
     },
     {
@@ -34,11 +36,12 @@
       "description": "Apulaitehihnan (moniurahihna) vaihto. Voidaan suorittaa erillisenä työnä tai muun huollon yhteydessä.",
       "estimated_labor_category": "engine",
       "default_duration_min": 20,
-      "required_skill_tags": ["engine"],
+      "required_skill_tags": ["electrical"],
       "required_resources": [],
       "pricing_defaults": {
-        "labor_rate_cents_per_hour": 9500,
-        "currency": "EUR"
+        "labor_rate_cents_per_hour": 8500,
+        "currency": "EUR",
+        "labor_vat_rate": 0.275
       }
     }
   ]
