@@ -9,7 +9,9 @@
       "name": "Jakohihnasarja (hihna + kiristin + rullat)",
       "unit": "pcs",
       "parts_vat_rate": 0.215,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_tbelt_kit_skf_vkma01250",
@@ -18,7 +20,9 @@
       "name": "Jakohihnasarja (hihna + kiristin + rullat)",
       "unit": "pcs",
       "parts_vat_rate": 0.225,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_water_pump_hepu_p579",
@@ -27,7 +31,9 @@
       "name": "Vesipumppu",
       "unit": "pcs",
       "parts_vat_rate": 0.235,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_water_pump_graf_pa1102",
@@ -36,7 +42,9 @@
       "name": "Vesipumppu",
       "unit": "pcs",
       "parts_vat_rate": 0.245,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_coolant_g12evo_1l",
@@ -45,7 +53,9 @@
       "name": "Jäähdytysneste, konsentraatti 1L",
       "unit": "l",
       "parts_vat_rate": 0.255,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_coolant_g13_1l",
@@ -54,9 +64,10 @@
       "name": "Jäähdytysneste, konsentraatti 1L",
       "unit": "l",
       "parts_vat_rate": 0.265,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
-
     {
       "part_id": "part_aux_belt_generic_vw",
       "brand": "ContiTech",
@@ -64,7 +75,9 @@
       "name": "Apulaitehihna (moniurahihna)",
       "unit": "pcs",
       "parts_vat_rate": 0.275,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_aux_belt_generic_saab",
@@ -73,7 +86,9 @@
       "name": "Apulaitehihna (moniurahihna)",
       "unit": "pcs",
       "parts_vat_rate": 0.285,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_aux_belt_generic_nissan",
@@ -82,7 +97,9 @@
       "name": "Apulaitehihna (moniurahihna)",
       "unit": "pcs",
       "parts_vat_rate": 0.295,
-      "constraints": { "requires_order": false }
+      "constraints": {
+        "requires_order": false
+      }
     },
     {
       "part_id": "part_timing_chain_kit_saab_b207",
@@ -91,7 +108,9 @@
       "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
       "unit": "pcs",
       "parts_vat_rate": 0.305,
-      "constraints": { "requires_order": true }
+      "constraints": {
+        "requires_order": true
+      }
     },
     {
       "part_id": "part_timing_chain_kit_r9m",
@@ -100,7 +119,2067 @@
       "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
       "unit": "pcs",
       "parts_vat_rate": 0.315,
-      "constraints": { "requires_order": true }
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_oil_filter_mann_w71295",
+      "brand": "MANN-FILTER",
+      "mpn": "W 712/95",
+      "name": "Öljynsuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oil_filter_mahle_oc384",
+      "brand": "MAHLE",
+      "mpn": "OC 384",
+      "name": "Öljynsuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oil_filter_bosch_p7090",
+      "brand": "Bosch",
+      "mpn": "P 7090",
+      "name": "Öljynsuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_air_filter_mann_c35154",
+      "brand": "MANN-FILTER",
+      "mpn": "C 35 154",
+      "name": "Ilmansuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_air_filter_mahle_lx2046",
+      "brand": "MAHLE",
+      "mpn": "LX 2046",
+      "name": "Ilmansuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_cabin_filter_mann_cuk2939",
+      "brand": "MANN-FILTER",
+      "mpn": "CUK 2939",
+      "name": "Raitisilmasuodatin, aktiivihiili",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_cabin_filter_bosch_1987432455",
+      "brand": "Bosch",
+      "mpn": "1 987 432 455",
+      "name": "Raitisilmasuodatin, aktiivihiili",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_fuel_filter_bosch_n6848",
+      "brand": "Bosch",
+      "mpn": "N 6848",
+      "name": "Polttoainesuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_fuel_filter_mahle_kx287",
+      "brand": "MAHLE",
+      "mpn": "KX 287",
+      "name": "Polttoainesuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_spark_plug_ngk_pzker7b8eg",
+      "brand": "NGK",
+      "mpn": "PZKER7B8EG",
+      "name": "Sytytystulppa (platina/iridium)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_spark_plug_ngk_bkr6eix",
+      "brand": "NGK",
+      "mpn": "BKR6EIX",
+      "name": "Sytytystulppa (iridium)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_spark_plug_bosch_fr7ki332s",
+      "brand": "Bosch",
+      "mpn": "FR7KI332S",
+      "name": "Sytytystulppa (iridium)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_spark_plug_denso_ik20tt",
+      "brand": "Denso",
+      "mpn": "IK20TT",
+      "name": "Sytytystulppa (iridium)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_glow_plug_bosch_0250603009",
+      "brand": "Bosch",
+      "mpn": "0 250 603 009",
+      "name": "Hehkutulppa",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_glow_plug_ngk_dpower_06",
+      "brand": "NGK",
+      "mpn": "D-Power 06",
+      "name": "Hehkutulppa",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_ignition_coil_bosch_0221504470",
+      "brand": "Bosch",
+      "mpn": "0 221 504 470",
+      "name": "Sytytyspuola",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_ignition_coil_delphi_gn10328",
+      "brand": "Delphi",
+      "mpn": "GN10328",
+      "name": "Sytytyspuola",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_ignition_coil_denso_6731307",
+      "brand": "Denso",
+      "mpn": "673-1307",
+      "name": "Sytytyspuola",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_pads_front_trw_gdb1789",
+      "brand": "TRW",
+      "mpn": "GDB1789",
+      "name": "Jarrupalasarja, etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_pads_rear_trw_gdb1652",
+      "brand": "TRW",
+      "mpn": "GDB1652",
+      "name": "Jarrupalasarja, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_discs_front_ate_24012501971",
+      "brand": "ATE",
+      "mpn": "24.0125-0197.1",
+      "name": "Jarrulevypari, etu (tuuletettu)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_discs_rear_ate_24012002211",
+      "brand": "ATE",
+      "mpn": "24.0120-0222.1",
+      "name": "Jarrulevypari, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_pad_wear_sensor_ate_24819004002",
+      "brand": "ATE",
+      "mpn": "24.8190-0400.2",
+      "name": "Jarrupalojen kulumisanturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_fluid_dot4_1l_ate",
+      "brand": "ATE",
+      "mpn": "DOT4-1L",
+      "name": "Jarruneste DOT 4 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_cleaner_500ml",
+      "brand": "Liqui Moly",
+      "mpn": "3318",
+      "name": "Jarrukliineri 500ml",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_caliper_rear_trw_bhq123",
+      "brand": "TRW",
+      "mpn": "BHQ123",
+      "name": "Jarrusatula, taka (kunnostettu)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_brake_caliper_front_trw_bhw456",
+      "brand": "TRW",
+      "mpn": "BHW456",
+      "name": "Jarrusatula, etu (kunnostettu)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_engine_oil_5w30_1l_castrol",
+      "brand": "Castrol",
+      "mpn": "EDGE-5W30-1L",
+      "name": "Moottoriöljy 5W-30 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_engine_oil_5w30_5l_castrol",
+      "brand": "Castrol",
+      "mpn": "EDGE-5W30-5L",
+      "name": "Moottoriöljy 5W-30 5L",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_engine_oil_0w20_1l_mobil",
+      "brand": "Mobil",
+      "mpn": "ESPX2-0W20-1L",
+      "name": "Moottoriöljy 0W-20 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_gear_oil_75w90_1l",
+      "brand": "TotalEnergies",
+      "mpn": "TRX-75W90-1L",
+      "name": "Vaihteistoöljy 75W-90 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_atf_dexron_vi_1l",
+      "brand": "Ravenol",
+      "mpn": "ATF-DVI-1L",
+      "name": "ATF-öljy Dexron VI 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_power_steering_fluid_1l",
+      "brand": "Febi Bilstein",
+      "mpn": "06161",
+      "name": "Ohjaustehostinneste 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_washer_fluid_concentrate_1l",
+      "brand": "Sonax",
+      "mpn": "338200",
+      "name": "Tuulilasinpesuneste, tiiviste 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_adblue_10l",
+      "brand": "Generic",
+      "mpn": "ADBLUE-10L",
+      "name": "AdBlue 10L",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_wiper_blade_bosch_aerotwin_a864s",
+      "brand": "Bosch",
+      "mpn": "A864S",
+      "name": "Pyyhkijänsulat (sarja)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_wiper_blade_bosch_aerotwin_a297s",
+      "brand": "Bosch",
+      "mpn": "A297S",
+      "name": "Pyyhkijänsulat (sarja)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_wiper_blade_valeo_silencio_vf373",
+      "brand": "Valeo",
+      "mpn": "VF373",
+      "name": "Pyyhkijänsulka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_battery_varta_e11_74ah",
+      "brand": "VARTA",
+      "mpn": "E11",
+      "name": "Akku 74Ah 680A",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_battery_exide_ek700_70ah",
+      "brand": "Exide",
+      "mpn": "EK700",
+      "name": "Akku 70Ah 760A",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_alternator_bosch_0124655039",
+      "brand": "Bosch",
+      "mpn": "0 124 655 039",
+      "name": "Laturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_starter_bosch_0001120415",
+      "brand": "Bosch",
+      "mpn": "0 001 120 415",
+      "name": "Starttimoottori",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_fuse_set_micro2",
+      "brand": "Generic",
+      "mpn": "FUSE-MICRO2-SET",
+      "name": "Sulakesarja (Micro2)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_relay_12v_40a",
+      "brand": "Hella",
+      "mpn": "4RD 007 794-021",
+      "name": "Rele 12V 40A",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_bulb_h7_12v_55w_osram",
+      "brand": "OSRAM",
+      "mpn": "64210",
+      "name": "Ajovalopolttimo H7 12V 55W",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_bulb_w5w_osram",
+      "brand": "OSRAM",
+      "mpn": "2825",
+      "name": "Polttimo W5W 12V",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_bulb_p21w_osram",
+      "brand": "OSRAM",
+      "mpn": "7506",
+      "name": "Polttimo P21W 12V",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_o2_sensor_bosch_0258007351",
+      "brand": "Bosch",
+      "mpn": "0 258 007 351",
+      "name": "Lambda-anturi (etu)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_o2_sensor_bosch_0258017016",
+      "brand": "Bosch",
+      "mpn": "0 258 017 016",
+      "name": "Lambda-anturi (taka)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_maf_sensor_bosch_0280218254",
+      "brand": "Bosch",
+      "mpn": "0 280 218 254",
+      "name": "Ilmamassamittari (MAF)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_map_sensor_delphi_ps10136",
+      "brand": "Delphi",
+      "mpn": "PS10136",
+      "name": "Imusarjapaineanturi (MAP)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_coolant_temp_sensor_hella_6pt009107121",
+      "brand": "Hella",
+      "mpn": "6PT 009 107-121",
+      "name": "Jäähdytysnesteen lämpötila-anturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_abs_sensor_front_bosch_0265008892",
+      "brand": "Bosch",
+      "mpn": "0 265 008 892",
+      "name": "ABS-anturi, etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_abs_sensor_rear_bosch_0265008893",
+      "brand": "Bosch",
+      "mpn": "0 265 008 893",
+      "name": "ABS-anturi, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_crankshaft_sensor_bosch_0261210170",
+      "brand": "Bosch",
+      "mpn": "0 261 210 170",
+      "name": "Kampiakselin asentotunnistin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_camshaft_sensor_bosch_0232103112",
+      "brand": "Bosch",
+      "mpn": "0 232 103 112",
+      "name": "Nokka-akselin asentotunnistin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_thermostat_mahle_tx3087d",
+      "brand": "MAHLE",
+      "mpn": "TX 30 87D",
+      "name": "Termostaatti",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_thermostat_housing_febi_37268",
+      "brand": "Febi Bilstein",
+      "mpn": "37268",
+      "name": "Termostaattikotelo",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_radiator_nissens_60662a",
+      "brand": "Nissens",
+      "mpn": "60662A",
+      "name": "Jäähdytin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_radiator_cap_1bar",
+      "brand": "Gates",
+      "mpn": "RC127",
+      "name": "Jäähdyttimen korkki 1.0 bar",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_expansion_tank_vag",
+      "brand": "VAICO",
+      "mpn": "V10-2560",
+      "name": "Paisuntasäiliö",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_coolant_hose_upper",
+      "brand": "Gates",
+      "mpn": "05-3292",
+      "name": "Jäähdytysletku, ylä",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_coolant_hose_lower",
+      "brand": "Gates",
+      "mpn": "05-3293",
+      "name": "Jäähdytysletku, ala",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_water_pump_gasket_generic",
+      "brand": "Elring",
+      "mpn": "012.345",
+      "name": "Vesipumpun tiiviste",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_control_arm_front_left_lemforder_3478901",
+      "brand": "Lemförder",
+      "mpn": "34789 01",
+      "name": "Tukivarsi etu vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_control_arm_front_right_lemforder_3478902",
+      "brand": "Lemförder",
+      "mpn": "34789 02",
+      "name": "Tukivarsi etu oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_ball_joint_febi_27033",
+      "brand": "Febi Bilstein",
+      "mpn": "27033",
+      "name": "Pallonivel",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_tie_rod_end_trw_jte1156",
+      "brand": "TRW",
+      "mpn": "JTE1156",
+      "name": "Raidetangon pää",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_stabilizer_link_sachs_317829",
+      "brand": "SACHS",
+      "mpn": "317 829",
+      "name": "Kallistuksenvakaajan yhdystanko",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_shock_absorber_front_sachs_312783",
+      "brand": "SACHS",
+      "mpn": "312 783",
+      "name": "Iskunvaimennin etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_shock_absorber_rear_sachs_314215",
+      "brand": "SACHS",
+      "mpn": "314 215",
+      "name": "Iskunvaimennin taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_strut_mount_febi_10145",
+      "brand": "Febi Bilstein",
+      "mpn": "10145",
+      "name": "Iskunvaimentimen ylätuki",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_coil_spring_front_lesjofors_4095833",
+      "brand": "Lesjöfors",
+      "mpn": "4095833",
+      "name": "Jousi etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_wheel_bearing_skf_vkba3685",
+      "brand": "SKF",
+      "mpn": "VKBA 3685",
+      "name": "Pyöränlaakerisarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_cv_boot_kit_gkn_300495",
+      "brand": "GKN",
+      "mpn": "300495",
+      "name": "Vetonivelen suojakumisarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_cv_joint_outer_gkn_304764",
+      "brand": "GKN",
+      "mpn": "304764",
+      "name": "Vetonivel, ulompi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_driveshaft_left_gkn_245678",
+      "brand": "GKN",
+      "mpn": "245678",
+      "name": "Vetoakseli vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_driveshaft_right_gkn_245679",
+      "brand": "GKN",
+      "mpn": "245679",
+      "name": "Vetoakseli oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_clutch_kit_sachs_3000951030",
+      "brand": "SACHS",
+      "mpn": "3000 951 030",
+      "name": "Kytkinsarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_dual_mass_flywheel_luk_415063510",
+      "brand": "LuK",
+      "mpn": "415 0635 10",
+      "name": "Kaksoismassavauhtipyörä",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_wheel_hub_front_skf_vkhb2161",
+      "brand": "SKF",
+      "mpn": "VKHB 2161",
+      "name": "Pyörännapa",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_crankshaft_seal_elring_325155",
+      "brand": "Elring",
+      "mpn": "325.155",
+      "name": "Kampiakselin stefa",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_camshaft_seal_elring_645155",
+      "brand": "Elring",
+      "mpn": "645.155",
+      "name": "Nokka-akselin stefa",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_valve_cover_gasket_elring_915680",
+      "brand": "Elring",
+      "mpn": "915.680",
+      "name": "Venttiilikopan tiiviste",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_oil_pan_gasket_elring_172930",
+      "brand": "Elring",
+      "mpn": "172.930",
+      "name": "Öljypohjan tiiviste",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_intake_gasket_set_elring_917125",
+      "brand": "Elring",
+      "mpn": "917.125",
+      "name": "Imusarjan tiivistesarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_exhaust_gasket_set_elring_913450",
+      "brand": "Elring",
+      "mpn": "913.450",
+      "name": "Pakosarjan tiivistesarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_aux_belt_tensioner_ina_534033710",
+      "brand": "INA",
+      "mpn": "534 0337 10",
+      "name": "Apulaitehihnan kiristin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_idler_pulley_ina_532085210",
+      "brand": "INA",
+      "mpn": "532 0852 10",
+      "name": "Ohjainrulla",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_belt_pulley_contitech_apv1060",
+      "brand": "ContiTech",
+      "mpn": "APV1060",
+      "name": "Kiristimen rulla",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_crank_pulley_febi_33615",
+      "brand": "Febi Bilstein",
+      "mpn": "33615",
+      "name": "Kampiakselin hihnapyörä",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_egr_valve_pierburg_721903440",
+      "brand": "Pierburg",
+      "mpn": "7.21903.44.0",
+      "name": "EGR-venttiili",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_dpf_pressure_sensor_bosch_0281007420",
+      "brand": "Bosch",
+      "mpn": "0 281 007 420",
+      "name": "DPF-paineanturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_exhaust_temp_sensor_bosch_0281006450",
+      "brand": "Bosch",
+      "mpn": "0 281 006 450",
+      "name": "Pakokaasun lämpötila-anturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_catalytic_converter_euro5_generic",
+      "brand": "BM Catalysts",
+      "mpn": "BM91234",
+      "name": "Katalysaattori (Euro 5)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_muffler_rear_bosal_287951",
+      "brand": "Bosal",
+      "mpn": "287-951",
+      "name": "Äänenvaimennin, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_exhaust_clamp_55mm",
+      "brand": "Walker",
+      "mpn": "82308",
+      "name": "Pakoputken kiristin 55mm",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_ac_compressor_denso_dcp32045",
+      "brand": "Denso",
+      "mpn": "DCP32045",
+      "name": "Ilmastoinnin kompressori",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_ac_condenser_nissens_940421",
+      "brand": "Nissens",
+      "mpn": "940421",
+      "name": "Ilmastoinnin lauhdutin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_ac_drier_hella_8ft351199201",
+      "brand": "Hella",
+      "mpn": "8FT 351 199-201",
+      "name": "Kuivain",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_cabin_blower_motor_hella_8ew009159311",
+      "brand": "Hella",
+      "mpn": "8EW 009 159-311",
+      "name": "Puhallinmoottori",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_engine_mount_left_febi_31072",
+      "brand": "Febi Bilstein",
+      "mpn": "31072",
+      "name": "Moottorin tukikumi, vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_engine_mount_right_febi_31073",
+      "brand": "Febi Bilstein",
+      "mpn": "31073",
+      "name": "Moottorin tukikumi, oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_gearbox_mount_febi_31074",
+      "brand": "Febi Bilstein",
+      "mpn": "31074",
+      "name": "Vaihteiston tukikumi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_turbocharger_garrett_814552",
+      "brand": "Garrett",
+      "mpn": "814552-0002",
+      "name": "Turboahdin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_intercooler_nissens_96539",
+      "brand": "Nissens",
+      "mpn": "96539",
+      "name": "Välijäähdytin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_boost_hose_silicone_60mm",
+      "brand": "Generic",
+      "mpn": "BOOST-HOSE-60",
+      "name": "Ahtoputki/letku 60mm",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_throttle_body_pierburg_700432",
+      "brand": "Pierburg",
+      "mpn": "7.00432.12.0",
+      "name": "Kaasuläppäkotelo",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_fuel_pump_in_tank_bosch_0580200089",
+      "brand": "Bosch",
+      "mpn": "0 580 200 089",
+      "name": "Polttoainepumppu (säiliössä)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_high_pressure_pump_bosch_0445010507",
+      "brand": "Bosch",
+      "mpn": "0 445 010 507",
+      "name": "Korkeapainepumppu (diesel)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_injector_bosch_0445116023",
+      "brand": "Bosch",
+      "mpn": "0 445 116 023",
+      "name": "Suuttin (diesel)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_injector_seal_kit",
+      "brand": "Bosch",
+      "mpn": "F00RJ02012",
+      "name": "Suuttimen tiivistesarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_bolt_set_tbelt_vag",
+      "brand": "VW OE",
+      "mpn": "N90327404",
+      "name": "Pulttisarja jakohihnan vaihtoon",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_serpentine_belt_bolt_set",
+      "brand": "Generic",
+      "mpn": "BOLT-6PK-SET",
+      "name": "Pulttisarja apulaitehihnan vaihtoon",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_threadlocker_medium_10ml",
+      "brand": "Loctite",
+      "mpn": "243-10ML",
+      "name": "Kierrelukite, keskiluja 10ml",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_anti_seize_paste_100g",
+      "brand": "Liqui Moly",
+      "mpn": "3080",
+      "name": "Kuparitahna 100g",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_silicone_gasket_70ml",
+      "brand": "Dirko",
+      "mpn": "DIRKO-70",
+      "name": "Silikonitiiviste 70ml",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_rtv_sealant_black_85g",
+      "brand": "Permatex",
+      "mpn": "82180",
+      "name": "RTV-tiivistemassa, musta 85g",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+
+    {
+      "part_id": "part_brake_hose_front_left",
+      "brand": "ATE",
+      "mpn": "83.6152-0500.3",
+      "name": "Jarruletku, etu vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+
+    {
+      "part_id": "part_brake_hose_front_right",
+      "brand": "ATE",
+      "mpn": "83.6152-0501.3",
+      "name": "Jarruletku, etu oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_brake_hose_rear_left",
+      "brand": "ATE",
+      "mpn": "83.6152-0510.3",
+      "name": "Jarruletku, taka vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_brake_hose_rear_right",
+      "brand": "ATE",
+      "mpn": "83.6152-0511.3",
+      "name": "Jarruletku, taka oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_brake_disc_front_brembo_09a12311",
+      "brand": "Brembo",
+      "mpn": "09.A123.11",
+      "name": "Jarrulevypari, etu (tuuletettu)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_pad_front_brembo_p85075",
+      "brand": "Brembo",
+      "mpn": "P 85 075",
+      "name": "Jarrupalasarja, etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_disc_rear_brembo_08b45611",
+      "brand": "Brembo",
+      "mpn": "08.B456.11",
+      "name": "Jarrulevypari, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_pad_rear_brembo_p85076",
+      "brand": "Brembo",
+      "mpn": "P 85 076",
+      "name": "Jarrupalasarja, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_wheel_bolt_m14x15",
+      "brand": "VW OE",
+      "mpn": "N 101 016 03",
+      "name": "Pyöränpultti M14x1.5",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_wheel_nut_m12x15",
+      "brand": "Generic",
+      "mpn": "NUT-M12X15",
+      "name": "Pyöränmutteri M12x1.5",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oil_drain_plug_vw",
+      "brand": "VW OE",
+      "mpn": "N 908 132 02",
+      "name": "Öljypropun pultti",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oil_drain_plug_washer_copper",
+      "brand": "Elring",
+      "mpn": "115.100",
+      "name": "Öljypropun kuparitiiviste",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_air_filter_sport_universal",
+      "brand": "K&N",
+      "mpn": "33-2991",
+      "name": "Ilmansuodatin (urheilumalli)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_cabin_filter_mahle_laK293",
+      "brand": "MAHLE",
+      "mpn": "LAK 293",
+      "name": "Raitisilmasuodatin, aktiivihiili",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_cabin_filter_mahle_la387",
+      "brand": "MAHLE",
+      "mpn": "LA 387",
+      "name": "Raitisilmasuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_fuel_filter_mann_wk6032",
+      "brand": "MANN-FILTER",
+      "mpn": "WK 6032",
+      "name": "Polttoainesuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_oil_filter_hengst_e11h01d44",
+      "brand": "Hengst",
+      "mpn": "E11H01D44",
+      "name": "Öljynsuodatin (patruuna)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_air_filter_hengst_e123l",
+      "brand": "Hengst",
+      "mpn": "E123L",
+      "name": "Ilmansuodatin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_serpentine_belt_gates_6pk1200",
+      "brand": "Gates",
+      "mpn": "6PK1200",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_serpentine_belt_dayco_6pk975",
+      "brand": "Dayco",
+      "mpn": "6PK0975",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_timing_belt_contitech_ct1092",
+      "brand": "ContiTech",
+      "mpn": "CT1092",
+      "name": "Jakohihna",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_timing_belt_tensioner_ina_531060910",
+      "brand": "INA",
+      "mpn": "531 0609 10",
+      "name": "Jakohihnan kiristin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_timing_belt_idler_ina_532047410",
+      "brand": "INA",
+      "mpn": "532 0474 10",
+      "name": "Jakohihnan ohjainrulla",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_water_pump_aisin_wpa123",
+      "brand": "AISIN",
+      "mpn": "WPA-123",
+      "name": "Vesipumppu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_coolant_50_50_premix_5l",
+      "brand": "Generic",
+      "mpn": "COOLANT-PREMIX-5L",
+      "name": "Jäähdytysneste 50/50 valmiiksi sekoitettu 5L",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oil_5w40_1l_shell",
+      "brand": "Shell",
+      "mpn": "HX8-5W40-1L",
+      "name": "Moottoriöljy 5W-40 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oil_5w40_5l_shell",
+      "brand": "Shell",
+      "mpn": "HX8-5W40-5L",
+      "name": "Moottoriöljy 5W-40 5L",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_coolant_temp_sensor_bosch_0280130039",
+      "brand": "Bosch",
+      "mpn": "0 280 130 039",
+      "name": "Jäähdytysnesteen lämpötila-anturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_knock_sensor_bosch_0261231038",
+      "brand": "Bosch",
+      "mpn": "0 261 231 038",
+      "name": "Nakutustunnistin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_throttle_position_sensor_delphi_ss10550",
+      "brand": "Delphi",
+      "mpn": "SS10550",
+      "name": "Kaasuläpän asentoanturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_serpentine_tensioner_gates_t39214",
+      "brand": "Gates",
+      "mpn": "T39214",
+      "name": "Apulaitehihnan kiristin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_pcV_valve_febi_45123",
+      "brand": "Febi Bilstein",
+      "mpn": "45123",
+      "name": "Huohotinventtiili (PCV)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_vacuum_pump_pierburg_703459",
+      "brand": "Pierburg",
+      "mpn": "7.03459.01.0",
+      "name": "Alipainepumppu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_engine_air_temp_sensor_hella_6pt009107541",
+      "brand": "Hella",
+      "mpn": "6PT 009 107-541",
+      "name": "Imuilman lämpötila-anturi",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_washer_pump_hella_8tw006841041",
+      "brand": "Hella",
+      "mpn": "8TW 006 841-041",
+      "name": "Pesunestepumppu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_headlight_switch_hella_6el010406201",
+      "brand": "Hella",
+      "mpn": "6EL 010 406-201",
+      "name": "Valokatkaisija",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_window_regulator_front_left",
+      "brand": "Valeo",
+      "mpn": "851123",
+      "name": "Ikkunanostin, etu vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_window_regulator_front_right",
+      "brand": "Valeo",
+      "mpn": "851124",
+      "name": "Ikkunanostin, etu oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_door_lock_actuator_front_left",
+      "brand": "Valeo",
+      "mpn": "256789",
+      "name": "Ovilukon toimilaite, etu vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_door_lock_actuator_front_right",
+      "brand": "Valeo",
+      "mpn": "256790",
+      "name": "Ovilukon toimilaite, etu oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_front_left",
+      "brand": "TRW",
+      "mpn": "GBS1012",
+      "name": "Pyörännopeusanturi, etu vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_front_right",
+      "brand": "TRW",
+      "mpn": "GBS1013",
+      "name": "Pyörännopeusanturi, etu oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_rear_left",
+      "brand": "TRW",
+      "mpn": "GBS1014",
+      "name": "Pyörännopeusanturi, taka vasen",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_rear_right",
+      "brand": "TRW",
+      "mpn": "GBS1015",
+      "name": "Pyörännopeusanturi, taka oikea",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_hub_bearing_rear_skf_vkba6723",
+      "brand": "SKF",
+      "mpn": "VKBA 6723",
+      "name": "Pyöränlaakerisarja, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_alignment_bolt_set_cam",
+      "brand": "Generic",
+      "mpn": "ALIGN-CAM-SET",
+      "name": "Pyöränkulmien säätöpulttisarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_shock_bump_stop_front",
+      "brand": "SACHS",
+      "mpn": "900 123",
+      "name": "Iskunvaimentimen pohjaanlyöntikumi, etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_shock_dust_cover_front",
+      "brand": "SACHS",
+      "mpn": "900 124",
+      "name": "Iskunvaimentimen suojakumi, etu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_shock_bump_stop_rear",
+      "brand": "SACHS",
+      "mpn": "900 125",
+      "name": "Iskunvaimentimen pohjaanlyöntikumi, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_shock_dust_cover_rear",
+      "brand": "SACHS",
+      "mpn": "900 126",
+      "name": "Iskunvaimentimen suojakumi, taka",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_engine_belt_set_service",
+      "brand": "Generic",
+      "mpn": "BELT-SERVICE-SET",
+      "name": "Hihnasarja huoltoon (apulaitehihna + rullat)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_radiator_fan_resistor",
+      "brand": "Hella",
+      "mpn": "5HL 351 321-021",
+      "name": "Jäähdyttimen puhaltimen etuvastus",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_radiator_fan_motor",
+      "brand": "Hella",
+      "mpn": "8EW 351 044-311",
+      "name": "Jäähdyttimen puhallinmoottori",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_fan_clutch_sachs_210002",
+      "brand": "SACHS",
+      "mpn": "2100 002 001",
+      "name": "Tuulettimen viskokytkin",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": true
+      }
+    },
+    {
+      "part_id": "part_thermostat_gasket_elring_202380",
+      "brand": "Elring",
+      "mpn": "202.380",
+      "name": "Termostaatin tiiviste",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_coolant_pipe_o_ring_set",
+      "brand": "Elring",
+      "mpn": "O-RING-SET-07",
+      "name": "O-rengassarja jäähdytykselle",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_oxygen_sensor_spacer_m18",
+      "brand": "Generic",
+      "mpn": "O2-SPACER-M18",
+      "name": "Lambda-anturin väliholkki M18",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_exhaust_gasket_ring_55mm",
+      "brand": "Walker",
+      "mpn": "80409",
+      "name": "Pakoputken tiivisterengas 55mm",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_engine_oil_filter_wrench",
+      "brand": "Generic",
+      "mpn": "TOOL-OFW-65",
+      "name": "Öljynsuodatinavain 65mm",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_brake_bleeder_kit",
+      "brand": "Generic",
+      "mpn": "TOOL-BLEED-KIT",
+      "name": "Jarrujen ilmaussarja",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_tire_valve_set_tr413",
+      "brand": "Generic",
+      "mpn": "TR413-SET",
+      "name": "Rengasventtiilit TR413 (sarja)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_wheel_weight_adhesive_60g",
+      "brand": "Generic",
+      "mpn": "W-WEIGHT-60",
+      "name": "Tasapainopainot tarra 60g",
+      "unit": "pcs",
+      "parts_vat_rate": 0.255,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_engine_cleaner_intake",
+      "brand": "Liqui Moly",
+      "mpn": "4066",
+      "name": "Imusarjan puhdistusaine",
+      "unit": "pcs",
+      "parts_vat_rate": 0.265,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_diesel_additive_250ml",
+      "brand": "Liqui Moly",
+      "mpn": "5170",
+      "name": "Diesel-lisäaine 250ml",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_fuel_system_cleaner_300ml",
+      "brand": "Liqui Moly",
+      "mpn": "5129",
+      "name": "Polttoainejärjestelmän puhdistaja 300ml",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_coolant_leak_stop_250ml",
+      "brand": "K-Seal",
+      "mpn": "KSL-250",
+      "name": "Jäähdytysjärjestelmän vuodonkorjaus 250ml",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": {
+        "requires_order": false
+      }
+    },
+    {
+      "part_id": "part_spark_plug_gap_tool",
+      "brand": "Generic",
+      "mpn": "TOOL-GAP-01",
+      "name": "Sytytystulppien kärkivälin mitta",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": {
+        "requires_order": false
+      }
     }
   ]
 }
