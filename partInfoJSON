@@ -1,6 +1,6 @@
 {
   "source": "fitment_api_mock",
-  "generated_at": "2026-01-18T15:00:00+02:00",
+  "generated_at": "2026-02-23T14:00:00+02:00",
   "data": [
     {
       "operation_code": "TBELT_REPL",
@@ -141,6 +141,1287 @@
           "alternatives": [],
           "is_optional": false,
           "notes": "Moniurahihna apulaitteille."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "OIL_SERVICE",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "engine_oil_5l",
+          "preferred_part_id": "part_engine_oil_5w30_5l_castrol",
+          "qty": 1,
+          "alternatives": ["part_oil_5w40_5l_shell"],
+          "is_optional": false,
+          "notes": "Öljylaatu riippuu valmistajan vaatimuksesta, määrä tyypillisesti 4.0–4.5L."
+        },
+        {
+          "part_role": "engine_oil_topup",
+          "preferred_part_id": "part_engine_oil_5w30_1l_castrol",
+          "qty": 1,
+          "alternatives": ["part_oil_5w40_1l_shell"],
+          "is_optional": true,
+          "notes": "Varalle tai tarkkaan täyttöön."
+        },
+        {
+          "part_role": "oil_filter",
+          "preferred_part_id": "part_oil_filter_mann_w71295",
+          "qty": 1,
+          "alternatives": ["part_oil_filter_mahle_oc384", "part_oil_filter_bosch_p7090"],
+          "is_optional": false,
+          "notes": "Vaihdetaan aina öljyhuollossa."
+        },
+        {
+          "part_role": "drain_plug",
+          "preferred_part_id": "part_oil_drain_plug_vw",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Suositus vaihtoon, jos kierteet kuluneet."
+        },
+        {
+          "part_role": "drain_plug_washer",
+          "preferred_part_id": "part_oil_drain_plug_washer_copper",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Usein vaihdetaan tiiviyden varmistamiseksi."
+        }
+      ]
+    },
+    {
+      "operation_code": "AIR_FILTER_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "air_filter",
+          "preferred_part_id": "part_air_filter_mann_c35154",
+          "qty": 1,
+          "alternatives": ["part_air_filter_mahle_lx2046", "part_air_filter_hengst_e123l"],
+          "is_optional": false,
+          "notes": "Vaihdetaan huolto-ohjelman mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "CABIN_FILTER_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "cabin_filter",
+          "preferred_part_id": "part_cabin_filter_mann_cuk2939",
+          "qty": 1,
+          "alternatives": ["part_cabin_filter_bosch_1987432455", "part_cabin_filter_mahle_laK293"],
+          "is_optional": false,
+          "notes": "Aktiivihiili vähentää hajuja ja pienhiukkasia."
+        }
+      ]
+    },
+    {
+      "operation_code": "BRAKE_PADS_FRONT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "brake_pads_front",
+          "preferred_part_id": "part_brake_pads_front_trw_gdb1789",
+          "qty": 1,
+          "alternatives": ["part_brake_pad_front_brembo_p85075"],
+          "is_optional": false,
+          "notes": "Sarjassa tyypillisesti palat molemmille puolille."
+        },
+        {
+          "part_role": "pad_wear_sensor",
+          "preferred_part_id": "part_brake_pad_wear_sensor_ate_24819004002",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Vain jos ajoneuvossa kulumisanturi."
+        },
+        {
+          "part_role": "brake_cleaner",
+          "preferred_part_id": "part_brake_cleaner_500ml",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Puhdistus asennuksen yhteydessä."
+        }
+      ]
+    },
+    {
+      "operation_code": "BRAKE_DISCS_FRONT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "brake_discs_front",
+          "preferred_part_id": "part_brake_discs_front_ate_24012501971",
+          "qty": 1,
+          "alternatives": ["part_brake_disc_front_brembo_09a12311"],
+          "is_optional": false,
+          "notes": "Levyt vaihdetaan parina akselille."
+        },
+        {
+          "part_role": "brake_pads_front",
+          "preferred_part_id": "part_brake_pads_front_trw_gdb1789",
+          "qty": 1,
+          "alternatives": ["part_brake_pad_front_brembo_p85075"],
+          "is_optional": true,
+          "notes": "Usein järkevää vaihtaa samalla, jos palat kuluneet."
+        },
+        {
+          "part_role": "anti_seize",
+          "preferred_part_id": "part_anti_seize_paste_100g",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Ohut kerros vanteen ja navan väliin helpottaa irrotusta."
+        }
+      ]
+    },
+    {
+      "operation_code": "BRAKE_FLUID_CHANGE",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "brake_fluid",
+          "preferred_part_id": "part_brake_fluid_dot4_1l_ate",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Menekki tyypillisesti 1L, tarvittaessa enemmän."
+        },
+        {
+          "part_role": "bleeder_kit",
+          "preferred_part_id": "part_brake_bleeder_kit",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Työkaluna, jos käytössä yksin-ilmaus."
+        }
+      ]
+    },
+    {
+      "operation_code": "GLOW_PLUG_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "glow_plugs",
+          "preferred_part_id": "part_glow_plug_bosch_0250603009",
+          "qty": 4,
+          "alternatives": ["part_glow_plug_ngk_dpower_06"],
+          "is_optional": false,
+          "notes": "Suositus vaihtaa sarjana, jos useampi viallinen."
+        },
+        {
+          "part_role": "anti_seize",
+          "preferred_part_id": "part_anti_seize_paste_100g",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Pieni määrä kierteisiin helpottaa seuraavaa irrotusta."
+        }
+      ]
+    },
+    {
+      "operation_code": "COOLANT_FLUSH",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "coolant_concentrate",
+          "preferred_part_id": "part_coolant_g12evo_1l",
+          "qty": 3,
+          "alternatives": ["part_coolant_g13_1l"],
+          "is_optional": false,
+          "notes": "Konsentraatti sekoitetaan, määrä riippuu järjestelmän tilavuudesta."
+        },
+        {
+          "part_role": "radiator_cap",
+          "preferred_part_id": "part_radiator_cap_1bar",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Vaihdetaan, jos korkki ei pidä painetta."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "SPARK_PLUG_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "spark_plugs",
+          "preferred_part_id": "part_spark_plug_ngk_pzker7b8eg",
+          "qty": 4,
+          "alternatives": ["part_spark_plug_ngk_bkr6eix", "part_spark_plug_bosch_fr7ki332s", "part_spark_plug_denso_ik20tt"],
+          "is_optional": false,
+          "notes": "Määrä ja malli riippuu moottoriversiosta."
+        },
+        {
+          "part_role": "spark_plug_gap_tool",
+          "preferred_part_id": "part_spark_plug_gap_tool",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tarkistukseen, jos ei esisäädetty."
+        }
+      ]
+    },
+    {
+      "operation_code": "IGNITION_COIL_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "ignition_coil",
+          "preferred_part_id": "part_ignition_coil_bosch_0221504470",
+          "qty": 1,
+          "alternatives": ["part_ignition_coil_delphi_gn10328", "part_ignition_coil_denso_6731307"],
+          "is_optional": false,
+          "notes": "Vaihdetaan vikakoodin ja oireiden perusteella."
+        }
+      ]
+    },
+    {
+      "operation_code": "OIL_SERVICE",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "engine_oil_5l",
+          "preferred_part_id": "part_oil_5w40_5l_shell",
+          "qty": 1,
+          "alternatives": ["part_engine_oil_5w30_5l_castrol"],
+          "is_optional": false,
+          "notes": "Öljylaatu riippuu valmistajan vaatimuksesta."
+        },
+        {
+          "part_role": "engine_oil_topup",
+          "preferred_part_id": "part_oil_5w40_1l_shell",
+          "qty": 1,
+          "alternatives": ["part_engine_oil_5w30_1l_castrol"],
+          "is_optional": true,
+          "notes": "Varalle tai tarkkaan täyttöön."
+        },
+        {
+          "part_role": "oil_filter",
+          "preferred_part_id": "part_oil_filter_mahle_oc384",
+          "qty": 1,
+          "alternatives": ["part_oil_filter_mann_w71295", "part_oil_filter_bosch_p7090"],
+          "is_optional": false,
+          "notes": "Vaihdetaan aina öljyhuollossa."
+        },
+        {
+          "part_role": "drain_plug_washer",
+          "preferred_part_id": "part_oil_drain_plug_washer_copper",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tiiviste vaihdetaan usein aina."
+        }
+      ]
+    },
+    {
+      "operation_code": "AUX_BELT_SERVICE",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "aux_belt",
+          "preferred_part_id": "part_aux_belt_generic_saab",
+          "qty": 1,
+          "alternatives": ["part_serpentine_belt_gates_6pk1200"],
+          "is_optional": false,
+          "notes": "Moniurahihna."
+        },
+        {
+          "part_role": "belt_tensioner",
+          "preferred_part_id": "part_aux_belt_tensioner_ina_534033710",
+          "qty": 1,
+          "alternatives": ["part_serpentine_tensioner_gates_t39214"],
+          "is_optional": true,
+          "notes": "Suositus vaihdettavaksi, jos laakeri ääntää tai välystä."
+        },
+        {
+          "part_role": "idler_pulley",
+          "preferred_part_id": "part_idler_pulley_ina_532085210",
+          "qty": 1,
+          "alternatives": ["part_belt_pulley_contitech_apv1060"],
+          "is_optional": true,
+          "notes": "Ohjainrulla, tarpeen mukaan."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "OIL_SERVICE",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "engine_oil_5l",
+          "preferred_part_id": "part_engine_oil_5w30_5l_castrol",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Öljylaatu riippuu valmistajan vaatimuksesta."
+        },
+        {
+          "part_role": "engine_oil_topup",
+          "preferred_part_id": "part_engine_oil_5w30_1l_castrol",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Varalle tai tarkkaan täyttöön."
+        },
+        {
+          "part_role": "oil_filter",
+          "preferred_part_id": "part_oil_filter_hengst_e11h01d44",
+          "qty": 1,
+          "alternatives": ["part_oil_filter_mann_w71295", "part_oil_filter_mahle_oc384"],
+          "is_optional": false,
+          "notes": "Patruunasuodatin tyypillinen monissa malleissa."
+        },
+        {
+          "part_role": "drain_plug_washer",
+          "preferred_part_id": "part_oil_drain_plug_washer_copper",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tiiviste, tarpeen mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "FUEL_FILTER_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "fuel_filter",
+          "preferred_part_id": "part_fuel_filter_mann_wk6032",
+          "qty": 1,
+          "alternatives": ["part_fuel_filter_bosch_n6848", "part_fuel_filter_mahle_kx287"],
+          "is_optional": false,
+          "notes": "Dieselissä kriittinen huoltokohde, vaihto huolto-ohjelman mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "AIR_FILTER_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "air_filter",
+          "preferred_part_id": "part_air_filter_mahle_lx2046",
+          "qty": 1,
+          "alternatives": ["part_air_filter_mann_c35154"],
+          "is_optional": false,
+          "notes": "Vaihdetaan huolto-ohjelman mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "CABIN_FILTER_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "cabin_filter",
+          "preferred_part_id": "part_cabin_filter_bosch_1987432455",
+          "qty": 1,
+          "alternatives": ["part_cabin_filter_mann_cuk2939"],
+          "is_optional": false,
+          "notes": "Aktiivihiili suositus kaupunkiajossa."
+        }
+      ]
+    },
+    {
+      "operation_code": "DPF_SENSOR_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "dpf_pressure_sensor",
+          "preferred_part_id": "part_dpf_pressure_sensor_bosch_0281007420",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan vikakoodien ja mittausarvojen perusteella."
+        },
+        {
+          "part_role": "exhaust_temp_sensor",
+          "preferred_part_id": "part_exhaust_temp_sensor_bosch_0281006450",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos vikakoodi liittyy EGT-anturiin tai arvot epäloogiset."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "WIPER_BLADES_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "wiper_blades_set",
+          "preferred_part_id": "part_wiper_blade_bosch_aerotwin_a864s",
+          "qty": 1,
+          "alternatives": ["part_wiper_blade_bosch_aerotwin_a297s"],
+          "is_optional": false,
+          "notes": "Sopivuus varmistetaan pituuksien ja kiinnityksen mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "BATTERY_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "battery",
+          "preferred_part_id": "part_battery_varta_e11_74ah",
+          "qty": 1,
+          "alternatives": ["part_battery_exide_ek700_70ah"],
+          "is_optional": false,
+          "notes": "Akun kapasiteetti ja kylmäkäynnistysvirta valitaan varustelun mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "STARTER_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "starter_motor",
+          "preferred_part_id": "part_starter_bosch_0001120415",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan, jos käynnistysongelma ja sähköpuoli ok."
+        }
+      ]
+    },
+    {
+      "operation_code": "ALTERNATOR_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "alternator",
+          "preferred_part_id": "part_alternator_bosch_0124655039",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan latausvian perusteella."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "THERMOSTAT_REPL",
+      "vehicle_match": {
+        "make": "Audi",
+        "model": "A3",
+        "model_year_from": 2008,
+        "model_year_to": 2012,
+        "engine_code": "CAXA",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "thermostat",
+          "preferred_part_id": "part_thermostat_mahle_tx3087d",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Oireita: hidas lämpeneminen tai ylikuumeneminen, vikakoodi."
+        },
+        {
+          "part_role": "thermostat_housing",
+          "preferred_part_id": "part_thermostat_housing_febi_37268",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos kotelossa vuotoa tai muovi haurastunut."
+        },
+        {
+          "part_role": "thermostat_gasket",
+          "preferred_part_id": "part_thermostat_gasket_elring_202380",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tiiviste, jos ei sisälly termostaattiin."
+        },
+        {
+          "part_role": "coolant_concentrate",
+          "preferred_part_id": "part_coolant_g12evo_1l",
+          "qty": 2,
+          "alternatives": ["part_coolant_g13_1l"],
+          "is_optional": true,
+          "notes": "Täyttö ja ilmaus työn jälkeen."
+        }
+      ]
+    },
+    {
+      "operation_code": "RADIATOR_REPL",
+      "vehicle_match": {
+        "make": "Audi",
+        "model": "A3",
+        "model_year_from": 2008,
+        "model_year_to": 2012,
+        "engine_code": "CAXA",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "radiator",
+          "preferred_part_id": "part_radiator_nissens_60662a",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vuoto tai tukkeutuminen."
+        },
+        {
+          "part_role": "radiator_cap",
+          "preferred_part_id": "part_radiator_cap_1bar",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Suositus, jos paine ei pysy."
+        },
+        {
+          "part_role": "coolant_hose_upper",
+          "preferred_part_id": "part_coolant_hose_upper",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos letkut pehmenneet tai halkeilleet."
+        },
+        {
+          "part_role": "coolant_hose_lower",
+          "preferred_part_id": "part_coolant_hose_lower",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos letkut pehmenneet tai halkeilleet."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "O2_SENSOR_REPL",
+      "vehicle_match": {
+        "make": "Skoda",
+        "model": "Octavia",
+        "model_year_from": 2009,
+        "model_year_to": 2013,
+        "engine_code": "CAYC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "o2_sensor_front",
+          "preferred_part_id": "part_o2_sensor_bosch_0258007351",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan vikakoodin tai hitaiden säätöjen perusteella."
+        },
+        {
+          "part_role": "o2_sensor_rear",
+          "preferred_part_id": "part_o2_sensor_bosch_0258017016",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos ajoneuvossa jälkikat anturi ja vikakoodi kohdistuu siihen."
+        }
+      ]
+    },
+    {
+      "operation_code": "MAF_SENSOR_REPL",
+      "vehicle_match": {
+        "make": "Skoda",
+        "model": "Octavia",
+        "model_year_from": 2009,
+        "model_year_to": 2013,
+        "engine_code": "CAYC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "maf_sensor",
+          "preferred_part_id": "part_maf_sensor_bosch_0280218254",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Oireita: tehottomuus, nykiminen, poikkeavat ilmamassat."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "ABS_SENSOR_REPL_FRONT",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "abs_sensor_front",
+          "preferred_part_id": "part_abs_sensor_front_bosch_0265008892",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Puoli valitaan vikakoodin mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "WHEEL_SPEED_SENSOR_REPL_REAR",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "wheel_speed_sensor_rear",
+          "preferred_part_id": "part_wheel_speed_sensor_rear_left",
+          "qty": 1,
+          "alternatives": ["part_wheel_speed_sensor_rear_right"],
+          "is_optional": false,
+          "notes": "Vasen tai oikea, valitaan vikakoodin perusteella."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "SUSP_CONTROL_ARM_FRONT_REPL",
+      "vehicle_match": {
+        "make": "Audi",
+        "model": "A4",
+        "model_year_from": 2005,
+        "model_year_to": 2008,
+        "engine_code": "BGB",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "control_arm_front_left",
+          "preferred_part_id": "part_control_arm_front_left_lemforder_3478901",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan, jos väljyyttä tai puslat repeytyneet."
+        },
+        {
+          "part_role": "control_arm_front_right",
+          "preferred_part_id": "part_control_arm_front_right_lemforder_3478902",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Usein vaihdetaan parina, riippuen kulumasta."
+        },
+        {
+          "part_role": "ball_joint",
+          "preferred_part_id": "part_ball_joint_febi_27033",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tarpeen mukaan, jos pallonivelessä välystä."
+        },
+        {
+          "part_role": "tie_rod_end",
+          "preferred_part_id": "part_tie_rod_end_trw_jte1156",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tarpeen mukaan, jos raidetangon pää väljistynyt."
+        },
+        {
+          "part_role": "alignment_cam_bolts",
+          "preferred_part_id": "part_alignment_bolt_set_cam",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos säätöpultit ruostuneet tai katkeamisriski."
+        }
+      ]
+    },
+    {
+      "operation_code": "SHOCKS_FRONT_REPL",
+      "vehicle_match": {
+        "make": "Audi",
+        "model": "A4",
+        "model_year_from": 2005,
+        "model_year_to": 2008,
+        "engine_code": "BGB",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "shock_absorber_front",
+          "preferred_part_id": "part_shock_absorber_front_sachs_312783",
+          "qty": 2,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Iskunvaimentimet vaihdetaan parina akselille."
+        },
+        {
+          "part_role": "strut_mount",
+          "preferred_part_id": "part_strut_mount_febi_10145",
+          "qty": 2,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Suositus samalla vaihtoon, jos laakeri ääntää."
+        },
+        {
+          "part_role": "bump_stop_front",
+          "preferred_part_id": "part_shock_bump_stop_front",
+          "qty": 2,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Vaihdetaan usein samalla."
+        },
+        {
+          "part_role": "dust_cover_front",
+          "preferred_part_id": "part_shock_dust_cover_front",
+          "qty": 2,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Suojaa vartta ja tiivisteitä."
+        }
+      ]
+    },
+    {
+      "operation_code": "WHEEL_BEARING_FRONT_REPL",
+      "vehicle_match": {
+        "make": "Audi",
+        "model": "A4",
+        "model_year_from": 2005,
+        "model_year_to": 2008,
+        "engine_code": "BGB",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "wheel_bearing_kit",
+          "preferred_part_id": "part_wheel_bearing_skf_vkba3685",
+          "qty": 1,
+          "alternatives": ["part_wheel_hub_front_skf_vkhb2161"],
+          "is_optional": false,
+          "notes": "Sarja voi sisältää laakerin ja kiinnitystarvikkeita."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "CLUTCH_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "clutch_kit",
+          "preferred_part_id": "part_clutch_kit_sachs_3000951030",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Kytkinlevy + asetelma + painelaakeri, riippuen sarjasta."
+        },
+        {
+          "part_role": "dual_mass_flywheel",
+          "preferred_part_id": "part_dual_mass_flywheel_luk_415063510",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Vaihdetaan, jos DMF kolisee tai on liiallinen välys."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "TURBO_REPL",
+      "vehicle_match": {
+        "make": "Nissan",
+        "model": "Qashqai",
+        "model_year_from": 2014,
+        "model_year_to": 2018,
+        "engine_code": "R9M",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "turbocharger",
+          "preferred_part_id": "part_turbocharger_garrett_814552",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan jos akselivälystä, öljyvuotoa tai ahtopaineongelmia."
+        },
+        {
+          "part_role": "intercooler",
+          "preferred_part_id": "part_intercooler_nissens_96539",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos välijäähdyttimessä vuoto tai öljy kertyy poikkeavasti."
+        },
+        {
+          "part_role": "boost_hose",
+          "preferred_part_id": "part_boost_hose_silicone_60mm",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Letkut tarkistetaan, vaihto jos halkeamia tai öljyinen vuoto."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "AC_COMPRESSOR_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "ac_compressor",
+          "preferred_part_id": "part_ac_compressor_denso_dcp32045",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan jos kompressori leikkaa tai ei tuota painetta."
+        },
+        {
+          "part_role": "ac_drier",
+          "preferred_part_id": "part_ac_drier_hella_8ft351199201",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Suositus vaihtoon, jos järjestelmä on avattu."
+        },
+        {
+          "part_role": "ac_condenser",
+          "preferred_part_id": "part_ac_condenser_nissens_940421",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Jos lauhdutin vuotaa tai on pahasti tukossa."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "LIGHT_BULB_REPL_H7",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "headlight_bulb_h7",
+          "preferred_part_id": "part_bulb_h7_12v_55w_osram",
+          "qty": 2,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Suositus vaihtaa parina, jotta valoteho pysyy yhtenäisenä."
+        }
+      ]
+    },
+    {
+      "operation_code": "LIGHT_BULB_REPL_W5W",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "bulb_w5w",
+          "preferred_part_id": "part_bulb_w5w_osram",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Paikkakohtainen menekki."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "GEAR_OIL_CHANGE",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "gear_oil",
+          "preferred_part_id": "part_gear_oil_75w90_1l",
+          "qty": 2,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Määrä riippuu vaihteistosta, tyypillisesti 1.8–2.2L."
+        }
+      ]
+    },
+    {
+      "operation_code": "ATF_SERVICE",
+      "vehicle_match": {
+        "make": "Audi",
+        "model": "A4",
+        "model_year_from": 2005,
+        "model_year_to": 2008,
+        "engine_code": "BGB",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "atf_fluid",
+          "preferred_part_id": "part_atf_dexron_vi_1l",
+          "qty": 6,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Määrä riippuu automaatista ja menetelmästä (vaihto tai huuhtelu)."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "ENGINE_MOUNT_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "engine_mount_left",
+          "preferred_part_id": "part_engine_mount_left_febi_31072",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Vaihdetaan jos tärinää tai tukikumissa repeämä."
+        },
+        {
+          "part_role": "engine_mount_right",
+          "preferred_part_id": "part_engine_mount_right_febi_31073",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Usein diagnosoidaan puoli, jossa välys."
+        },
+        {
+          "part_role": "gearbox_mount",
+          "preferred_part_id": "part_gearbox_mount_febi_31074",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tarpeen mukaan."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "EXHAUST_REAR_MUFFLER_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "rear_muffler",
+          "preferred_part_id": "part_muffler_rear_bosal_287951",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan ruosteen, vuodon tai melun perusteella."
+        },
+        {
+          "part_role": "exhaust_clamp",
+          "preferred_part_id": "part_exhaust_clamp_55mm",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Kiristin ja tiiviste tarpeen mukaan."
+        },
+        {
+          "part_role": "exhaust_gasket_ring",
+          "preferred_part_id": "part_exhaust_gasket_ring_55mm",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": true,
+          "notes": "Tiiviste, jos liitos vuotaa."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "WINDOW_REGULATOR_REPL_FRONT",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "window_regulator_front_left",
+          "preferred_part_id": "part_window_regulator_front_left",
+          "qty": 1,
+          "alternatives": ["part_window_regulator_front_right"],
+          "is_optional": false,
+          "notes": "Vasen tai oikea valitaan vian mukaan."
+        }
+      ]
+    },
+    {
+      "operation_code": "DOOR_LOCK_ACTUATOR_REPL_FRONT",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Golf",
+        "model_year_from": 2007,
+        "model_year_to": 2009,
+        "engine_code": "BKC",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "door_lock_actuator_front_left",
+          "preferred_part_id": "part_door_lock_actuator_front_left",
+          "qty": 1,
+          "alternatives": ["part_door_lock_actuator_front_right"],
+          "is_optional": false,
+          "notes": "Vasen tai oikea valitaan vian mukaan."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "VALVE_COVER_GASKET_REPL",
+      "vehicle_match": {
+        "make": "Saab",
+        "model": "9-3",
+        "model_year_from": 2003,
+        "model_year_to": 2007,
+        "engine_code": "B207E",
+        "fuel_type": "petrol"
+      },
+      "required_parts": [
+        {
+          "part_role": "valve_cover_gasket",
+          "preferred_part_id": "part_valve_cover_gasket_elring_915680",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vuoto venttiilikopan saumasta, öljy haju tai tulppakoloissa öljyä."
+        },
+        {
+          "part_role": "rtv_sealant",
+          "preferred_part_id": "part_rtv_sealant_black_85g",
+          "qty": 1,
+          "alternatives": ["part_silicone_gasket_70ml"],
+          "is_optional": true,
+          "notes": "Tarvittaessa kulmiin valmistajan ohjeen mukaan."
+        }
+      ]
+    },
+
+    {
+      "operation_code": "EGR_VALVE_REPL",
+      "vehicle_match": {
+        "make": "Volkswagen",
+        "model": "Passat",
+        "model_year_from": 2006,
+        "model_year_to": 2010,
+        "engine_code": "BKP",
+        "fuel_type": "diesel"
+      },
+      "required_parts": [
+        {
+          "part_role": "egr_valve",
+          "preferred_part_id": "part_egr_valve_pierburg_721903440",
+          "qty": 1,
+          "alternatives": [],
+          "is_optional": false,
+          "notes": "Vaihdetaan jos jumiutuu tai vikakoodit viittaavat EGR-virheeseen."
         }
       ]
     }
