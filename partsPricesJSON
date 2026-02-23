@@ -1,6 +1,6 @@
 {
   "source": "supplier_pricing_api_mock",
-  "generated_at": "2026-01-18T15:00:00+02:00",
+  "generated_at": "2026-02-23T12:00:00+02:00",
   "data": [
     {
       "part_id": "part_tbelt_kit_conti_ct1028k1",
@@ -9,7 +9,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 21900,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 1 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         },
@@ -17,7 +20,10 @@
           "supplier_id": "supplier_tukku_02",
           "unit_price_cents": 23500,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 2 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-02-15"
         }
@@ -30,7 +36,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 22900,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
@@ -43,7 +52,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 7900,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         },
@@ -51,7 +63,10 @@
           "supplier_id": "supplier_tukku_02",
           "unit_price_cents": 8500,
           "currency": "EUR",
-          "availability": { "in_stock": false, "lead_time_days": 3 },
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-02-15"
         }
@@ -64,7 +79,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 8200,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
@@ -77,7 +95,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 1190,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
@@ -90,13 +111,15 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 1190,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
       ]
     },
-
     {
       "part_id": "part_aux_belt_generic_vw",
       "offers": [
@@ -104,7 +127,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 1890,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
@@ -117,7 +143,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 2190,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
@@ -130,7 +159,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 2090,
           "currency": "EUR",
-          "availability": { "in_stock": true, "lead_time_days": 0 },
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-01-31"
         }
@@ -143,7 +175,10 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 48900,
           "currency": "EUR",
-          "availability": { "in_stock": false, "lead_time_days": 3 },
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-02-28"
         }
@@ -156,9 +191,3852 @@
           "supplier_id": "supplier_tukku_01",
           "unit_price_cents": 45900,
           "currency": "EUR",
-          "availability": { "in_stock": false, "lead_time_days": 4 },
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
           "valid_from": "2026-01-01",
           "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_filter_mann_w71295",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1620,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_filter_mahle_oc384",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1120,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_filter_bosch_p7090",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 780,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_air_filter_mann_c35154",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2150,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_air_filter_mahle_lx2046",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1870,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cabin_filter_mann_cuk2939",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cabin_filter_bosch_1987432455",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fuel_filter_bosch_n6848",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4390,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fuel_filter_mahle_kx287",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3640,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_spark_plug_ngk_pzker7b8eg",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_spark_plug_ngk_bkr6eix",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2170,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_spark_plug_bosch_fr7ki332s",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 950,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_spark_plug_denso_ik20tt",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2100,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_glow_plug_bosch_0250603009",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2900,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1430,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_glow_plug_ngk_dpower_06",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1180,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ignition_coil_bosch_0221504470",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3090,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 6100,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ignition_coil_delphi_gn10328",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 8820,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ignition_coil_denso_6731307",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3270,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_pads_front_trw_gdb1789",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3550,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 6100,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_pads_rear_trw_gdb1652",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 10520,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_discs_front_ate_24012501971",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 17920,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 18800,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_discs_rear_ate_24012002211",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 20310,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 12070,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_pad_wear_sensor_ate_24819004002",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6390,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 6020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_fluid_dot4_1l_ate",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 820,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 940,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_cleaner_500ml",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1200,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1160,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_caliper_rear_trw_bhq123",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 19730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 16220,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_caliper_front_trw_bhw456",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 13570,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 36110,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_oil_5w30_1l_castrol",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1130,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1330,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_oil_5w30_5l_castrol",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 9600,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_oil_0w20_1l_mobil",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1190,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1240,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_gear_oil_75w90_1l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1630,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1920,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_atf_dexron_vi_1l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1940,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_power_steering_fluid_1l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1240,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_washer_fluid_concentrate_1l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 580,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_adblue_10l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1150,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wiper_blade_bosch_aerotwin_a864s",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3300,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1470,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wiper_blade_bosch_aerotwin_a297s",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2410,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 2010,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wiper_blade_valeo_silencio_vf373",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1600,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_battery_varta_e11_74ah",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 30620,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_battery_exide_ek700_70ah",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 21140,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 30700,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_alternator_bosch_0124655039",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 16600,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_starter_bosch_0001120415",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 39400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 23840,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fuse_set_micro2",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 770,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_relay_12v_40a",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1860,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_bulb_h7_12v_55w_osram",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1240,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_bulb_w5w_osram",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 770,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 820,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_bulb_p21w_osram",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 800,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 310,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_o2_sensor_bosch_0258007351",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 21940,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 19400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_o2_sensor_bosch_0258017016",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 13480,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_maf_sensor_bosch_0280218254",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 18030,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_map_sensor_delphi_ps10136",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 10220,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_temp_sensor_hella_6pt009107121",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3060,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1900,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_abs_sensor_front_bosch_0265008892",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 12460,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 11560,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_abs_sensor_rear_bosch_0265008893",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 11160,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_crankshaft_sensor_bosch_0261210170",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 9080,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_camshaft_sensor_bosch_0232103112",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 11820,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_thermostat_mahle_tx3087d",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 5940,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_thermostat_housing_febi_37268",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 7390,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 10280,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_radiator_nissens_60662a",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 33280,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 42900,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_radiator_cap_1bar",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 29890,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_expansion_tank_vag",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6180,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_hose_upper",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 5110,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 6760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_hose_lower",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2780,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_water_pump_gasket_generic",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 16000,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_control_arm_front_left_lemforder_3478901",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 14230,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 10680,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_control_arm_front_right_lemforder_3478902",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 13980,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 19440,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ball_joint_febi_27033",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 21450,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_tie_rod_end_trw_jte1156",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 25170,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_stabilizer_link_sachs_317829",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 3790,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_shock_absorber_front_sachs_312783",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 28000,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_shock_absorber_rear_sachs_314215",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 40130,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_strut_mount_febi_10145",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 16020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coil_spring_front_lesjofors_4095833",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 16270,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_bearing_skf_vkba3685",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 22760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cv_boot_kit_gkn_300495",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1870,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 3110,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cv_joint_outer_gkn_304764",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 21760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_driveshaft_left_gkn_245678",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 64720,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_driveshaft_right_gkn_245679",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 50870,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 52200,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_clutch_kit_sachs_3000951030",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 56500,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_dual_mass_flywheel_luk_415063510",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 91850,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 96320,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_hub_front_skf_vkhb2161",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 20790,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_crankshaft_seal_elring_325155",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1450,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 650,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_camshaft_seal_elring_645155",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 930,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 2350,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_valve_cover_gasket_elring_915680",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1180,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_pan_gasket_elring_172930",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 720,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_intake_gasket_set_elring_917125",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4380,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 300,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_exhaust_gasket_set_elring_913450",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4390,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_aux_belt_tensioner_ina_534033710",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 17140,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_idler_pulley_ina_532085210",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 7500,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 3300,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_belt_pulley_contitech_apv1060",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3880,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_crank_pulley_febi_33615",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2440,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_egr_valve_pierburg_721903440",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 26480,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_dpf_pressure_sensor_bosch_0281007420",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 29270,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_exhaust_temp_sensor_bosch_0281006450",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 15290,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_catalytic_converter_euro5_generic",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 158030,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 145450,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_muffler_rear_bosal_287951",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 43380,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_exhaust_clamp_55mm",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1740,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ac_compressor_denso_dcp32045",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 109660,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 150700,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ac_condenser_nissens_940421",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 43820,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 35060,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_ac_drier_hella_8ft351199201",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3360,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 2740,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cabin_blower_motor_hella_8ew009159311",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 51060,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_mount_left_febi_31072",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 9200,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_mount_right_febi_31073",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 10800,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 20150,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_gearbox_mount_febi_31074",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 18650,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_turbocharger_garrett_814552",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 136390,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 229660,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_intercooler_nissens_96539",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 23910,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_boost_hose_silicone_60mm",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1490,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 6370,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_throttle_body_pierburg_700432",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 72880,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 77540,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fuel_pump_in_tank_bosch_0580200089",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 98620,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_high_pressure_pump_bosch_0445010507",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 94400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_injector_bosch_0445116023",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 34900,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 77640,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_injector_seal_kit",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1580,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_bolt_set_tbelt_vag",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 7500,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 16020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_serpentine_belt_bolt_set",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 14810,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 7820,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_threadlocker_medium_10ml",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 800,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_anti_seize_paste_100g",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1450,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_silicone_gasket_70ml",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2040,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 2190,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_rtv_sealant_black_85g",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3120,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 800,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_hose_front_left",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6280,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_hose_front_right",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2740,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 3400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_hose_rear_left",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 5080,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 5490,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_hose_rear_right",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3720,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 5020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_disc_front_brembo_09a12311",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 19880,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_pad_front_brembo_p85075",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3110,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_disc_rear_brembo_08b45611",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 10700,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_pad_rear_brembo_p85076",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 7920,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_bolt_m14x15",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 270,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 260,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_nut_m12x15",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 240,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 170,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_drain_plug_vw",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 460,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 640,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_drain_plug_washer_copper",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 410,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_air_filter_sport_universal",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2250,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cabin_filter_mahle_laK293",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2810,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_cabin_filter_mahle_la387",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2210,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 2660,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fuel_filter_mann_wk6032",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 5730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_filter_hengst_e11h01d44",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1410,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1430,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_air_filter_hengst_e123l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2440,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_serpentine_belt_gates_6pk1200",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 17110,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 16260,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_serpentine_belt_dayco_6pk975",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 17200,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 5410,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_timing_belt_contitech_ct1092",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 7140,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_timing_belt_tensioner_ina_531060910",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 11290,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_timing_belt_idler_ina_532047410",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 8680,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_water_pump_aisin_wpa123",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6900,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_50_50_premix_5l",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2030,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 3400,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_5w40_1l_shell",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1540,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1190,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oil_5w40_5l_shell",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4960,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 9020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_temp_sensor_bosch_0280130039",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4150,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_knock_sensor_bosch_0261231038",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 5000,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_throttle_position_sensor_delphi_ss10550",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 10730,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_serpentine_tensioner_gates_t39214",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 15630,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_pcV_valve_febi_45123",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 5970,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_vacuum_pump_pierburg_703459",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 12180,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 11900,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_air_temp_sensor_hella_6pt009107541",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3200,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_washer_pump_hella_8tw006841041",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 19860,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 19450,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_headlight_switch_hella_6el010406201",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 52640,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_window_regulator_front_left",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 35780,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 52140,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_window_regulator_front_right",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 18930,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_door_lock_actuator_front_left",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 34580,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_door_lock_actuator_front_right",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 57760,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 51520,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_front_left",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 13440,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 11170,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_front_right",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6270,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 6
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 7800,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_rear_left",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6370,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 7300,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_speed_sensor_rear_right",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 9930,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_hub_bearing_rear_skf_vkba6723",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 30680,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_alignment_bolt_set_cam",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2050,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1360,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_shock_bump_stop_front",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1930,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_shock_dust_cover_front",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2750,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_shock_bump_stop_rear",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2120,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 2310,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_shock_dust_cover_rear",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1360,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_belt_set_service",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 15020,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 5
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 16990,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_radiator_fan_resistor",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 19540,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 7
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_radiator_fan_motor",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 13780,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 4
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fan_clutch_sachs_210002",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 5750,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": false,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-02-28"
+        }
+      ]
+    },
+    {
+      "part_id": "part_thermostat_gasket_elring_202380",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 6200,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_pipe_o_ring_set",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1080,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_oxygen_sensor_spacer_m18",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 8990,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_exhaust_gasket_ring_55mm",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 3320,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_oil_filter_wrench",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 600,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_brake_bleeder_kit",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 4580,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 5780,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_tire_valve_set_tr413",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 770,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_wheel_weight_adhesive_60g",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1070,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 3
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_engine_cleaner_intake",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 2370,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_diesel_additive_250ml",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 920,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_fuel_system_cleaner_300ml",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1440,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 0
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        },
+        {
+          "supplier_id": "supplier_tukku_02",
+          "unit_price_cents": 1240,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_coolant_leak_stop_250ml",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1650,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 2
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
+        }
+      ]
+    },
+    {
+      "part_id": "part_spark_plug_gap_tool",
+      "offers": [
+        {
+          "supplier_id": "supplier_tukku_01",
+          "unit_price_cents": 1180,
+          "currency": "EUR",
+          "availability": {
+            "in_stock": true,
+            "lead_time_days": 1
+          },
+          "valid_from": "2026-01-01",
+          "valid_to": "2026-01-31"
         }
       ]
     }
