@@ -10,7 +10,7 @@ import time
 # =========================
 PENDING_FILE = Path("pending_jobs.json")
 
-# Mekaanikon FastAPI endpoint (muuta jos eri portti/osoite)
+# Mekaanikon FastAPI endpoint
 MECHANIC_API_JOBS_URL = "http://localhost:8000/jobs"
 
 # n8n webhook (booking-analyysi)
@@ -64,6 +64,7 @@ def get_customer_list():
 
 
 def get_filtered_car_list(customer_id):
+    # säilytetään (voi olla hyödyllinen muualla)
     try:
         with open("vehicles.json", "r", encoding="utf-8") as f:
             all_cars = json.load(f).get("data", [])
@@ -72,6 +73,66 @@ def get_filtered_car_list(customer_id):
             return []
     except Exception:
         return []
+
+
+def get_customer_vehicle_by_plate(customer_id: str, plate_number: str):
+    try:
+        with open("vehicles.json", "r", encoding="utf-8") as f:
+            all_cars = json.load(f).get("data", [])
+            plate = (plate_number or "").strip()
+            cid = (customer_id or "").strip()
+            return next(
+                (c for c in all_cars
+                 if c.get("customer_id") == cid and c.get("plate_number") == plate),
+                None,
+            )
+    except Exception:
+        return None
+
+
+# =========================
+# Apufunktiot hyväksyntä-UI:lle
+# =========================
+def recompute_totals_from_parts(job: dict) -> dict:
+    """
+    Päivittää parts_total_brutto ja total_price_brutto parts[]:n price_brutto -kenttien perusteella.
+    Oletus: price_brutto on cents.
+    """
+    parts = job.get("parts") or []
+    parts_total = 0
+    for p in parts:
+        if isinstance(p, dict):
+            parts_total += int(p.get("price_brutto", 0) or 0)
+
+    job["parts_total_brutto"] = int(parts_total)
+
+    labor = int(job.get("labor_total_brutto", 0) or 0)
+    job["total_price_brutto"] = int(labor + parts_total)
+    return job
+
+
+def apply_part_choice(part: dict, choice_key: str) -> dict:
+    """
+    choice_key: 'cheapest' tai 'in_stock'
+    Päivittää part['chosen_option'] ja part['price_brutto'] valitun option perusteella.
+    Oletus: option_* sisältää unit_price_cents, qty ja vat_rate löytyy partista.
+    """
+    cheapest = part.get("option_cheapest")
+    in_stock = part.get("option_in_stock")
+
+    if choice_key == "in_stock" and in_stock:
+        chosen = in_stock
+        part["chosen_option"] = "in_stock"
+    else:
+        chosen = cheapest or in_stock
+        part["chosen_option"] = "cheapest" if cheapest else ("in_stock" if in_stock else "cheapest")
+
+    qty = int(part.get("qty", 1) or 1)
+    vat = float(part.get("vat_rate", 0.255) or 0.0)
+    unit_cents = int((chosen or {}).get("unit_price_cents", 0) or 0)
+
+    part["price_brutto"] = int(round(unit_cents * qty * (1 + vat)))
+    return part
 
 
 # =========================
@@ -85,17 +146,21 @@ st.sidebar.header("Syötä asiakkaan tiedot")
 customers = get_customer_list()
 current_user = {"customer_id": "unknown", "name": "Vieras"}
 
+# pidetään input_plate sessionissa myös kun ei olla kirjautuneita
+input_name = ""
+input_plate = ""
+
 if customers:
     input_name = st.sidebar.text_input("Koko nimi:")
-    input_password = st.sidebar.text_input("Auton rekisterinumero:", type="password")
+    input_plate = st.sidebar.text_input("Auton rekisterinumero:")  # ei password, tämä on rekisteri
 
-    if input_name and input_password:
+    if input_name and input_plate:
         user_match = next(
             (
                 c
                 for c in customers
                 if c["name"].strip().lower() == input_name.strip().lower()
-                and c["plate_number"] == input_password
+                and c["plate_number"] == input_plate
             ),
             None,
         )
@@ -119,80 +184,96 @@ with tabs[0]:
     st.header("Uusi huoltovaraus")
 
     if current_user["customer_id"] != "unknown":
-        my_cars = get_filtered_car_list(current_user["customer_id"])
+        # auto päätellään kirjautumisen rekisteristä
+        selected_car_data = get_customer_vehicle_by_plate(
+            current_user["customer_id"],
+            input_plate
+        )
 
-        if my_cars:
-            car_display_list = [
-                f"{c['make']} {c['model']} ({c['model_year']}) - {c['plate_number']}"
-                for c in my_cars
-            ]
-            selected_car_index = st.selectbox(
-                "Valitse auto:",
-                range(len(car_display_list)),
-                format_func=lambda x: car_display_list[x],
+        if selected_car_data:
+            st.write(
+                f"**Auto:** {selected_car_data.get('make','?')} "
+                f"{selected_car_data.get('model','?')} "
+                f"({selected_car_data.get('model_year','?')}) - "
+                f"{selected_car_data.get('plate_number','?')}"
             )
-            selected_car_data = my_cars[selected_car_index]
+        else:
+            st.warning("Tälle rekisterinumerolle ei löytynyt autoa.")
+            st.stop()
 
-            desc = st.text_area("Kuvaile huoltotarve:")
+        desc = st.text_area("Kuvaile huoltotarve:")
 
-            if st.button("Lähetä varaus analyysiin"):
-                if not desc.strip():
-                    st.warning("Kirjoita kuvaus.")
-                else:
-                    with st.spinner("MechServAI analysoi varaustasi..."):
-                        payload = {
-                            "mode": "booking",
-                            "customer": current_user,
-                            "vehicle": selected_car_data,
-                            "customer_description": desc,
-                        }
+        if st.button("Lähetä varaus analyysiin"):
+            if not desc.strip():
+                st.warning("Kirjoita kuvaus.")
+            else:
+                with st.spinner("MechServAI analysoi varaustasi..."):
+                    payload = {
+                        "mode": "booking",
+                        "customer": current_user,
+                        "vehicle": selected_car_data,
+                        "customer_description": desc,
+                    }
+
+                    try:
+                        response = requests.post(
+                            N8N_BOOKING_WEBHOOK_URL,
+                            json=payload,
+                            timeout=None,
+                        )
+
+                        if response.status_code != 200:
+                            st.error(f"Virhe n8n-yhteydessä: {response.status_code}")
+                            st.text(response.text[:2000])
+                            st.stop()
 
                         try:
-                            response = requests.post(
-                                N8N_BOOKING_WEBHOOK_URL,
-                                json=payload,
-                                timeout=None,
-                            )
+                            result = response.json()
+                        except Exception:
+                            st.error("n8n ei palauttanut JSON-vastausta.")
+                            st.text(response.text[:2000])
+                            st.stop()
 
-                            if response.status_code != 200:
-                                st.error(f"Virhe n8n-yhteydessä: {response.status_code}")
-                            else:
-                                # Odotetaan että n8n palauttaa JSONin jossa on mechanic_job_payload
-                                try:
-                                    result = response.json()
-                                except Exception:
-                                    st.error("n8n ei palauttanut JSON-vastausta. Tarkista Respond to Webhook / Response Mode.")
-                                    st.stop()
+                        # ✅ n8n palauttaa nyt LISTAN (tai yksittäisen)
+                        payload_jobs = result.get("mechanic_job_payload")
+                        jobs = payload_jobs if isinstance(payload_jobs, list) else [payload_jobs]
+                        jobs = [j for j in jobs if isinstance(j, dict)]
 
-                                job = result.get("mechanic_job_payload")
-                                if not job or not isinstance(job, dict):
-                                    st.error("Vastauksesta puuttuu mechanic_job_payload (tai se ei ole objekti).")
-                                    st.stop()
+                        if not jobs:
+                            st.error("Vastauksesta puuttuu mechanic_job_payload.")
+                            st.stop()
 
-                                # Täydennä metat työnjohtajan hyväksyntää varten
-                                job.setdefault("id", str(uuid.uuid4()))
-                                job["created_at"] = int(time.time())
-                                job["customer_name"] = current_user.get("name")
-                                job["customer_id"] = current_user.get("customer_id")
-                                job["plate_number"] = selected_car_data.get("plate_number")
-                                job["customer_description"] = desc
+                        pending = load_pending_jobs()
 
-                                pending = load_pending_jobs()
-                                pending.append(job)
-                                save_pending_jobs(pending)
+                        for job in jobs:
+                            job.setdefault("id", str(uuid.uuid4()))
+                            job["created_at"] = int(time.time())
 
-                                st.success("Analyysi valmis! Ehdotus lisättiin hyväksyntäjonoon.")
-                                st.info("Avaa välilehti ✅ Hyväksyntäjono hyväksyäksesi tai hylätäksesi ehdotuksen.")
-                        except Exception as e:
-                            st.error(f"Yhteysvirhe: {e}")
-        else:
-            st.warning("Sinulle ei löytynyt rekisteröityjä autoja.")
+                            # n8n payloadissa nämä on jo, mutta varmistetaan:
+                            job["customer_name"] = job.get("customer_name") or current_user.get("name")
+                            job["customer_id"] = job.get("customer_id") or current_user.get("customer_id")
+                            job["plate_number"] = job.get("plate_number") or selected_car_data.get("plate_number")
+
+                            # kuvaus sama kaikille töille
+                            job["customer_description"] = desc
+
+                            # varmista totals
+                            recompute_totals_from_parts(job)
+
+                            pending.append(job)
+
+                        save_pending_jobs(pending)
+
+                        st.success(f"Analyysi valmis! Lisättiin {len(jobs)} ehdotusta hyväksyntäjonoon.")
+                        st.info("Avaa välilehti ✅ Hyväksyntäjono.")
+                    except Exception as e:
+                        st.error(f"Yhteysvirhe: {e}")
     else:
         st.info("Syötä asiakkaan tiedot jotta voit tehdä huoltovarauksen.")
 
 
 # =========================
-# 2) Hyväksyntäjono
+# 2) Hyväksyntäjono (muokkaus ennen hyväksyntää)
 # =========================
 with tabs[1]:
     st.header("Huoltoehdotukset")
@@ -213,29 +294,119 @@ with tabs[1]:
 
             with st.expander(title):
                 st.write(f"**Asiakas:** {job.get('customer_name','-')}")
+                st.write(f"**Rekisteri:** {job.get('plate_number','-')}")
                 st.write(f"**Työn kuvaus:** {job.get('customer_description','-')}")
                 st.write(f"**Ehdotettu työ:** {job.get('operation_code','-')} - {job.get('description','-')}")
-                st.write(f"**Mekaanikko:** {job.get('mechanic','Ei määritelty')}")
-                st.write(f"**Bay/Lift:** {job.get('bay_lift','Ei määritelty')}")
-                st.write(f"**Kesto:** {job.get('duration_min', 0)} min")
-                st.write(f"**Työn hinta:** {job.get('labor_total_brutto',0)/100:.2f} €")
-                st.write(f"**Osien hinta:** {job.get('parts_total_brutto',0)/100:.2f} €")
-                st.write(f"**Yhteensä:** {job.get('total_price_brutto',0)/100:.2f} €")
+
+                st.divider()
+                st.subheader("Muokkaa ennen hyväksyntää")
+
+                new_duration = st.number_input(
+                    "Kesto (min)",
+                    min_value=0,
+                    step=15,
+                    value=int(job.get("duration_min", 0) or 0),
+                    key=f"dur_{job.get('id', idx)}",
+                )
+                job["duration_min"] = int(new_duration)
+
+                mech_opts = job.get("mechanic_options") or []
+                if mech_opts:
+                    labels = [m.get("name", m.get("mechanic_id", "?")) for m in mech_opts]
+                    current_id = job.get("mechanic_id")
+                    default_idx = next(
+                        (i for i, m in enumerate(mech_opts) if m.get("mechanic_id") == current_id),
+                        0,
+                    )
+                    chosen_idx = st.selectbox(
+                        "Mekaanikko",
+                        range(len(labels)),
+                        format_func=lambda i: labels[i],
+                        index=default_idx,
+                        key=f"mech_{job.get('id', idx)}",
+                    )
+                    job["mechanic_id"] = mech_opts[chosen_idx].get("mechanic_id")
+                    job["mechanic"] = mech_opts[chosen_idx].get("name")
+                else:
+                    st.caption("ℹ️ mechanic_options puuttuu (lisää n8n payloadiin jos haluat vaihtaa mekaanikkoa).")
+
+                bay_opts = job.get("bay_options") or []
+                if bay_opts:
+                    labels = [b.get("name", b.get("bay_id", "?")) for b in bay_opts]
+                    current_id = job.get("bay_id")
+                    default_idx = next(
+                        (i for i, b in enumerate(bay_opts) if b.get("bay_id") == current_id),
+                        0,
+                    )
+                    chosen_idx = st.selectbox(
+                        "Bay/Lift",
+                        range(len(labels)),
+                        format_func=lambda i: labels[i],
+                        index=default_idx,
+                        key=f"bay_{job.get('id', idx)}",
+                    )
+                    job["bay_id"] = bay_opts[chosen_idx].get("bay_id")
+                    job["bay_lift"] = bay_opts[chosen_idx].get("name")
+                else:
+                    st.caption("ℹ️ bay_options puuttuu (lisää n8n payloadiin jos haluat vaihtaa bayn).")
+
+                st.divider()
 
                 parts = job.get("parts", []) or []
                 if parts:
-                    st.subheader("Osat:")
-                    for part in parts:
+                    st.subheader("Osat (valitse Halvin / Varastossa)")
+                    for p_i, part in enumerate(parts):
                         if not isinstance(part, dict):
                             continue
-                        st.write(
-                            f"- {part.get('name','?')} ({part.get('brand','?')}): "
-                            f"{part.get('price_brutto',0)/100:.2f} €"
+
+                        name = part.get("name", "?")
+                        brand = part.get("brand", "?")
+                        qty = int(part.get("qty", 1) or 1)
+
+                        has_in_stock = bool(part.get("option_in_stock"))
+                        options = ["Halvin"] + (["Varastossa"] if has_in_stock else [])
+
+                        current_choice = part.get("chosen_option", "cheapest")
+                        default_idx = 0 if current_choice == "cheapest" else (1 if has_in_stock else 0)
+
+                        choice = st.radio(
+                            f"{name} ({brand}) x{qty}",
+                            options,
+                            index=default_idx,
+                            horizontal=True,
+                            key=f"part_{job.get('id', idx)}_{p_i}",
                         )
+
+                        apply_part_choice(part, "cheapest" if choice == "Halvin" else "in_stock")
+                        st.caption(f"Brutto: {int(part.get('price_brutto',0) or 0)/100:.2f} €")
+
+                    job["parts"] = parts
+                    recompute_totals_from_parts(job)
+                else:
+                    st.subheader("Osat")
+                    st.caption("Ei osia / osien valintoja saatavilla.")
+
+                st.divider()
+                st.subheader("Yhteenveto")
+
+                st.write(f"**Mekaanikko:** {job.get('mechanic','Ei määritelty')}")
+                st.write(f"**Bay/Lift:** {job.get('bay_lift','Ei määritelty')}")
+                st.write(f"**Kesto:** {job.get('duration_min', 0)} min")
+
+                labor_brutto = int(job.get("labor_total_brutto", 0) or 0)
+                parts_brutto = int(job.get("parts_total_brutto", 0) or 0)
+                total_brutto = int(job.get("total_price_brutto", 0) or 0)
+
+                st.write(f"**Työn hinta:** {labor_brutto/100:.2f} €")
+                st.write(f"**Osien hinta:** {parts_brutto/100:.2f} €")
+                st.write(f"**Yhteensä:** {total_brutto/100:.2f} €")
+
+                # tallenna muutokset
+                pending[idx] = job
+                save_pending_jobs(pending)
 
                 col1, col2 = st.columns(2)
 
-                # HYVÄKSY: lähetä mekaanikon APIin ja poista pendingistä
                 if col1.button("✅ Hyväksy ja lähetä mekaanikolle", key=f"approve_{job.get('id', idx)}"):
                     try:
                         r = requests.post(MECHANIC_API_JOBS_URL, json=job, timeout=10)
@@ -249,14 +420,11 @@ with tabs[1]:
                     except Exception as e:
                         st.error(f"Yhteysvirhe mekaanikon APIin: {e}")
 
-                # HYLKÄÄ: poista pendingistä
                 if col2.button("🗑️ Hylkää (poista)", key=f"reject_{job.get('id', idx)}"):
                     pending.pop(idx)
                     save_pending_jobs(pending)
                     st.warning("Ehdotus hylättiin ja poistettiin.")
                     st.rerun()
-
-        # st.caption(f"Pending-jono tallennetaan tiedostoon: {PENDING_FILE.resolve()}")
 
 
 # =========================
@@ -278,7 +446,6 @@ with tabs[2]:
 
                 try:
                     response = requests.post(N8N_DIAG_WEBHOOK_URL, json=payload, timeout=None)
-                    # diagnostiikka voi olla markdown / teksti
                     st.markdown(response.text)
                 except Exception as e:
                     st.error(f"Virhe: {e}")
