@@ -1,0 +1,286 @@
+import streamlit as st
+import json
+import requests
+from pathlib import Path
+import uuid
+import time
+
+# =========================
+# Asetukset / tiedostot
+# =========================
+PENDING_FILE = Path("pending_jobs.json")
+
+# Mekaanikon FastAPI endpoint (muuta jos eri portti/osoite)
+MECHANIC_API_JOBS_URL = "http://localhost:8000/jobs"
+
+# n8n webhook (booking-analyysi)
+N8N_BOOKING_WEBHOOK_URL = "http://localhost:5678/webhook/uusi-varaus"
+# n8n webhook (diagnostiikka)
+N8N_DIAG_WEBHOOK_URL = "http://localhost:5678/webhook/uusi-varaus"
+
+
+# =========================
+# Pending jonon luku/kirjoitus
+# =========================
+def load_pending_jobs():
+    if not PENDING_FILE.exists():
+        return []
+    raw = PENDING_FILE.read_bytes()
+    for enc in ("utf-8", "cp1252", "latin-1"):
+        try:
+            txt = raw.decode(enc)
+            if not txt.strip():
+                return []
+            data = json.loads(txt)
+            if enc != "utf-8":
+                save_pending_jobs(data)
+            return data if isinstance(data, list) else []
+        except Exception:
+            continue
+    st.error("pending_jobs.json on rikki / väärässä merkistössä eikä sitä saatu luettua.")
+    return []
+
+
+def save_pending_jobs(jobs):
+    PENDING_FILE.write_text(
+        json.dumps(jobs, indent=4, ensure_ascii=False),
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
+# =========================
+# Asiakas- ja autodata
+# =========================
+def get_customer_list():
+    try:
+        with open("customers.json", "r", encoding="utf-8") as f:
+            return json.load(f).get("data", [])
+    except FileNotFoundError:
+        st.error("Tiedostoa 'customers.json' ei löytynyt!")
+        return []
+    except Exception:
+        return []
+
+
+def get_filtered_car_list(customer_id):
+    try:
+        with open("vehicles.json", "r", encoding="utf-8") as f:
+            all_cars = json.load(f).get("data", [])
+            if customer_id != "unknown":
+                return [c for c in all_cars if c.get("customer_id") == customer_id]
+            return []
+    except Exception:
+        return []
+
+
+# =========================
+# UI
+# =========================
+st.set_page_config(page_title="MechServAI - Työnjohtaja", page_icon="🚗")
+st.title("🚗 MechServAI - Työnjohtajan portaali")
+
+# --- KIRJAUTUMINEN SIVUPALKISSA ---
+st.sidebar.header("Syötä asiakkaan tiedot")
+customers = get_customer_list()
+current_user = {"customer_id": "unknown", "name": "Vieras"}
+
+if customers:
+    input_name = st.sidebar.text_input("Koko nimi:")
+    input_password = st.sidebar.text_input("Auton rekisterinumero:", type="password")
+
+    if input_name and input_password:
+        user_match = next(
+            (
+                c
+                for c in customers
+                if c["name"].strip().lower() == input_name.strip().lower()
+                and c["plate_number"] == input_password
+            ),
+            None,
+        )
+
+        if user_match:
+            current_user = user_match
+            st.sidebar.success(f"{current_user['name']}")
+        else:
+            st.sidebar.error("Nimi tai rekisterinumero on väärin.")
+else:
+    st.sidebar.error("Asiakastietoja ei löytynyt.")
+
+
+# --- PÄÄNÄKYMÄ ---
+tabs = st.tabs(["📋 Tee huoltovaraus", "✅ Hyväksyntäjono", "🔍 Diagnostiikka"])
+
+# =========================
+# 1) Tee huoltovaraus
+# =========================
+with tabs[0]:
+    st.header("Uusi huoltovaraus")
+
+    if current_user["customer_id"] != "unknown":
+        my_cars = get_filtered_car_list(current_user["customer_id"])
+
+        if my_cars:
+            car_display_list = [
+                f"{c['make']} {c['model']} ({c['model_year']}) - {c['plate_number']}"
+                for c in my_cars
+            ]
+            selected_car_index = st.selectbox(
+                "Valitse auto:",
+                range(len(car_display_list)),
+                format_func=lambda x: car_display_list[x],
+            )
+            selected_car_data = my_cars[selected_car_index]
+
+            desc = st.text_area("Kuvaile huoltotarve:")
+
+            if st.button("Lähetä varaus analyysiin"):
+                if not desc.strip():
+                    st.warning("Kirjoita kuvaus.")
+                else:
+                    with st.spinner("MechServAI analysoi varaustasi..."):
+                        payload = {
+                            "mode": "booking",
+                            "customer": current_user,
+                            "vehicle": selected_car_data,
+                            "customer_description": desc,
+                        }
+
+                        try:
+                            response = requests.post(
+                                N8N_BOOKING_WEBHOOK_URL,
+                                json=payload,
+                                timeout=None,
+                            )
+
+                            if response.status_code != 200:
+                                st.error(f"Virhe n8n-yhteydessä: {response.status_code}")
+                            else:
+                                # Odotetaan että n8n palauttaa JSONin jossa on mechanic_job_payload
+                                try:
+                                    result = response.json()
+                                except Exception:
+                                    st.error("n8n ei palauttanut JSON-vastausta. Tarkista Respond to Webhook / Response Mode.")
+                                    st.stop()
+
+                                job = result.get("mechanic_job_payload")
+                                if not job or not isinstance(job, dict):
+                                    st.error("Vastauksesta puuttuu mechanic_job_payload (tai se ei ole objekti).")
+                                    st.stop()
+
+                                # Täydennä metat työnjohtajan hyväksyntää varten
+                                job.setdefault("id", str(uuid.uuid4()))
+                                job["created_at"] = int(time.time())
+                                job["customer_name"] = current_user.get("name")
+                                job["customer_id"] = current_user.get("customer_id")
+                                job["plate_number"] = selected_car_data.get("plate_number")
+                                job["customer_description"] = desc
+
+                                pending = load_pending_jobs()
+                                pending.append(job)
+                                save_pending_jobs(pending)
+
+                                st.success("Analyysi valmis! Ehdotus lisättiin hyväksyntäjonoon.")
+                                st.info("Avaa välilehti ✅ Hyväksyntäjono hyväksyäksesi tai hylätäksesi ehdotuksen.")
+                        except Exception as e:
+                            st.error(f"Yhteysvirhe: {e}")
+        else:
+            st.warning("Sinulle ei löytynyt rekisteröityjä autoja.")
+    else:
+        st.info("Syötä asiakkaan tiedot jotta voit tehdä huoltovarauksen.")
+
+
+# =========================
+# 2) Hyväksyntäjono
+# =========================
+with tabs[1]:
+    st.header("Huoltoehdotukset")
+
+    pending = load_pending_jobs()
+
+    if not pending:
+        st.info("Ei odottavia ehdotuksia.")
+    else:
+        for idx, job in enumerate(pending):
+            if not isinstance(job, dict):
+                continue
+
+            title = (
+                f"{job.get('vehicle_make','?')} {job.get('vehicle_model','?')} "
+                f"({job.get('year','?')}) - {job.get('plate_number','?')}"
+            )
+
+            with st.expander(title):
+                st.write(f"**Asiakas:** {job.get('customer_name','-')}")
+                st.write(f"**Työn kuvaus:** {job.get('customer_description','-')}")
+                st.write(f"**Ehdotettu työ:** {job.get('operation_code','-')} - {job.get('description','-')}")
+                st.write(f"**Mekaanikko:** {job.get('mechanic','Ei määritelty')}")
+                st.write(f"**Bay/Lift:** {job.get('bay_lift','Ei määritelty')}")
+                st.write(f"**Kesto:** {job.get('duration_min', 0)} min")
+                st.write(f"**Työn hinta:** {job.get('labor_total_brutto',0)/100:.2f} €")
+                st.write(f"**Osien hinta:** {job.get('parts_total_brutto',0)/100:.2f} €")
+                st.write(f"**Yhteensä:** {job.get('total_price_brutto',0)/100:.2f} €")
+
+                parts = job.get("parts", []) or []
+                if parts:
+                    st.subheader("Osat:")
+                    for part in parts:
+                        if not isinstance(part, dict):
+                            continue
+                        st.write(
+                            f"- {part.get('name','?')} ({part.get('brand','?')}): "
+                            f"{part.get('price_brutto',0)/100:.2f} €"
+                        )
+
+                col1, col2 = st.columns(2)
+
+                # HYVÄKSY: lähetä mekaanikon APIin ja poista pendingistä
+                if col1.button("✅ Hyväksy ja lähetä mekaanikolle", key=f"approve_{job.get('id', idx)}"):
+                    try:
+                        r = requests.post(MECHANIC_API_JOBS_URL, json=job, timeout=10)
+                        if r.status_code == 200:
+                            pending.pop(idx)
+                            save_pending_jobs(pending)
+                            st.success("Lähetetty mekaanikon työjonoon.")
+                            st.rerun()
+                        else:
+                            st.error(f"Mekaanikon API virhe: {r.status_code} {r.text}")
+                    except Exception as e:
+                        st.error(f"Yhteysvirhe mekaanikon APIin: {e}")
+
+                # HYLKÄÄ: poista pendingistä
+                if col2.button("🗑️ Hylkää (poista)", key=f"reject_{job.get('id', idx)}"):
+                    pending.pop(idx)
+                    save_pending_jobs(pending)
+                    st.warning("Ehdotus hylättiin ja poistettiin.")
+                    st.rerun()
+
+        # st.caption(f"Pending-jono tallennetaan tiedostoon: {PENDING_FILE.resolve()}")
+
+
+# =========================
+# 3) Diagnostiikka
+# =========================
+with tabs[2]:
+    st.header("MechServAI Diagnostiikka-apu")
+
+    symptom = st.text_input("Kuvaile oiretta:", key="diag_symptom")
+
+    if symptom:
+        if current_user["customer_id"] != "unknown":
+            with st.spinner("Analysoidaan..."):
+                payload = {
+                    "mode": "diagnostics",
+                    "customer": current_user,
+                    "customer_description": symptom,
+                }
+
+                try:
+                    response = requests.post(N8N_DIAG_WEBHOOK_URL, json=payload, timeout=None)
+                    # diagnostiikka voi olla markdown / teksti
+                    st.markdown(response.text)
+                except Exception as e:
+                    st.error(f"Virhe: {e}")
+        else:
+            st.warning("Kirjaudu sisään käyttääksesi diagnostiikkaa.")
