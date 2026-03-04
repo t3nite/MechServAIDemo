@@ -1,0 +1,24 @@
+{
+  "source": "hr_skills_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "mechanic_id": "mech_0001",
+      "name": "Teemu Teknikko",
+      "skill_tags": ["engine", "timing", "diagnostics"],
+      "work_hours": {
+        "mon_fri": { "start": "08:00", "end": "16:00" }
+      },
+      "calendar_ref": "cal_mech_0001"
+    },
+    {
+      "mechanic_id": "mech_0002",
+      "name": "Sami Sähkö",
+      "skill_tags": ["electrical", "diagnostics"],
+      "work_hours": {
+        "mon_fri": { "start": "09:00", "end": "17:00" }
+      },
+      "calendar_ref": "cal_mech_0002"
+    }
+  ]
+}
