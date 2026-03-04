@@ -1,0 +1,106 @@
+{
+  "source": "parts_master_data_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "part_id": "part_tbelt_kit_conti_ct1028k1",
+      "brand": "Continental",
+      "mpn": "CT1028K1",
+      "name": "Jakohihnasarja (hihna + kiristin + rullat)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.215,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_tbelt_kit_skf_vkma01250",
+      "brand": "SKF",
+      "mpn": "VKMA01250",
+      "name": "Jakohihnasarja (hihna + kiristin + rullat)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.225,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_water_pump_hepu_p579",
+      "brand": "HEPU",
+      "mpn": "P579",
+      "name": "Vesipumppu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.235,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_water_pump_graf_pa1102",
+      "brand": "GRAF",
+      "mpn": "PA1102",
+      "name": "Vesipumppu",
+      "unit": "pcs",
+      "parts_vat_rate": 0.245,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_coolant_g12evo_1l",
+      "brand": "VW Spec",
+      "mpn": "G12EVO-1L",
+      "name": "Jäähdytysneste, konsentraatti 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.255,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_coolant_g13_1l",
+      "brand": "VW Spec",
+      "mpn": "G13-1L",
+      "name": "Jäähdytysneste, konsentraatti 1L",
+      "unit": "l",
+      "parts_vat_rate": 0.265,
+      "constraints": { "requires_order": false }
+    },
+
+    {
+      "part_id": "part_aux_belt_generic_vw",
+      "brand": "ContiTech",
+      "mpn": "6PK1050",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.275,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_aux_belt_generic_saab",
+      "brand": "Gates",
+      "mpn": "6PK1880",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.285,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_aux_belt_generic_nissan",
+      "brand": "Dayco",
+      "mpn": "6PK1660",
+      "name": "Apulaitehihna (moniurahihna)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.295,
+      "constraints": { "requires_order": false }
+    },
+    {
+      "part_id": "part_timing_chain_kit_saab_b207",
+      "brand": "INA",
+      "mpn": "559012010",
+      "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.305,
+      "constraints": { "requires_order": true }
+    },
+    {
+      "part_id": "part_timing_chain_kit_r9m",
+      "brand": "INA",
+      "mpn": "559018710",
+      "name": "Jakoketjusarja (ketju + kiristimet + ohjurit)",
+      "unit": "pcs",
+      "parts_vat_rate": 0.315,
+      "constraints": { "requires_order": true }
+    }
+  ]
+}
