@@ -48,4 +48,4 @@ Tämän jälkeen JavaScript-logiikka etsii avainsanojen perusteella työtä vast
 
 ## Yhteenveto
 
-MechServAI on AI-avusteinen toiminnanohjausjärjestelmän demo autokorjaamolle. Siinä työnjohtaja hyödyntää tekoälyagenttia vikojen ja toimenpiteiden ehdottamiseen, n8n orkestroi työnkulun (työajat, varaosat, hinnat ja resurssit), ja ihminen hyväksyy ehdotuksen ennen kuin se siirtyy mekaanikolle. Mekaanikko kuittaa työn ja palauttaa toteumatiedot (kuvaus, muutokset ja mahdolliset lisätyöt) takaisin työnjohtajan käyttöön.
+MechServAI on AI-avusteinen toiminnanohjausjärjestelmän demo autokorjaamolle. Siinä työnjohtaja hyödyntää tekoälyä vikojen löytämiseen ja toimenpiteiden ehdottamiseen, n8n orkestroi työnkulun (työajat, varaosat, hinnat ja resurssit), ja ihminen hyväksyy ehdotuksen ennen kuin se siirtyy mekaanikolle. Mekaanikko kuittaa työn ja palauttaa toteumatiedot (kuvaus, muutokset ja mahdolliset lisätyöt) takaisin työnjohtajan käyttöön.
