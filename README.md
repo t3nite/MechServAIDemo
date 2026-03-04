@@ -32,64 +32,20 @@ python -m streamlit run mekaanikko_app.py
 
 ## Projektin alkuperäinen ohjeistus
 
-Projektin alkuperäinen ohjeistus oli: AI-pohjainen toiminnanohjaus, jossa:
+Projektin alkuperäinen tavoite oli toteuttaa AI-pohjainen toiminnanohjaus autokorjaamolle. Ajatuksena oli, että kun asiakas varaa autokorjaamon tiskillä (tai vaihtoehtoisesti sähköisesti) ajan esimerkiksi jakohihnan vaihtoon, korjaamoesimies syöttää (tai asiakas täyttää) auton tiedot sekä tarvittavan työn. Tämän perusteella MechServAI etsii kyseiseen automalliin sopivan ohjeajan, hakee varaosaohjelmista sopivat osat hintoineen ja tekee ehdotuksen sopivasta ajankohdasta, mekaanikosta sekä nosturipaikasta.
 
-Asiakkaan varatessa autokorjaamon tiskillä (vaihtoehtoisesti kotona sähköisesti) aikaa autonsa jakohihnan vaihtoon, korjaamoesimiehen syöttäessä (vaihtoehtoisesti asiakkaan täyttäessä sähköisesti) auton tiedot ja tarvittava työ, MechServAI:
-
-etsii kyseiseen autoon korjauksen ohjeajan
-
-hakee varaosaohjelmista sopivat osat hintoineen
-
-ehdottaa aikaa sopivalle mekaanikolle ja nosturipaikalle
-
-Mekaanikolle menee omaan sovellukseen:
-
-kyseisen auton tiedot
-
-kalenteriaika vaihdolle
-
-huolto-ohjeet kyseiselle automallille
-
-Työn valmistuttua mekaanikko kuittaa sovellukseen työn valmiiksi selostuksineen, jolloin:
-
-viesti menee asiakkaalle ja tiskille
-
-työmääräin muodostuu ja sisältää mahdolliset lisätyöt ym.
+Kun varaus on muodostettu, mekaanikolle toimitetaan omaan sovellukseen auton tiedot, varattu kalenteriaika sekä huolto-ohjeet kyseiselle automallille. Työn valmistuttua mekaanikko kuittaa työn valmiiksi ja lisää selostuksen tehdystä työstä, jolloin tieto välittyy sekä asiakkaalle että tiskille. Samalla muodostuu työmääräin, johon voidaan liittää myös mahdolliset lisätyöt ja muut huomiot.
 
 ## Tehtävänannon muutos (tilaajan toive)
 
-Tehtävänantoa muokattiin projektin tilaajan halusta:
-
-Agentti tekee ehdotuksen, ihminen hyväksyy ja se menee mekaanikon sivulle.
-
-Kun mekaanikko kuittaa työn sivulla, niin viesti menee takaisin autokorjaamon johtajan sivulle.
-
-Tärkein osa on työn selvittäminen.
+Projektin tilaajan toiveesta työnkulkua muutettiin siten, että tekoäly ei tee lopullisia päätöksiä itsenäisesti. Sen sijaan agentti tuottaa ehdotuksen, jonka ihminen hyväksyy ennen kuin se etenee mekaanikon näkymään. Kun mekaanikko kuittaa työn tehdyksi omassa sovelluksessaan, viesti ja toteumatiedot palautuvat takaisin autokorjaamon johtajan/työnjohtajan näkymään. Tässä kokonaisuudessa tärkeimmäksi nousi nimenomaan työn selvittäminen ja siitä johdettu ehdotus.
 
 ## Näkökulman muutos: asiakkaasta työnjohtajaksi
 
-Projektissa vaihdetaan “asiakkaan” näkökulma työnjohtajan näkökulmaan:
+Projektissa painopiste siirrettiin “asiakkaan näkökulmasta” selkeämmin työnjohtajan käyttöön. Käytännössä työnjohtaja syöttää asiakkaan oire- tai ongelmakuvauksen, ja tekoälyagentti ehdottaa tämän perusteella mahdollisia toimenpiteitä ja työtehtäviä. Kun todennäköinen vika tai suunta on päätetty, työnjohtaja kirjoittaa vian kuvauksen järjestelmään.
 
-Tekoälyagentti voi ehdottaa mahdollisia toimenpiteitä/työtehtäviä asiakkaan kuvauksen perusteella.
-
-Kun on päädytty mahdolliseen vikaan, työnjohtaja kirjoittaa vian kuvauksen.
-
-JavaScript etsii työtä vastaavat hinnat, nosturit jne. avainsanojen perusteella.
-
-Tästä tulee ehdotus takaisin työnjohtajan näkökulmaan, ja jos työnjohtajan mielestä kaikki on ok, niin lähetetään mekaanikon näkökulmaan työmääräin.
-
-Kun mekaanikko on tehnyt työn, hän kirjoittaa työn kuvauksen (eli mitä tehtiin ja oliko alkutiedot väärät, muutokset suunnitelmaan jne.).
-
-Tehty työ kuvauksineen tallennetaan tehtyihin töihin.
+Tämän jälkeen JavaScript-logiikka etsii avainsanojen perusteella työtä vastaavat hinnat, työajat, nosturitarpeet ja muut resurssit. Näistä muodostetaan ehdotus takaisin työnjohtajan näkymään. Mikäli työnjohtaja hyväksyy ehdotuksen, järjestelmä lähettää mekaanikolle työmääräimen. Kun mekaanikko suorittaa työn, hän kirjaa toteuman (mitä tehtiin, pitivätkö alkutiedot paikkansa, tuliko muutoksia suunnitelmaan tai lisätöitä), ja tehty työ tallennetaan kuvauksineen tehtyihin töihin.
 
 ## Yhteenveto
 
-MechServAI on AI-avusteinen toiminnanohjausjärjestelmän demo autokorjaamolle, jossa:
-
-työnjohtaja hyödyntää tekoälyagenttia vikojen ja toimenpiteiden ehdottamiseen
-
-n8n orkestroi työnkulun (työajat, varaosat, hinnat, resurssit)
-
-ihminen hyväksyy ehdotuksen ennen kuin se siirtyy mekaanikolle
-
-mekaanikko kuittaa työn ja palauttaa toteumat (kuvaus, muutokset, lisätyöt) takaisin työnjohtajalle
+MechServAI on AI-avusteinen toiminnanohjausjärjestelmän demo autokorjaamolle. Siinä työnjohtaja hyödyntää tekoälyagenttia vikojen ja toimenpiteiden ehdottamiseen, n8n orkestroi työnkulun (työajat, varaosat, hinnat ja resurssit), ja ihminen hyväksyy ehdotuksen ennen kuin se siirtyy mekaanikolle. Mekaanikko kuittaa työn ja palauttaa toteumatiedot (kuvaus, muutokset ja mahdolliset lisätyöt) takaisin työnjohtajan käyttöön.
