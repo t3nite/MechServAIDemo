@@ -1,0 +1,293 @@
+[
+    {
+        "id": "wo_1772292302458",
+        "customer_name": "Matti Meikäläinen",
+        "plate_number": "ABC-123",
+        "vehicle_make": "Volkswagen",
+        "vehicle_model": "Golf",
+        "year": 2008,
+        "engineCode": "BKC",
+        "operation_code": "AUX_BELT_REPL",
+        "description": "Apulaitehihnan vaihto",
+        "duration_min": 20,
+        "mechanic": "Sami Sähkö",
+        "mechanic_id": "mech_0002",
+        "bay_lift": "Nosturi 2",
+        "bay_id": "bay_lift_02",
+        "labor_total_brutto": 3612,
+        "parts_total_brutto": 2410,
+        "total_price_brutto": 6022,
+        "mechanic_options": [
+            {
+                "mechanic_id": "mech_0001",
+                "name": "Teemu Teknikko"
+            },
+            {
+                "mechanic_id": "mech_0002",
+                "name": "Sami Sähkö"
+            }
+        ],
+        "bay_options": [
+            {
+                "bay_id": "bay_lift_01",
+                "name": "Nosturi 1"
+            },
+            {
+                "bay_id": "bay_lift_02",
+                "name": "Nosturi 2"
+            }
+        ],
+        "parts": [
+            {
+                "part_id": "part_aux_belt_generic_vw",
+                "name": "Apulaitehihna (moniurahihna)",
+                "brand": "ContiTech",
+                "qty": 1,
+                "vat_rate": 0.275,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 1890,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 1890,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "chosen_option": "cheapest",
+                "price_brutto": 2410
+            }
+        ],
+        "created_at": 1772292302,
+        "customer_id": "cust_0001",
+        "customer_description": "jakohihna ja moniurahihna",
+        "status": "completed",
+        "completed_at": "2026-02-28T15:59:56Z",
+        "notes": "moi kuukkupööpötin on rikki",
+        "completed_by": "Sami Sähkö"
+    },
+    {
+        "id": "wo_1772292302457",
+        "customer_name": "Matti Meikäläinen",
+        "plate_number": "ABC-123",
+        "vehicle_make": "Volkswagen",
+        "vehicle_model": "Golf",
+        "year": 2008,
+        "engineCode": "BKC",
+        "operation_code": "TBELT_REPL",
+        "description": "Jakohihnan vaihto",
+        "duration_min": 240,
+        "mechanic": "Teemu Teknikko",
+        "mechanic_id": "mech_0001",
+        "bay_lift": "Nosturi 1",
+        "bay_id": "bay_lift_01",
+        "labor_total_brutto": 47690,
+        "parts_total_brutto": 39722,
+        "total_price_brutto": 87412,
+        "mechanic_options": [
+            {
+                "mechanic_id": "mech_0001",
+                "name": "Teemu Teknikko"
+            },
+            {
+                "mechanic_id": "mech_0002",
+                "name": "Sami Sähkö"
+            }
+        ],
+        "bay_options": [
+            {
+                "bay_id": "bay_lift_01",
+                "name": "Nosturi 1"
+            },
+            {
+                "bay_id": "bay_lift_02",
+                "name": "Nosturi 2"
+            }
+        ],
+        "parts": [
+            {
+                "part_id": "part_tbelt_kit_conti_ct1028k1",
+                "name": "Jakohihnasarja (hihna + kiristin + rullat)",
+                "brand": "Continental",
+                "qty": 1,
+                "vat_rate": 0.215,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_02",
+                    "unit_price_cents": 21900,
+                    "lead_days": 2,
+                    "in_stock": true
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_02",
+                    "unit_price_cents": 21900,
+                    "lead_days": 2,
+                    "in_stock": true
+                },
+                "chosen_option": "in_stock",
+                "price_brutto": 26608
+            },
+            {
+                "part_id": "part_water_pump_hepu_p579",
+                "name": "Vesipumppu",
+                "brand": "HEPU",
+                "qty": 1,
+                "vat_rate": 0.235,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_02",
+                    "unit_price_cents": 7900,
+                    "lead_days": 3,
+                    "in_stock": false
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 8200,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "chosen_option": "in_stock",
+                "price_brutto": 10127
+            },
+            {
+                "part_id": "part_coolant_g12evo_1l",
+                "name": "Jäähdytysneste, konsentraatti 1L",
+                "brand": "VW Spec",
+                "qty": 2,
+                "vat_rate": 0.255,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 1190,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 1190,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "chosen_option": "cheapest",
+                "price_brutto": 2987
+            }
+        ],
+        "created_at": 1772292302,
+        "customer_id": "cust_0001",
+        "customer_description": "jakohihna ja moniurahihna",
+        "status": "completed",
+        "completed_at": "2026-02-28T16:00:38Z",
+        "notes": "yksi kaksi",
+        "completed_by": "Teemu Teknikko"
+    },
+    {
+        "id": "wo_1772294352317",
+        "customer_name": "Matti Meikäläinen",
+        "plate_number": "ABC-123",
+        "vehicle_make": "Volkswagen",
+        "vehicle_model": "Golf",
+        "year": 2008,
+        "engineCode": "BKC",
+        "operation_code": "TBELT_REPL",
+        "description": "Jakohihnan vaihto",
+        "duration_min": 195,
+        "mechanic": "Teemu Teknikko",
+        "mechanic_id": "mech_0001",
+        "bay_lift": "Nosturi 1",
+        "bay_id": "bay_lift_01",
+        "labor_total_brutto": 47690,
+        "parts_total_brutto": 39722,
+        "total_price_brutto": 87412,
+        "mechanic_options": [
+            {
+                "mechanic_id": "mech_0001",
+                "name": "Teemu Teknikko"
+            },
+            {
+                "mechanic_id": "mech_0002",
+                "name": "Sami Sähkö"
+            }
+        ],
+        "bay_options": [
+            {
+                "bay_id": "bay_lift_01",
+                "name": "Nosturi 1"
+            },
+            {
+                "bay_id": "bay_lift_02",
+                "name": "Nosturi 2"
+            }
+        ],
+        "parts": [
+            {
+                "part_id": "part_tbelt_kit_conti_ct1028k1",
+                "name": "Jakohihnasarja (hihna + kiristin + rullat)",
+                "brand": "Continental",
+                "qty": 1,
+                "vat_rate": 0.215,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_02",
+                    "unit_price_cents": 21900,
+                    "lead_days": 2,
+                    "in_stock": true
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_02",
+                    "unit_price_cents": 21900,
+                    "lead_days": 2,
+                    "in_stock": true
+                },
+                "chosen_option": "cheapest",
+                "price_brutto": 26608
+            },
+            {
+                "part_id": "part_water_pump_hepu_p579",
+                "name": "Vesipumppu",
+                "brand": "HEPU",
+                "qty": 1,
+                "vat_rate": 0.235,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_02",
+                    "unit_price_cents": 7900,
+                    "lead_days": 3,
+                    "in_stock": false
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 8200,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "chosen_option": "in_stock",
+                "price_brutto": 10127
+            },
+            {
+                "part_id": "part_coolant_g12evo_1l",
+                "name": "Jäähdytysneste, konsentraatti 1L",
+                "brand": "VW Spec",
+                "qty": 2,
+                "vat_rate": 0.255,
+                "option_cheapest": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 1190,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "option_in_stock": {
+                    "supplier_id": "supplier_tukku_01",
+                    "unit_price_cents": 1190,
+                    "lead_days": 0,
+                    "in_stock": true
+                },
+                "chosen_option": "cheapest",
+                "price_brutto": 2987
+            }
+        ],
+        "created_at": 1772294352,
+        "customer_id": "cust_0001",
+        "customer_description": "jakohihna",
+        "status": "completed",
+        "completed_at": "2026-02-28T16:00:47Z",
+        "notes": "kolme neljä",
+        "completed_by": "Teemu Teknikko"
+    }
+]
