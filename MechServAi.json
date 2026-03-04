@@ -1,0 +1,753 @@
+{
+  "name": "MechServAi",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "uusi-varaus",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -1664,
+        -48
+      ],
+      "id": "ea54178f-1c78-4ea0-90fb-b7c1c633a2b1",
+      "name": "Webhook",
+      "webhookId": "9e00e7b0-9ca9-41aa-ba1f-5204588caff1"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/vehicles.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        -816
+      ],
+      "id": "180d2a80-2fda-4a58-b470-b732a45a69d3",
+      "name": "read vehicles"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/bays.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        928
+      ],
+      "id": "47b85be9-b02d-47eb-bf3c-c32b9d79eb90",
+      "name": "read bays"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/laborGuideTimes.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        -432
+      ],
+      "id": "1c788c38-8867-427d-af50-8fb06b56bf21",
+      "name": "read laborGuideTimes"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/mechanics.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        736
+      ],
+      "id": "d868fbbb-df41-4f0f-b7fb-5a28538d6766",
+      "name": "read mechanics"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/operationsCatalog.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        -624
+      ],
+      "id": "2560b2e2-8a1a-4f58-b59d-ff1f2ec111ea",
+      "name": "read operationsCatalog"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/partInfo.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        -240
+      ],
+      "id": "83612008-4f72-425a-be13-7a92cc230bfb",
+      "name": "read partsInfo"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/partsPrices.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        544
+      ],
+      "id": "25340ef9-b715-4536-8a44-bf57b2f8cb22",
+      "name": "read partsPrices"
+    },
+    {
+      "parameters": {
+        "fileSelector": "/home/node/.n8n-files/partsMaster.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.readWriteFile",
+      "typeVersion": 1.1,
+      "position": [
+        -1152,
+        -48
+      ],
+      "id": "0a448776-37e9-42b9-ac23-e305f6cdb988",
+      "name": "read partsMaster"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $node[\"Webhook\"]?.json?.body || {};\nconst customer = body.customer || {};\nconst vehicle = body.vehicle || {};\nconst customerRequest = (body.customer_description || \"\").toLowerCase();\n\n// ---------- 2. Apuohjelmat ----------\nconst helsinkiOffset = \"+02:00\";\n\nfunction pad(n) { return String(n).padStart(2, \"0\"); }\n\n// Seuraava arkipäivä klo hh:mm\nfunction nextWeekdayAt(hour, minute) {\n  const d = new Date();\n  d.setSeconds(0, 0);\n  d.setMinutes(minute);\n  d.setHours(hour);\n\n  if (d.getTime() <= Date.now()) d.setDate(d.getDate() + 1);\n  while ([0, 6].includes(d.getDay())) d.setDate(d.getDate() + 1);\n\n  const yyyy = d.getFullYear();\n  const mm = pad(d.getMonth() + 1);\n  const dd = pad(d.getDate());\n  const HH = pad(d.getHours());\n  const MM = pad(d.getMinutes());\n  return `${yyyy}-${mm}-${dd}T${HH}:${MM}:00${helsinkiOffset}`;\n}\n\n// Lisää minuutteja ISO-merkkijonoon\nfunction addMinutes(isoWithOffset, minutes) {\n  const base = isoWithOffset.slice(0, 19);\n  const offset = isoWithOffset.slice(19);\n  const d = new Date(base);\n  d.setMinutes(d.getMinutes() + minutes);\n\n  const yyyy = d.getFullYear();\n  const mm = pad(d.getMonth() + 1);\n  const dd = pad(d.getDate());\n  const HH = pad(d.getHours());\n  const MM = pad(d.getMinutes());\n  const SS = pad(d.getSeconds());\n  return `${yyyy}-${mm}-${dd}T${HH}:${MM}:${SS}${offset}`;\n}\n\n// Funktio datan hakemiseen n8n-solmuista\nconst getList = (nodeName) => {\n  try {\n    const rawItems = $(nodeName).all();\n    if (!rawItems || rawItems.length === 0) return [];\n\n    const items = [];\n    for (const it of rawItems) {\n      const r = it.json;\n      if (r?.data?.data && Array.isArray(r.data.data)) {\n        items.push(...r.data.data);\n      } else if (Array.isArray(r?.data)) {\n        items.push(...r.data);\n      } else {\n        items.push(r);\n      }\n    }\n    return items;\n  } catch (e) {\n    return [];\n  }\n};\n\n// ---------- 3. Datan lataus ----------\nconst operations = getList(\"extract operationsCatalog\");\nconst laborGuide = getList(\"extract laborGuideTimes\");\nconst partsInfo = getList(\"extract partsInfo\");\nconst partsMaster = getList(\"extract partsMaster\");\nconst pricing = getList(\"extract partsPrices\");\nconst mechanics = getList(\"extract mechanics\");\nconst bays = getList(\"extract bays\");\n\n// ---------- 4. Auton tietojen normalisointi ----------\nconst engineCode = vehicle.engine?.engine_code ?? vehicle.engine_code ?? vehicle.engineCode ?? null;\nconst make = vehicle.make ?? null;\nconst model = vehicle.model ?? null;\nconst year = vehicle.model_year ?? vehicle.year ?? null;\nconst fuel = vehicle.engine?.fuel_type ?? vehicle.fuel_type ?? null;\n\nconst customer_id = customer.customer_id ?? null;\nconst vehicle_id = vehicle.vehicle_id ?? null;\n\nconst created_at_now = new Date().toISOString().replace(/\\.\\d+Z$/, `${helsinkiOffset}`);\n\n// ---------- 5. Työn tunnistus (Operation) - MULTI ----------\nconst keywordMap = [\n  { keys: [\"jakohihna\"], code: \"TBELT_REPL\" },\n  { keys: [\"jakoketju\", \"ketju\"], code: \"TIMING_CHAIN_REPL\" },\n  { keys: [\"apulaitehihna\", \"moniurahihna\"], code: \"AUX_BELT_REPL\" },\n];\n\n// kaikki osumat (dedup)\nconst matchedCodes = [...new Set(\n  keywordMap\n    .filter(k => k.keys.some(w => customerRequest.includes(w)))\n    .map(k => k.code)\n)].filter(Boolean);\n\nconst matchedOperations = operations.filter(o => matchedCodes.includes(o.operation_code));\n\n// Virhekäsittely jos työtä ei löydy\nif (!matchedOperations.length) {\n  return {\n    debug: {\n      error: \"No operation matched\",\n      customerRequest,\n      matchedCodes,\n      sources: {\n        operations: operations.length,\n        laborGuide: laborGuide.length,\n        partsInfo: partsInfo.length,\n        partsMaster: partsMaster.length,\n        pricing: pricing.length,\n        mechanics: mechanics.length,\n        bays: bays.length\n      }\n    },\n    bookings: [],\n    work_orders: [],\n    notifications: [],\n    mechanic_job_payload: []\n  };\n}\n\n// ---------- Indeksit yhteiskäyttöön ----------\nconst pricingIndex = Object.fromEntries(pricing.map(p => [p.part_id, p.offers || []]));\nconst masterIndex = Object.fromEntries(partsMaster.map(p => [p.part_id, p]));\n\nfunction selectOffers(partIds) {\n  const offers = partIds.flatMap(id =>\n    (pricingIndex[id] || []).map(o => ({ ...o, part_id: id }))\n  );\n  if (!offers.length) return { cheapest: null, inStock: null };\n\n  const cheapest = [...offers].sort((a, b) => a.unit_price_cents - b.unit_price_cents)[0];\n  const inStock = [...offers]\n    .filter(o => o.availability?.in_stock)\n    .sort((a, b) => a.unit_price_cents - b.unit_price_cents)[0] || null;\n\n  return { cheapest, inStock };\n}\n\n// ---------- Rakentaja per operation ----------\nfunction buildForOperation(operation, ts) {\n  // ---------- 6. Työaika ja hinta ----------\n  const laborEntry = laborGuide.find(l =>\n    l.operation_code === operation.operation_code &&\n    l.vehicle_match?.make === make &&\n    l.vehicle_match?.model === model &&\n    year >= l.vehicle_match?.model_year_from &&\n    year <= l.vehicle_match?.model_year_to &&\n    l.vehicle_match?.engine_code === engineCode &&\n    l.vehicle_match?.fuel_type === fuel\n  ) || null;\n\n  const labor_time_min = laborEntry?.labor_time_min ?? operation.default_duration_min ?? 0;\n  const labor_rate_cents_per_hour = operation.pricing_defaults?.labor_rate_cents_per_hour ?? 9000;\n  const labor_cost_cents_net = Math.round((labor_rate_cents_per_hour * labor_time_min) / 60);\n\n  const labor_vat_rate = Number(operation?.pricing_defaults?.labor_vat_rate ?? 0.255);\n  const labor_vat_cents = Math.round(labor_cost_cents_net * labor_vat_rate);\n\n  // ---------- 7. Varaosat ----------\n  const fitmentEntry = partsInfo.find(f =>\n    f.operation_code === operation.operation_code &&\n    f.vehicle_match?.engine_code === engineCode\n  ) || null;\n\n  const requiredParts = fitmentEntry?.required_parts ?? [];\n\n  let selected_parts = [];\n  let parts_cost_cents_net = 0;\n  let parts_vat_cents = 0;\n\n  for (const rp of requiredParts) {\n    const ids = [rp.preferred_part_id, ...(rp.alternatives || [])].filter(Boolean);\n    const { cheapest, inStock } = selectOffers(ids);\n    if (!cheapest && !inStock) continue;\n\n    // valitse oletuksena halvin, muuten varastossa oleva\n    const chosenOffer = cheapest || inStock;\n    const chosenPartId = chosenOffer.part_id;\n\n    const qty = rp.qty ?? 1;\n    const line_total_net = Number(chosenOffer.unit_price_cents ?? 0) * qty;\n\n    const partVatRate = Number(masterIndex[chosenPartId]?.parts_vat_rate ?? 0.255);\n    parts_vat_cents += Math.round(line_total_net * partVatRate);\n\n    selected_parts.push({\n      part_id: chosenPartId,\n      qty,\n      is_optional: !!rp.is_optional,\n\n      // vaihtoehdot (unit_price_cents netto)\n      option_cheapest: cheapest ? {\n        part_id: cheapest.part_id,\n        supplier_id: cheapest.supplier_id ?? null,\n        unit_price_cents: Number(cheapest.unit_price_cents ?? 0),\n        lead_time_days: Number(cheapest.availability?.lead_time_days ?? 0),\n        in_stock: !!cheapest.availability?.in_stock\n      } : null,\n\n      option_in_stock: inStock ? {\n        part_id: inStock.part_id,\n        supplier_id: inStock.supplier_id ?? null,\n        unit_price_cents: Number(inStock.unit_price_cents ?? 0),\n        lead_time_days: Number(inStock.availability?.lead_time_days ?? 0),\n        in_stock: !!inStock.availability?.in_stock\n      } : null\n    });\n\n    parts_cost_cents_net += line_total_net;\n  }\n\n  // ---------- 8. Verot ja summat ----------\n  const subtotal_cents_net = labor_cost_cents_net + parts_cost_cents_net;\n  const vat_cents = labor_vat_cents + parts_vat_cents;\n  const total_cents = subtotal_cents_net + vat_cents;\n\n  // ---------- 9. Mekaanikko ja nostopaikka ----------\n  const mechanic = mechanics.find(m =>\n    (operation.required_skill_tags || []).every(tag => (m.skill_tags || []).includes(tag))\n  ) || null;\n\n  const mechanic_id = mechanic?.mechanic_id ?? null;\n\n  const needsLift =\n    (operation.required_resources || []).includes(\"lift\") ||\n    [\"TBELT_REPL\", \"TIMING_CHAIN_REPL\"].includes(operation.operation_code);\n\n  let bay = null;\n  if (needsLift) {\n    bay = bays.find(b => (b.capabilities || []).includes(\"lift\")) || null;\n  } else {\n    bay = bays.find(b => (b.capabilities || []).includes(\"no_lift\")) || null;\n  }\n  if (!bay) bay = bays[0] || null;\n\n  const bay_id = bay?.bay_id ?? null;\n\n  // ---------- 10. Aikataulu ja ID:t ----------\n  const startHour =\n    mechanic?.work_hours?.mon_fri?.start?.split(\":\")[0]\n      ? Number(mechanic.work_hours.mon_fri.start.split(\":\")[0])\n      : 9;\n\n  const start = nextWeekdayAt(startHour, 0);\n  const end = addMinutes(start, labor_time_min);\n\n  const booking_id = `book_${ts}`;\n  const work_order_id = `wo_${ts}`;\n\n  // ---------- 11. Lopulliset objektit ----------\n  const booking = {\n    booking_id,\n    created_at: created_at_now,\n    customer_id,\n    vehicle_id,\n    operation_code: operation.operation_code,\n    start,\n    end,\n    mechanic_id,\n    bay_id,\n    status: \"confirmed\",\n    parts_quote: {\n      currency: operation.pricing_defaults?.currency ?? \"EUR\",\n\n      labor_rate_cents_per_hour,\n      labor_time_min,\n      labor_cost_cents: labor_cost_cents_net,\n      labor_vat_rate,\n      labor_vat_cents,\n\n      selected_parts,\n      parts_cost_cents: parts_cost_cents_net,\n      parts_vat_cents,\n\n      subtotal_cents: subtotal_cents_net,\n      vat_cents,\n      total_cents,\n\n      notes: \"\"\n    }\n  };\n\n  const work_order = {\n    work_order_id,\n    created_at: created_at_now,\n    booking_id,\n    customer_id,\n    vehicle_id,\n    operation_code: operation.operation_code,\n    instructions: \"Työ asiakkaan pyynnön mukaan. Huomioi mahdolliset lisähavainnot.\",\n    labor_time_min,\n    parts_list: selected_parts.map(p => ({\n      part_id: p.part_id,\n      qty: p.qty,\n      locked: !p.is_optional,\n      note: p.is_optional ? \"Optio, vaatii asiakkaan hyväksynnän.\" : undefined\n    })),\n    checklist: [\"Tee työ ohjeen mukaan\", \"Tarkista lopputulos\", \"Koeajo\"],\n    status: \"open\"\n  };\n\n  const notification = {\n    notification_id: `notif_${ts}_1`,\n    created_at: created_at_now,\n    channel: (customer.preferred_contact_channel || \"sms\"),\n    to: customer.phone || customer.email || \"\",\n    template: \"booking_confirmed\",\n    payload: {\n      customer_name: customer.name || \"\",\n      plate_number: vehicle.plate_number || \"\",\n      service_name: operation.name || \"\",\n      start,\n      estimated_ready: addMinutes(end, 30)\n    },\n    status: \"queued\"\n  };\n\n  // ---------- 12. Mekaanikon UI payload ----------\n  const mechanic_job_payload = {\n    id: work_order_id,\n\n    customer_name: customer.name ?? null,\n    plate_number: vehicle.plate_number ?? vehicle.plateNumber ?? null,\n\n    vehicle_make: make,\n    vehicle_model: model,\n    year,\n    engineCode,\n\n    operation_code: operation.operation_code,\n    description: operation.name,\n    duration_min: labor_time_min,\n\n    mechanic: mechanic?.name ?? null,\n    mechanic_id,\n    bay_lift: bay?.name ?? null,\n    bay_id,\n\n    labor_total_brutto: labor_cost_cents_net + labor_vat_cents,\n    parts_total_brutto: parts_cost_cents_net + parts_vat_cents,\n    total_price_brutto: total_cents,\n\n    // vaihtoehdot työnjohtajalle\n    mechanic_options: (mechanics || []).map(m => ({\n      mechanic_id: m.mechanic_id,\n      name: m.name ?? m.mechanic_id\n    })),\n\n    bay_options: (bays || []).map(b => ({\n      bay_id: b.bay_id,\n      name: b.name ?? b.bay_id\n    })),\n\n    // osat + vaihtoehdot\n    parts: selected_parts.map(p => {\n      const meta = masterIndex[p.part_id] || {};\n      const vatRate = Number(meta.parts_vat_rate ?? 0.255);\n\n      const cheapest = p.option_cheapest || null;\n      const inStock = p.option_in_stock || null;\n\n      let chosenKey = \"cheapest\";\n      let chosen = cheapest;\n      if (!chosen && inStock) {\n        chosenKey = \"in_stock\";\n        chosen = inStock;\n      }\n\n      const qty = Number(p.qty ?? 1);\n      const unitCents = Number(chosen?.unit_price_cents ?? 0);\n      const lineBrutto = Math.round(unitCents * qty * (1 + vatRate));\n\n      return {\n        part_id: p.part_id,\n        name: meta.name || p.part_id,\n        brand: meta.brand || \"\",\n        qty,\n        vat_rate: vatRate,\n\n        option_cheapest: cheapest ? {\n          supplier_id: cheapest.supplier_id ?? null,\n          unit_price_cents: Number(cheapest.unit_price_cents ?? 0),\n          lead_days: Number(cheapest.lead_time_days ?? 0),\n          in_stock: !!cheapest.in_stock\n        } : null,\n\n        option_in_stock: inStock ? {\n          supplier_id: inStock.supplier_id ?? null,\n          unit_price_cents: Number(inStock.unit_price_cents ?? 0),\n          lead_days: Number(inStock.lead_time_days ?? 0),\n          in_stock: !!inStock.in_stock\n        } : null,\n\n        chosen_option: chosenKey,\n        price_brutto: lineBrutto\n      };\n    })\n  };\n\n  return {\n    booking,\n    work_order,\n    notification,\n    mechanic_job_payload,\n    vat_debug: {\n      labor_vat_rate,\n      labor_vat_cents,\n      parts_vat_cents\n    }\n  };\n}\n\n// ---------- Rakenna kaikki työt ----------\nconst tsBase = Date.now();\nlet seq = 0;\n\nconst bookings = [];\nconst work_orders = [];\nconst notifications = [];\nconst mechanic_job_payload = []; // <- HUOM: array (useita töitä)\n\nconst vat_debug_all = [];\n\nfor (const op of matchedOperations) {\n  seq += 1;\n  const ts = tsBase + seq;\n\n  const built = buildForOperation(op, ts);\n\n  bookings.push(built.booking);\n  work_orders.push(built.work_order);\n  notifications.push(built.notification);\n  mechanic_job_payload.push(built.mechanic_job_payload);\n  vat_debug_all.push({ operation_code: op.operation_code, ...built.vat_debug });\n}\n\nreturn {\n  debug: {\n    matchedCodes,\n    matchedOperationCodes: matchedOperations.map(o => o.operation_code),\n    sources: {\n      operations: operations.length,\n      laborGuide: laborGuide.length,\n      partsInfo: partsInfo.length,\n      partsMaster: partsMaster.length,\n      pricing: pricing.length,\n      mechanics: mechanics.length,\n      bays: bays.length\n    },\n    vat_debug: vat_debug_all\n  },\n  bookings,\n  work_orders,\n  notifications,\n\n  // LISTA (array)\n  mechanic_job_payload\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -192,
+        -144
+      ],
+      "id": "9c5ff2c3-c044-4bd4-88a2-168d49e77e12",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -432
+      ],
+      "id": "ade0da81-5855-4daf-a804-90a8279e4fcd",
+      "name": "extract laborGuideTimes"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        736
+      ],
+      "id": "d5328175-7f93-451d-a27c-c300d98e7780",
+      "name": "extract mechanics"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        928
+      ],
+      "id": "a02b8e89-462f-4896-871c-38dd3276abc4",
+      "name": "extract bays"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -816
+      ],
+      "id": "d491ec22-12e8-477d-9376-835434b085b5",
+      "name": "extract vehicles"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -240
+      ],
+      "id": "de64c7a0-a3f9-4379-878a-6ef6238b3ca3",
+      "name": "extract partsInfo"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -48
+      ],
+      "id": "67413ed2-5975-41dc-83b9-4d5766cbbf71",
+      "name": "extract partsMaster"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        -624
+      ],
+      "id": "a17f67a8-0e1a-4e58-8c1b-fdb1ffa8caa5",
+      "name": "extract operationsCatalog"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1.1,
+      "position": [
+        -864,
+        544
+      ],
+      "id": "7200399b-52f7-4dfb-aa4b-5372d363c1d4",
+      "name": "extract partsPrices"
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json; charset=utf-8"
+              }
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        32,
+        -144
+      ],
+      "id": "33319445-dc49-4569-b26e-eec03760395c",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "numberInputs": 8
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -640,
+        -240
+      ],
+      "id": "56651b33-b80b-4816-9da9-7524a9c3476a",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Merge output on lista itemeitä, yksi per lähde.\n// Jokaisessa on muoto: { source, generated_at, data: [...] }\n\nconst mergedItems = $input.all().map(i => i.json);\n\nfunction pick(sourceNameContains) {\n  return mergedItems.find(x => String(x.source || \"\").includes(sourceNameContains)) || null;\n}\n\nreturn {\n  vehicles: pick(\"vehicle_registry\")?.data ?? [],\n  operationsCatalog: pick(\"operations_catalog\")?.data ?? [],\n  laborGuideTimes: pick(\"labor_guide\")?.data ?? [],\n  partsInfo: pick(\"fitment\")?.data ?? [],\n  partsMaster: pick(\"parts_master\")?.data ?? [],\n  partsPrices: pick(\"supplier_pricing\")?.data ?? [],\n  mechanics: pick(\"hr_skills\")?.data ?? [],\n  bays: pick(\"workshop_resources\")?.data ?? []\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -416,
+        -144
+      ],
+      "id": "e5ac0f13-c2e2-43c7-808e-5c9937b09821",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "71aa8d88-c726-43ac-b2c8-8036763dcb27",
+              "leftValue": "={{ ($json.body.mode || '').toString().trim().toLowerCase() }}",
+              "rightValue": "booking",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -1440,
+        -48
+      ],
+      "id": "23b6d398-bedc-4c85-81a2-c710bf36354f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Asiakkaan oire:\n{{$json.body.customer_description}}\n\nAjoneuvo:\n- {{$json.body.vehicle.make}} {{$json.body.vehicle.model}} ({{$json.body.vehicle.model_year}})\n- {{$json.body.vehicle.engine.fuel_type}} {{$json.body.vehicle.engine.displacement_l}}L {{$json.body.vehicle.engine.engine_code}}\n- {{$json.body.vehicle.odometer_km}} km",
+        "hasOutputParser": true,
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=Olet autokorjaamon vikadiagnostiikan assistentti.\n\nSinulle annetaan:\n1) asiakkaan oirekuvaus\n2) ajoneuvon tiedot\n\nTehtäväsi:\n- Ehdota todennäköisiä vikoja\n- Ehdota 1–3 sopivaa korjaustyötä oireen perusteella\n\nDEMO-TYÖT (jos sopii, käytä täsmälleen näitä nimiä):\n- Jakohihnan vaihto\n- Jakoketjun vaihto\n- Apulaitehihnan vaihto\n\nOHJEET:\n- VIKAEHDOTUKSET: pidä yleisellä tasolla (esim. sytytyshäiriö, jarruongelma, renkaiden kuluminen).\n- EHDOTETUT TYÖT: anna 1–3 loogista työtä oireen perusteella.\n- Jos oire viittaa jakohihna/jakoketju/apulaitehihna -ongelmaan → käytä DEMO-TYÖT nimeä täsmälleen.\n- Muussa tapauksessa ehdota muu looginen työ (esim. renkaiden vaihto, jarrujen tarkastus).\n- Älä anna tee-se-itse ohjeita.\n- Älä pyydä vikakoodien lukemista.\n- Hyödynnä ajoneuvon tietoja priorisoinnissa.\n- Älä näytä sisäistä ajattelua.\n- Älä kirjoita mitään ennen ensimmäistä otsikkoa.\n\nTIUKKA MUOTOVAATIMUS:\n-Älä koskaan toista muotovaateita tai ohjeita vastauksessa. Älä selitä formaattia. Tulosta vain lopullinen vastaus.\n- Vastauksessa saa olla VAIN nämä otsikot ja niiden sisältö: VIKAEHDOTUKSET, MIKSI, EHDOTETUT TYÖT, TARKENTAVAT KYSYMYKSET.\n- Älä koskaan tulosta otsikoita tai tekstiä kuten: Thinking, Thinking Process, Analysis, Reasoning, Chain-of-thought.\n- VIKAEHDOTUKSET: täsmälleen 5 riviä muodossa \"1) ...\", \"2) ...\" ... \"5) ...\"\n- MIKSI: täsmälleen 5 riviä muodossa \"1) ...\", \"2) ...\" ... \"5) ...\"\n- EHDOTETUT TYÖT: 1–3 riviä, jokainen alkaa \"- \"\n- TARKENTAVAT KYSYMYKSET: täsmälleen 3 riviä, jokainen alkaa \"- \"\n- Älä lisää mitään muuta tekstiä tai kappaleita.\n\nVASTAUSMUOTO (täytä tämä):\n\nVIKAEHDOTUKSET:\n1)\n2)\n3)\n4)\n5)\n\nMIKSI:\n1)\n2)\n3)\n4)\n5)\n\nEHDOTETUT TYÖT:\n-\n\nTARKENTAVAT KYSYMYKSET:\n-\n-\n-"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.9,
+      "position": [
+        -1152,
+        144
+      ],
+      "id": "f633f8e6-04e7-4a93-bba7-31dce1d35aff",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": "qwen3.5:cloud",
+        "options": {
+          "temperature": 0.2,
+          "topP": 0.9,
+          "numCtx": 4096,
+          "numPredict": 450,
+          "penalizeNewline": true,
+          "presencePenalty": 0.2,
+          "format": "default"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        -1152,
+        368
+      ],
+      "id": "ff9f6ca9-4ef9-4014-9c4b-2f066e3954dc",
+      "name": "Ollama Chat Model",
+      "credentials": {
+        "ollamaApi": {
+          "id": "crFp3ntzaDfyppwR",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{$json.text}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        0,
+        144
+      ],
+      "id": "258b0038-eb12-49a9-ae20-ade5a85111be",
+      "name": "Respond to Webhook1"
+    },
+    {
+      "parameters": {
+        "jsCode": "// n8n Code node (JavaScript) — robust extractor for the FINAL formatted block\n\nlet out = (items[0].json.text || \"\").toString();\n\n// 1) Etsi kaikki \"oikeat\" blokit: VIKAEHDOTUKSET: + heti perään 1)\nconst re = /VIKAEHDOTUKSET:\\s*\\n\\s*1\\)/g;\nconst matches = [...out.matchAll(re)];\n\nif (matches.length > 0) {\n  // Ota VIIMEINEN osuma (malli yleensä tuottaa lopussa \"Final\" blokin)\n  const last = matches[matches.length - 1];\n  out = out.slice(last.index);\n} else {\n  // Fallback: jos ei löydy \"VIKAEHDOTUKSET:\\n1)\", yritä ainakin viimeistä \"VIKAEHDOTUKSET:\"\n  const idx = out.lastIndexOf(\"VIKAEHDOTUKSET:\");\n  if (idx !== -1) out = out.slice(idx);\n}\n\n// 2) Siivoa yleinen glitch \"otVIKAEHDOTUKSET:\" -> \"VIKAEHDOTUKSET:\"\nout = out.replace(/^[a-zA-Z]{1,8}VIKAEHDOTUKSET:/, \"VIKAEHDOTUKSET:\");\n\n// 3) Pakolliset otsikot pitää löytyä\nconst required = [\"VIKAEHDOTUKSET:\", \"MIKSI:\", \"EHDOTETUT TYÖT:\", \"TARKENTAVAT KYSYMYKSET:\"];\nconst missing = required.filter(h => !out.includes(h));\n\nif (missing.length) {\n  out =\n`VIKAEHDOTUKSET:\n1) Vastaus ei ollut oikeassa muodossa.\n2)\n3)\n4)\n5)\n\nMIKSI:\n1) Mallin vastaus puuttui otsikot: ${missing.join(\", \")}.\n2)\n3)\n4)\n5)\n\nEHDOTETUT TYÖT:\n- Diagnostiikan uudelleenajo (formaattivirhe)\n\nTARKENTAVAT KYSYMYKSET:\n- Voitko kuvailla oireen uudelleen yhdellä lauseella?\n- Milloin oire alkoi (äkillisesti / vähitellen)?\n- Ilmeneekö oire aina vai satunnaisesti?\n`;\n}\n\nreturn [{ json: { text: out } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        528
+      ],
+      "id": "f9b44c7e-911b-4444-b541-e94ef9fa26c0",
+      "name": "Trim to headers"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read vehicles": {
+      "main": [
+        [
+          {
+            "node": "extract vehicles",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read bays": {
+      "main": [
+        [
+          {
+            "node": "extract bays",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read laborGuideTimes": {
+      "main": [
+        [
+          {
+            "node": "extract laborGuideTimes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read mechanics": {
+      "main": [
+        [
+          {
+            "node": "extract mechanics",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read operationsCatalog": {
+      "main": [
+        [
+          {
+            "node": "extract operationsCatalog",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read partsInfo": {
+      "main": [
+        [
+          {
+            "node": "extract partsInfo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read partsMaster": {
+      "main": [
+        [
+          {
+            "node": "extract partsMaster",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "read partsPrices": {
+      "main": [
+        [
+          {
+            "node": "extract partsPrices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extract laborGuideTimes": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "extract mechanics": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 6
+          }
+        ]
+      ]
+    },
+    "extract bays": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 7
+          }
+        ]
+      ]
+    },
+    "extract vehicles": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "extract partsInfo": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "extract partsMaster": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "extract operationsCatalog": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "extract partsPrices": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 5
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "read vehicles",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read operationsCatalog",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read laborGuideTimes",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read partsInfo",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read partsMaster",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read partsPrices",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read mechanics",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "read bays",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Trim to headers",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook": {
+      "main": [
+        []
+      ]
+    },
+    "Respond to Webhook1": {
+      "main": [
+        []
+      ]
+    },
+    "Trim to headers": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "05b64e4a-60fb-40ff-b29f-46b164d473d9",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4f80879504d79dad31bc588ed7a90414fbb831419d3c01700f1534ac60251e10"
+  },
+  "id": "eUat1zMXV03_neqrUeaV9",
+  "tags": []
+}
