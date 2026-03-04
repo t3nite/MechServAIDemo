@@ -1,0 +1,52 @@
+// n8n Code node (JavaScript) — robust extractor for the FINAL formatted block
+
+let out = (items[0].json.text || "").toString();
+
+// 1) Etsi kaikki "oikeat" blokit: VIKAEHDOTUKSET: + heti perään 1)
+const re = /VIKAEHDOTUKSET:\s*\n\s*1\)/g;
+const matches = [...out.matchAll(re)];
+
+if (matches.length > 0) {
+  // Ota VIIMEINEN osuma (malli yleensä tuottaa lopussa "Final" blokin)
+  const last = matches[matches.length - 1];
+  out = out.slice(last.index);
+} else {
+  // Fallback: jos ei löydy "VIKAEHDOTUKSET:\n1)", yritä ainakin viimeistä "VIKAEHDOTUKSET:"
+  const idx = out.lastIndexOf("VIKAEHDOTUKSET:");
+  if (idx !== -1) out = out.slice(idx);
+}
+
+// 2) Siivoa yleinen glitch "otVIKAEHDOTUKSET:" -> "VIKAEHDOTUKSET:"
+out = out.replace(/^[a-zA-Z]{1,8}VIKAEHDOTUKSET:/, "VIKAEHDOTUKSET:");
+
+// 3) Pakolliset otsikot pitää löytyä
+const required = ["VIKAEHDOTUKSET:", "MIKSI:", "EHDOTETUT TYÖT:", "TARKENTAVAT KYSYMYKSET:"];
+const missing = required.filter(h => !out.includes(h));
+
+if (missing.length) {
+  out =
+`VIKAEHDOTUKSET:
+1) Vastaus ei ollut oikeassa muodossa.
+2)
+3)
+4)
+5)
+
+MIKSI:
+1) Mallin vastaus puuttui otsikot: ${missing.join(", ")}.
+2)
+3)
+4)
+5)
+
+EHDOTETUT TYÖT:
+- Diagnostiikan uudelleenajo (formaattivirhe)
+
+TARKENTAVAT KYSYMYKSET:
+- Voitko kuvailla oireen uudelleen yhdellä lauseella?
+- Milloin oire alkoi (äkillisesti / vähitellen)?
+- Ilmeneekö oire aina vai satunnaisesti?
+`;
+}
+
+return [{ json: { text: out } }];
