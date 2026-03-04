@@ -1,0 +1,20 @@
+{
+  "source": "workshop_resources_api_mock",
+  "generated_at": "2026-01-18T15:00:00+02:00",
+  "data": [
+    {
+      "bay_id": "bay_lift_01",
+      "name": "Nosturi 1",
+      "type": "lift",
+      "capabilities": ["lift"],
+      "calendar_ref": "cal_bay_lift_01"
+    },
+    {
+      "bay_id": "bay_lift_02",
+      "name": "Nosturi 2",
+      "type": "no_lift",
+      "capabilities": ["no_lift"],
+      "calendar_ref": "cal_bay_lift_02"
+    }
+  ]
+}
