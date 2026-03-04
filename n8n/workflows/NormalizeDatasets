@@ -1,0 +1,19 @@
+// Merge output on lista itemeitä, yksi per lähde.
+// Jokaisessa on muoto: { source, generated_at, data: [...] }
+
+const mergedItems = $input.all().map(i => i.json);
+
+function pick(sourceNameContains) {
+  return mergedItems.find(x => String(x.source || "").includes(sourceNameContains)) || null;
+}
+
+return {
+  vehicles: pick("vehicle_registry")?.data ?? [],
+  operationsCatalog: pick("operations_catalog")?.data ?? [],
+  laborGuideTimes: pick("labor_guide")?.data ?? [],
+  partsInfo: pick("fitment")?.data ?? [],
+  partsMaster: pick("parts_master")?.data ?? [],
+  partsPrices: pick("supplier_pricing")?.data ?? [],
+  mechanics: pick("hr_skills")?.data ?? [],
+  bays: pick("workshop_resources")?.data ?? []
+};
