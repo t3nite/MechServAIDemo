@@ -1,0 +1,466 @@
+const body = $node["Webhook"]?.json?.body || {};
+const customer = body.customer || {};
+const vehicle = body.vehicle || {};
+const customerRequest = (body.customer_description || "").toLowerCase();
+
+// ---------- 2. Apuohjelmat ----------
+const helsinkiOffset = "+02:00";
+
+function pad(n) { return String(n).padStart(2, "0"); }
+
+// Seuraava arkipäivä klo hh:mm
+function nextWeekdayAt(hour, minute) {
+  const d = new Date();
+  d.setSeconds(0, 0);
+  d.setMinutes(minute);
+  d.setHours(hour);
+
+  if (d.getTime() <= Date.now()) d.setDate(d.getDate() + 1);
+  while ([0, 6].includes(d.getDay())) d.setDate(d.getDate() + 1);
+
+  const yyyy = d.getFullYear();
+  const mm = pad(d.getMonth() + 1);
+  const dd = pad(d.getDate());
+  const HH = pad(d.getHours());
+  const MM = pad(d.getMinutes());
+  return `${yyyy}-${mm}-${dd}T${HH}:${MM}:00${helsinkiOffset}`;
+}
+
+// Lisää minuutteja ISO-merkkijonoon
+function addMinutes(isoWithOffset, minutes) {
+  const base = isoWithOffset.slice(0, 19);
+  const offset = isoWithOffset.slice(19);
+  const d = new Date(base);
+  d.setMinutes(d.getMinutes() + minutes);
+
+  const yyyy = d.getFullYear();
+  const mm = pad(d.getMonth() + 1);
+  const dd = pad(d.getDate());
+  const HH = pad(d.getHours());
+  const MM = pad(d.getMinutes());
+  const SS = pad(d.getSeconds());
+  return `${yyyy}-${mm}-${dd}T${HH}:${MM}:${SS}${offset}`;
+}
+
+// Funktio datan hakemiseen n8n-solmuista
+const getList = (nodeName) => {
+  try {
+    const rawItems = $(nodeName).all();
+    if (!rawItems || rawItems.length === 0) return [];
+
+    const items = [];
+    for (const it of rawItems) {
+      const r = it.json;
+      if (r?.data?.data && Array.isArray(r.data.data)) {
+        items.push(...r.data.data);
+      } else if (Array.isArray(r?.data)) {
+        items.push(...r.data);
+      } else {
+        items.push(r);
+      }
+    }
+    return items;
+  } catch (e) {
+    return [];
+  }
+};
+
+// ---------- 3. Datan lataus ----------
+const operations = getList("extract operationsCatalog");
+const laborGuide = getList("extract laborGuideTimes");
+const partsInfo = getList("extract partsInfo");
+const partsMaster = getList("extract partsMaster");
+const pricing = getList("extract partsPrices");
+const mechanics = getList("extract mechanics");
+const bays = getList("extract bays");
+
+// ---------- 4. Auton tietojen normalisointi ----------
+const engineCode = vehicle.engine?.engine_code ?? vehicle.engine_code ?? vehicle.engineCode ?? null;
+const make = vehicle.make ?? null;
+const model = vehicle.model ?? null;
+const year = vehicle.model_year ?? vehicle.year ?? null;
+const fuel = vehicle.engine?.fuel_type ?? vehicle.fuel_type ?? null;
+
+const customer_id = customer.customer_id ?? null;
+const vehicle_id = vehicle.vehicle_id ?? null;
+
+const created_at_now = new Date().toISOString().replace(/\.\d+Z$/, `${helsinkiOffset}`);
+
+// ---------- 5. Työn tunnistus (Operation) - MULTI ----------
+const keywordMap = [
+  { keys: ["jakohihna"], code: "TBELT_REPL" },
+  { keys: ["jakoketju", "ketju"], code: "TIMING_CHAIN_REPL" },
+  { keys: ["apulaitehihna", "moniurahihna"], code: "AUX_BELT_REPL" },
+];
+
+// kaikki osumat (dedup)
+const matchedCodes = [...new Set(
+  keywordMap
+    .filter(k => k.keys.some(w => customerRequest.includes(w)))
+    .map(k => k.code)
+)].filter(Boolean);
+
+const matchedOperations = operations.filter(o => matchedCodes.includes(o.operation_code));
+
+// Virhekäsittely jos työtä ei löydy
+if (!matchedOperations.length) {
+  return {
+    debug: {
+      error: "No operation matched",
+      customerRequest,
+      matchedCodes,
+      sources: {
+        operations: operations.length,
+        laborGuide: laborGuide.length,
+        partsInfo: partsInfo.length,
+        partsMaster: partsMaster.length,
+        pricing: pricing.length,
+        mechanics: mechanics.length,
+        bays: bays.length
+      }
+    },
+    bookings: [],
+    work_orders: [],
+    notifications: [],
+    mechanic_job_payload: []
+  };
+}
+
+// ---------- Indeksit yhteiskäyttöön ----------
+const pricingIndex = Object.fromEntries(pricing.map(p => [p.part_id, p.offers || []]));
+const masterIndex = Object.fromEntries(partsMaster.map(p => [p.part_id, p]));
+
+function selectOffers(partIds) {
+  const offers = partIds.flatMap(id =>
+    (pricingIndex[id] || []).map(o => ({ ...o, part_id: id }))
+  );
+  if (!offers.length) return { cheapest: null, inStock: null };
+
+  const cheapest = [...offers].sort((a, b) => a.unit_price_cents - b.unit_price_cents)[0];
+  const inStock = [...offers]
+    .filter(o => o.availability?.in_stock)
+    .sort((a, b) => a.unit_price_cents - b.unit_price_cents)[0] || null;
+
+  return { cheapest, inStock };
+}
+
+// ---------- Rakentaja per operation ----------
+function buildForOperation(operation, ts) {
+  // ---------- 6. Työaika ja hinta ----------
+  const laborEntry = laborGuide.find(l =>
+    l.operation_code === operation.operation_code &&
+    l.vehicle_match?.make === make &&
+    l.vehicle_match?.model === model &&
+    year >= l.vehicle_match?.model_year_from &&
+    year <= l.vehicle_match?.model_year_to &&
+    l.vehicle_match?.engine_code === engineCode &&
+    l.vehicle_match?.fuel_type === fuel
+  ) || null;
+
+  const labor_time_min = laborEntry?.labor_time_min ?? operation.default_duration_min ?? 0;
+  const labor_rate_cents_per_hour = operation.pricing_defaults?.labor_rate_cents_per_hour ?? 9000;
+  const labor_cost_cents_net = Math.round((labor_rate_cents_per_hour * labor_time_min) / 60);
+
+  const labor_vat_rate = Number(operation?.pricing_defaults?.labor_vat_rate ?? 0.255);
+  const labor_vat_cents = Math.round(labor_cost_cents_net * labor_vat_rate);
+
+  // ---------- 7. Varaosat ----------
+  const fitmentEntry = partsInfo.find(f =>
+    f.operation_code === operation.operation_code &&
+    f.vehicle_match?.engine_code === engineCode
+  ) || null;
+
+  const requiredParts = fitmentEntry?.required_parts ?? [];
+
+  let selected_parts = [];
+  let parts_cost_cents_net = 0;
+  let parts_vat_cents = 0;
+
+  for (const rp of requiredParts) {
+    const ids = [rp.preferred_part_id, ...(rp.alternatives || [])].filter(Boolean);
+    const { cheapest, inStock } = selectOffers(ids);
+    if (!cheapest && !inStock) continue;
+
+    // valitse oletuksena halvin, muuten varastossa oleva
+    const chosenOffer = cheapest || inStock;
+    const chosenPartId = chosenOffer.part_id;
+
+    const qty = rp.qty ?? 1;
+    const line_total_net = Number(chosenOffer.unit_price_cents ?? 0) * qty;
+
+    const partVatRate = Number(masterIndex[chosenPartId]?.parts_vat_rate ?? 0.255);
+    parts_vat_cents += Math.round(line_total_net * partVatRate);
+
+    selected_parts.push({
+      part_id: chosenPartId,
+      qty,
+      is_optional: !!rp.is_optional,
+
+      // vaihtoehdot (unit_price_cents netto)
+      option_cheapest: cheapest ? {
+        part_id: cheapest.part_id,
+        supplier_id: cheapest.supplier_id ?? null,
+        unit_price_cents: Number(cheapest.unit_price_cents ?? 0),
+        lead_time_days: Number(cheapest.availability?.lead_time_days ?? 0),
+        in_stock: !!cheapest.availability?.in_stock
+      } : null,
+
+      option_in_stock: inStock ? {
+        part_id: inStock.part_id,
+        supplier_id: inStock.supplier_id ?? null,
+        unit_price_cents: Number(inStock.unit_price_cents ?? 0),
+        lead_time_days: Number(inStock.availability?.lead_time_days ?? 0),
+        in_stock: !!inStock.availability?.in_stock
+      } : null
+    });
+
+    parts_cost_cents_net += line_total_net;
+  }
+
+  // ---------- 8. Verot ja summat ----------
+  const subtotal_cents_net = labor_cost_cents_net + parts_cost_cents_net;
+  const vat_cents = labor_vat_cents + parts_vat_cents;
+  const total_cents = subtotal_cents_net + vat_cents;
+
+  // ---------- 9. Mekaanikko ja nostopaikka ----------
+  const mechanic = mechanics.find(m =>
+    (operation.required_skill_tags || []).every(tag => (m.skill_tags || []).includes(tag))
+  ) || null;
+
+  const mechanic_id = mechanic?.mechanic_id ?? null;
+
+  const needsLift =
+    (operation.required_resources || []).includes("lift") ||
+    ["TBELT_REPL", "TIMING_CHAIN_REPL"].includes(operation.operation_code);
+
+  let bay = null;
+  if (needsLift) {
+    bay = bays.find(b => (b.capabilities || []).includes("lift")) || null;
+  } else {
+    bay = bays.find(b => (b.capabilities || []).includes("no_lift")) || null;
+  }
+  if (!bay) bay = bays[0] || null;
+
+  const bay_id = bay?.bay_id ?? null;
+
+  // ---------- 10. Aikataulu ja ID:t ----------
+  const startHour =
+    mechanic?.work_hours?.mon_fri?.start?.split(":")[0]
+      ? Number(mechanic.work_hours.mon_fri.start.split(":")[0])
+      : 9;
+
+  const start = nextWeekdayAt(startHour, 0);
+  const end = addMinutes(start, labor_time_min);
+
+  const booking_id = `book_${ts}`;
+  const work_order_id = `wo_${ts}`;
+
+  // ---------- 11. Lopulliset objektit ----------
+  const booking = {
+    booking_id,
+    created_at: created_at_now,
+    customer_id,
+    vehicle_id,
+    operation_code: operation.operation_code,
+    start,
+    end,
+    mechanic_id,
+    bay_id,
+    status: "confirmed",
+    parts_quote: {
+      currency: operation.pricing_defaults?.currency ?? "EUR",
+
+      labor_rate_cents_per_hour,
+      labor_time_min,
+      labor_cost_cents: labor_cost_cents_net,
+      labor_vat_rate,
+      labor_vat_cents,
+
+      selected_parts,
+      parts_cost_cents: parts_cost_cents_net,
+      parts_vat_cents,
+
+      subtotal_cents: subtotal_cents_net,
+      vat_cents,
+      total_cents,
+
+      notes: ""
+    }
+  };
+
+  const work_order = {
+    work_order_id,
+    created_at: created_at_now,
+    booking_id,
+    customer_id,
+    vehicle_id,
+    operation_code: operation.operation_code,
+    instructions: "Työ asiakkaan pyynnön mukaan. Huomioi mahdolliset lisähavainnot.",
+    labor_time_min,
+    parts_list: selected_parts.map(p => ({
+      part_id: p.part_id,
+      qty: p.qty,
+      locked: !p.is_optional,
+      note: p.is_optional ? "Optio, vaatii asiakkaan hyväksynnän." : undefined
+    })),
+    checklist: ["Tee työ ohjeen mukaan", "Tarkista lopputulos", "Koeajo"],
+    status: "open"
+  };
+
+  const notification = {
+    notification_id: `notif_${ts}_1`,
+    created_at: created_at_now,
+    channel: (customer.preferred_contact_channel || "sms"),
+    to: customer.phone || customer.email || "",
+    template: "booking_confirmed",
+    payload: {
+      customer_name: customer.name || "",
+      plate_number: vehicle.plate_number || "",
+      service_name: operation.name || "",
+      start,
+      estimated_ready: addMinutes(end, 30)
+    },
+    status: "queued"
+  };
+
+  // ---------- 12. Mekaanikon UI payload ----------
+  const mechanic_job_payload = {
+    id: work_order_id,
+
+    customer_name: customer.name ?? null,
+    plate_number: vehicle.plate_number ?? vehicle.plateNumber ?? null,
+
+    vehicle_make: make,
+    vehicle_model: model,
+    year,
+    engineCode,
+
+    operation_code: operation.operation_code,
+    description: operation.name,
+    duration_min: labor_time_min,
+
+    mechanic: mechanic?.name ?? null,
+    mechanic_id,
+    bay_lift: bay?.name ?? null,
+    bay_id,
+
+    labor_total_brutto: labor_cost_cents_net + labor_vat_cents,
+    parts_total_brutto: parts_cost_cents_net + parts_vat_cents,
+    total_price_brutto: total_cents,
+
+    // vaihtoehdot työnjohtajalle
+    mechanic_options: (mechanics || []).map(m => ({
+      mechanic_id: m.mechanic_id,
+      name: m.name ?? m.mechanic_id
+    })),
+
+    bay_options: (bays || []).map(b => ({
+      bay_id: b.bay_id,
+      name: b.name ?? b.bay_id
+    })),
+
+    // osat + vaihtoehdot
+    parts: selected_parts.map(p => {
+      const meta = masterIndex[p.part_id] || {};
+      const vatRate = Number(meta.parts_vat_rate ?? 0.255);
+
+      const cheapest = p.option_cheapest || null;
+      const inStock = p.option_in_stock || null;
+
+      let chosenKey = "cheapest";
+      let chosen = cheapest;
+      if (!chosen && inStock) {
+        chosenKey = "in_stock";
+        chosen = inStock;
+      }
+
+      const qty = Number(p.qty ?? 1);
+      const unitCents = Number(chosen?.unit_price_cents ?? 0);
+      const lineBrutto = Math.round(unitCents * qty * (1 + vatRate));
+
+      return {
+        part_id: p.part_id,
+        name: meta.name || p.part_id,
+        brand: meta.brand || "",
+        qty,
+        vat_rate: vatRate,
+
+        option_cheapest: cheapest ? {
+          supplier_id: cheapest.supplier_id ?? null,
+          unit_price_cents: Number(cheapest.unit_price_cents ?? 0),
+          lead_days: Number(cheapest.lead_time_days ?? 0),
+          in_stock: !!cheapest.in_stock
+        } : null,
+
+        option_in_stock: inStock ? {
+          supplier_id: inStock.supplier_id ?? null,
+          unit_price_cents: Number(inStock.unit_price_cents ?? 0),
+          lead_days: Number(inStock.lead_time_days ?? 0),
+          in_stock: !!inStock.in_stock
+        } : null,
+
+        chosen_option: chosenKey,
+        price_brutto: lineBrutto
+      };
+    })
+  };
+
+  return {
+    booking,
+    work_order,
+    notification,
+    mechanic_job_payload,
+    vat_debug: {
+      labor_vat_rate,
+      labor_vat_cents,
+      parts_vat_cents
+    }
+  };
+}
+
+// ---------- Rakenna kaikki työt ----------
+const tsBase = Date.now();
+let seq = 0;
+
+const bookings = [];
+const work_orders = [];
+const notifications = [];
+const mechanic_job_payload = []; // <- HUOM: array (useita töitä)
+
+const vat_debug_all = [];
+
+for (const op of matchedOperations) {
+  seq += 1;
+  const ts = tsBase + seq;
+
+  const built = buildForOperation(op, ts);
+
+  bookings.push(built.booking);
+  work_orders.push(built.work_order);
+  notifications.push(built.notification);
+  mechanic_job_payload.push(built.mechanic_job_payload);
+  vat_debug_all.push({ operation_code: op.operation_code, ...built.vat_debug });
+}
+
+return {
+  debug: {
+    matchedCodes,
+    matchedOperationCodes: matchedOperations.map(o => o.operation_code),
+    sources: {
+      operations: operations.length,
+      laborGuide: laborGuide.length,
+      partsInfo: partsInfo.length,
+      partsMaster: partsMaster.length,
+      pricing: pricing.length,
+      mechanics: mechanics.length,
+      bays: bays.length
+    },
+    vat_debug: vat_debug_all
+  },
+  bookings,
+  work_orders,
+  notifications,
+
+  // LISTA (array)
+  mechanic_job_payload
+};
