@@ -7,7 +7,7 @@ Tässä projektissa oli tarkoitus tehdä autokorjaamolla käytettävä toiminnan
 
 ## Käyttöönotto ja käynnistys (CMD-komennot)
 
-### 1) Aktivoi virtuaaliympäristö ja käynnistä Streamlit (asiakas/työnjohtaja)
+### 1) Aktivoi virtuaaliympäristö ja käynnistä Streamlit (työnjohtaja)
 ```bash
 servai-env\Scripts\activate
 cd C:\Users\Käyttäjä\mechServAI
